@@ -1,13 +1,27 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import BreakdownOfAccommodation from './pages/BreakdownOfAccommodation'
+import { HashRouter, Routes, Route, Link } from 'react-router-dom'
+import Home from './pages/Home'
 
 function App() {
 
   return (
-    <div className="w-screen h-screen text-center bg-[#03052e]">
-      <h1 className="py-10 font-semibold text-5xl text-[#0cfca7]">No country - <span className='font-bold text-white' >Go && Stay</span></h1>
-    </div>
+    <HashRouter>
+      
+        
+      
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path="/BreakdownOfAccommodation" element={<BreakdownOfAccommodation/>} />
+
+      </Routes>
+
+
+
+
+    </HashRouter>
+
   )
 }
 
