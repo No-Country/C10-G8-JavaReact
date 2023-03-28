@@ -7,18 +7,18 @@ const BreakdownOfAccommodation = () => {
                 <img src="" alt="Soy un Logo" />
                 <nav>
                     <input type="text" placeholder='Buscar' />
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i className="fa-solid fa-magnifying-glass"></i>
 
                 </nav>
                 <div>
-                    <i class="fa-solid fa-user"></i>
+                    <i className="fa-solid fa-user"></i>
                 </div>
             </header>
             <section>
                 <section>
                     <h1>Nombre de Vivienda</h1>
                     <h3><span></span>4,7. Evaluaciones</h3>
-                    <h3><i class="fa-solid fa-location-dot"></i><span></span>Ubicación</h3>
+                    <h3><i className="fa-solid fa-location-dot"></i><span></span>Ubicación</h3>
                 </section>
 
                 <section className='d-grid'>
@@ -29,7 +29,7 @@ const BreakdownOfAccommodation = () => {
                     <div className='text[-gray]' ></div>
                     <div className='text[-gray]' ></div>
                     <div className='text[-gray]' ></div>
-                    <div><i class="fa-solid fa-arrow-right"></i></div>
+                    <div><i className="fa-solid fa-arrow-right"></i></div>
                 </section>
             </section>
             <section>
