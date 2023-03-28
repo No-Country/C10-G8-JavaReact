@@ -63,6 +63,19 @@
 					</excludes>
 				</configuration>
 			</plugin>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <configuration>
+                                <executable>./mvnw</executable>
+                                <arguments>
+                                    <argument>clean</argument>
+                                    <argument>compile</argument>
+                                    <argument>quarkus:dev</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
 		</plugins>
 	</build>
 	<repositories>
@@ -101,5 +114,4 @@
 			</releases>
 		</pluginRepository>
 	</pluginRepositories>
-
 </project>
