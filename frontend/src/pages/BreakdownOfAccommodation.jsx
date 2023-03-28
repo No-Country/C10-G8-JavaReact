@@ -5,7 +5,7 @@ const BreakdownOfAccommodation = () => {
         <main>
             <header>
                 <img src="" alt="Soy un Logo" />
-                <nav>
+                <nav className='w-full'>
                     <input type="text" placeholder='Buscar' />
                     <i class="fa-solid fa-magnifying-glass"></i>
 
