@@ -34,7 +34,7 @@ const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <nav className="bg-[#E9E8E8]">
+        <nav className="bg-[#E9E8E8]  w-screen z-50 fixed shadow-xl">
             <div className="mx-auto max-w-7xl p-4 px-8">
                 <div className="relative flex h-16 items-center justify-between">
                     <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
