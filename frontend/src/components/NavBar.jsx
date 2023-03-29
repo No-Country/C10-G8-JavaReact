@@ -28,10 +28,71 @@ const Logo = ({ className }) => {
         </svg>
 
     )
- }
+}
+
+const Dropdown = ({ sesion }) => {
+    return (
+        <ul className="absolute z-10 flex min-w-[180px] right-3 flex-col gap-2 overflow-auto font-normal tracking-wide rounded-b-3xl border border-blue-gray-50 bg-white py-3 font-sans text-sm text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
+            {sesion ?
+                (<>
+                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                        <p className="block font-sans text-sm text-inherit antialiased">
+                            Ir a Perfil
+                        </p>
+                    </button>
+                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                        <p className="block font-sans text-sm text-inherit antialiased">
+                            Favoritos
+                        </p>
+                    </button>
+                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                        <p className="block font-sans text-sm text-inherit antialiased">
+                            Viajes
+                        </p>
+                    </button>
+                    <hr class="my-2 border-blue-gray-50" />
+                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                        <p className="block font-sans text-sm text-inherit antialiased">
+                            Ser anfitrión
+                        </p>
+                    </button>
+                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                        <p className="block font-sans text-sm text-inherit antialiased">
+                            Agregar alojamiento
+                        </p>
+                    </button>
+                    <hr class="my-2 border-blue-gray-50" tabindex="-1" role="menuitem" />
+                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                        <p className="block font-sans text-sm text-inherit antialiased">
+                            Cerrar sesión
+                        </p>
+                    </button>
+                </>)
+                :
+                (
+                    <>
+                        <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                            <p className="block font-sans text-sm text-inherit antialiased">
+                                Iniciar sesión
+                            </p>
+                        </button>
+                        <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                        
+                            <p className="block font-sans text-sm text-inherit antialiased">
+                                Registrarse
+                            </p>
+                        </button>
+                    </>
+                )
+            }
+        </ul>
+    )
+}
+
 
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [isOpenPerfil, setIsOpenPerfil] = useState(false)
 
     return (
         <nav className="bg-[#E9E8E8]  w-screen z-50 fixed shadow-xl">
@@ -48,7 +109,7 @@ const NavBar = () => {
                                 <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" >
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                                 </svg>
-                                }
+                            }
                         </button>
                     </div>
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
@@ -66,9 +127,10 @@ const NavBar = () => {
                         {/* <!-- Profile dropdown --> */}
                         <div className="relative ml-3">
                             <div>
-                                <button type="button" className="flex rounded-full bg-[#D1D1D6] text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 ">
+                                <button type="button" onClick={() => setIsOpenPerfil(!isOpenPerfil)} className="flex rounded-full bg-[#D1D1D6] text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 ">
                                     <img className="h-8 w-8 rounded-full p-1" src={perfil} alt="" />
                                 </button>
+                                {isOpenPerfil && <Dropdown sesion={true} />}
                             </div>
                         </div>
                     </div>
