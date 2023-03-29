@@ -5,6 +5,7 @@ import Populares from '../components/Populares';
 import Footer from '../components/Footer';
 import Anfitrion from '../components/Anfitrion';
 import ExploraHospedajes from '../components/ExploraHospedajes';
+import LugarDestacado from '../components/LugarDestacado';
 
 const Home = () => {
     return (
@@ -13,9 +14,7 @@ const Home = () => {
             <div className='flex flex-col mt-24 min-[540px]:px-20  py-4' >
                 <Hero />
                 <Populares />
-                <div className='bg-[#7a7171] h-[80vh]' >
-                    Vacaciona en X ubicacion
-                </div>
+                <LugarDestacado/>
                 <ExploraHospedajes />
             </div>
             <Anfitrion />
