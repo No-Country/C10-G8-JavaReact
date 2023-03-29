@@ -1,34 +1,49 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import logo from '../assets/goandstay- only.png'
 
 const BreakdownOfAccommodation = () => {
+    const [house, setHouse] = useState({})
+
+    useEffect(() => {
+        axios.get('https://pokeapi.co/api/v2/pokemon/4/')
+            .then(res => setHouse(res.data))
+
+    }, [])
+
+
+
+
+
     return (
-        <main className='w-sc'>
-            <header>
-                <img src="" alt="Soy un Logo" />
-                <nav>
-                    <input type="text" placeholder='Buscar' />
-                    <i className="fa-solid fa-magnifying-glass"></i>
+        <main className='container w-screen  h-screen overflow-x-hidden text-white p-10 flex-col space-y-20 bg-[#03052e]'>
+            <header className='flex items-center w-full lg:w-full sm:w-l h-10 lg:w-screen justify-center gap-5 flex'>
+                <div className='w-35 bg-white flex items-center h-full rounded-full '>
+                    <img className='  w-20 h-10' src={logo} alt="Soy un Logo" />
+                </div>
+
+                <nav className='relative w-3/4' >
+                    <input type="text" className='rounded-full  ' placeholder='   Buscar' />
+                    <i className="fa-solid fa-magnifying-glass absolute right-2 bottom-0 top-1 text-black "></i>
 
                 </nav>
-                <div>
-                    <i className="fa-solid fa-user"></i>
+
+                <div className=' flex justify-center items-center w-20 h-full rounded-full bg-gray-500'>
+                    <i className="fa-solid fa-user "></i>
                 </div>
             </header>
+            
             <section>
-                <section>
-                    <h1>Nombre de Vivienda</h1>
-                    <h3><span></span>4,7. Evaluaciones</h3>
+                <section className='xs:flex-col text-center'>
+                    <h1 clasName='text-9xl'>{house.name}</h1>
+                    <h3><span><i class="fa-regular fa-star"></i></span>4,7. Evaluaciones</h3>
                     <h3><i className="fa-solid fa-location-dot"></i><span></span>Ubicación</h3>
                 </section>
 
-                <section className='d-grid'>
-                    <div className='text[-gray]' ></div>
-                    <div className='text[-gray]' ></div>
-                    <div className='text[-gray]' ></div>
-                    <div className='text[-gray]' ></div>
-                    <div className='text[-gray]' ></div>
-                    <div className='text[-gray]' ></div>
-                    <div className='text[-gray]' ></div>
+                <section className='w-full'>
+                    <img src={house.sprites?.font_default} alt="" />
+
+
                     <div><i className="fa-solid fa-arrow-right"></i></div>
                 </section>
             </section>
@@ -42,9 +57,9 @@ const BreakdownOfAccommodation = () => {
                     </div>
                 </section>
                 <section>
-                    <card>
+                    <section>
 
-                    </card>
+                    </section>
                 </section>
 
             </section>
