@@ -21,31 +21,46 @@ public class Residencia implements Serializable {
     @Column(name = "idResidencia")
     private int idResidencia;
     
-    @Column(name = "tipoResidencia")
-    private String tipoResidencia;
+    //@Column(name = "tipoResidencia")
+    //private String tipoResidencia; //Pendiente: Tipos de residencia podría ser una lista de tipos de residencia
+    @Column(name = "servicio")
+    private String servicio; //Array -> Tipos de servicios que incluye, podría tener una lista de servicios
     
-    @Column(name = "caracteristica")
-    private String caracteristica;
+    @Column(name = "cantidadHabitacion")
+    private int cantidadHabitacion; //Cantidad de habitaciones
+    
+    @Column(name = "cantidadBaño")
+    private int cantidadBaño;//Cantidad de baños
+    
+    @Column(name="cantidadCama")
+    private int cantidadCama; //Cantidad de camas
+    
+    @Column(name = "estadoResidencia")
+    private boolean estadoResidencia; //Si está disponible para alquilar o no, va en tabla alquiler
     
     @Column(name = "ubicacion")
-    private String ubicacion;
+    private String ubicacion; 
     
     @Column(name = "precio")
-    private double precio;
+    private double precio; 
     
     public Residencia(){}
     
-    public Residencia (int idResidencia, String tipoResidencia, String caracteristica, 
-            String ubicacion, double precio){
+    public Residencia (int idResidencia, String servicio, int cantidadHabitacion,
+        int cantidadBaño, int cantidadCama , String ubicacion, double precio){
         this.idResidencia = idResidencia;
-        this.tipoResidencia = tipoResidencia;
-        this.caracteristica = caracteristica;
+        //this.tipoResidencia = tipoResidencia;
+        this.servicio = servicio;
+        this.cantidadHabitacion = cantidadHabitacion;
+        this.cantidadBaño = cantidadBaño;
+        this.cantidadCama = cantidadCama;
         this.ubicacion = ubicacion;
         this.precio = precio;
     }
     @Override
     public String toString() {
-        return "Residencia [idResidencia=" + idResidencia + ", tipoResidencia=" + tipoResidencia + ", caracteristica=" + caracteristica
-                + ", ubicacion=" + ubicacion + ", precio=" + precio + "]";
+        return "Residencia [idResidencia=" + idResidencia + ", servicio=" + servicio +
+               
+            ", ubicacion=" + ubicacion + ", precio=" + precio + "]";
     }
 }
