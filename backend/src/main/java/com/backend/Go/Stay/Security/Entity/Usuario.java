@@ -7,7 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Usuario {
+public class Usuario { //Diana me dijo que comente
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private int id;
