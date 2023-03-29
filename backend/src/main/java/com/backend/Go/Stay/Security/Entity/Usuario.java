@@ -33,8 +33,7 @@ public class Usuario { //Diana me dijo que comente
     public Usuario() {
     }
 
-    public Usuario(int id, String nombre, String nombreUsuario, String email, String password) {
-        this.id = id;
+    public Usuario( @NotNull String nombre,@NotNull String nombreUsuario,@NotNull String email,@NotNull String password) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
