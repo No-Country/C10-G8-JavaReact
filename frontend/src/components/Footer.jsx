@@ -3,11 +3,11 @@ import React from 'react'
 const Footer = () => {
     return (
         <footer className="bg-[#5F5F5F] text-black">
-            <div className="container pt-16 px-20 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
-                <div className="grid grid-cols-2 gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4 text-xl">
-                    <div className="space-y-3">
-                        <h3 className="tracking-wide uppercase dark:text-gray-50">G&&S</h3>
-                        <ul className="space-y-3">
+            <div className=" pt-16 px-20 mx-auto space-y-6 divide-y divide-black md:space-y-12 divide-opacity-50">
+                <div className="grid grid-cols-3 gap-x-6 gap-y-8 sm:grid-cols-3 text-xl">
+                    <div className="space-y-3 tracking-wide">
+                        <h3 className="text-[#B7B7B7] text-lg">G&&S</h3>
+                        <ul className="space-y-6 text-base">
                             <li>
                                 <a rel="noopener noreferrer" href="#">Home</a>
                             </li>
@@ -19,36 +19,44 @@ const Footer = () => {
                             </li>
                         </ul>
                     </div>
-                    <div className="space-y-3">
-                        <h3 className="tracking-wide uppercase dark:text-gray-50">Como ser anfitrion</h3>
-                        <ul className="space-y-1">
+                    <div className="space-y-3 tracking-wide">
+                        <h3 className="text-[#B7B7B7] text-lg">Como ser anfitrion</h3>
+                        <ul className="space-y-6 text-base">
                             <li>
                                 <a rel="noopener noreferrer" href="#">Quiero ser anfitrión</a>
                             </li>
                             <li>
-                                <a rel="noopener noreferrer" href="#">Información </a>
+                                <a rel="noopener noreferrer" href="#">Información sobre anfitriones </a>
                             </li>
                             <li>
                                 <a rel="noopener noreferrer" href="#">Ayuda </a>
                             </li>
                         </ul>
                     </div>
-                    <div className="space-y-3">
-                        <h3 className="uppercase dark:text-gray-50">Suscríbase al newsletter</h3>
-                        <ul className="space-y-1">
+                    <div className="space-y-3 tracking-wide">
+                        <h3 className="text-[#B7B7B7] text-2xl">Suscríbase al newsletter</h3>
+                        <ul className="space-y-6 text-base">
                             <li>
-                                <a rel="noopener noreferrer" href="#">.......</a>
+                                <a rel="noopener noreferrer" href="#">Suscríbase y entérese de nuevos hospedajes y descuento. Escriba su mail.</a>
+                            </li>
+                            <li>
+                                <div>
+                                    <form onSubmit={(e)=>e.preventDefault()} className=" mr-4 my-4 flex">
+                                        <input className="rounded-l-lg p-3 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white" placeholder="Correo electrónico" />
+                                        <button className="px-8 rounded-r-lg bg-black  text-white font-normal p-3 border-black border-t border-b border-r">Suscribirse</button>
+                                    </form>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div className="grid justify-center pt-6 lg:justify-between py-2">
-                    <div className="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6">
+                <div className="grid justify-center pt-6 lg:justify-between my-8">
+                    <div className="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6 text-[#818181]">
                         <a rel="noopener noreferrer" href="#">
                             <span>Copyright 2023 Go && Stay.</span>
                         </a>
                     </div>
-                    <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
+                    <div className="flex justify-center py-6 space-x-4 lg:pt-0 lg:col-end-13">
                         <a rel="noopener noreferrer" href="#" title="Twitter" className="flex items-center p-1">
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-current">
                                 <path d="M23.954 4.569a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.061a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.937 4.937 0 004.604 3.417 9.868 9.868 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 002.46-2.548l-.047-.02z"></path>
