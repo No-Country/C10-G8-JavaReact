@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+
+
 import BreakdownOfAccommodation from './pages/BreakdownOfAccommodation'
 import { HashRouter, Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home'
