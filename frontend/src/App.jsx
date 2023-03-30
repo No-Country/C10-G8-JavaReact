@@ -1,20 +1,18 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import styled from 'styled-components';
 import BreakdownOfAccommodation from './pages/BreakdownOfAccommodation'
 import { HashRouter, Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home'
-import Login from './pages/Login'
- 
+import Register from './login/Register'
+ import Login from './login/Login'
+import Profile from './login/Profile'
 
 function App() {
-const [showModal,setShowModal] = useState(false)
+ 
   return (
     <HashRouter>
- 
-        
-       
-      <Login visible={showModal}/>
+     
+       <Register></Register>
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path="/BreakdownOfAccommodation" element={<BreakdownOfAccommodation/>} />
