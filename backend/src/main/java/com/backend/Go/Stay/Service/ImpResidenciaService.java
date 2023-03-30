@@ -1,9 +1,9 @@
 
-package com.backend.goandstay.ImpService;
+package com.backend.Go.Stay.Service;
 
 import com.backend.Go.Stay.Entity.Residencia;
+import com.backend.Go.Stay.Interface.ResidenciaService;
 import com.backend.Go.Stay.Repository.ResidenciaRepository;
-import com.backend.Go.Stay.Service.ResidenciaService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,3 +35,4 @@ public class ImpResidenciaService implements ResidenciaService{
         residenciaRepository.deleteById(id);
     }
 }
+

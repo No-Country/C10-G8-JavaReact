@@ -2,8 +2,7 @@
 package com.backend.Go.Stay.Controller;
 
 import com.backend.Go.Stay.Entity.Residencia;
-import com.backend.Go.Stay.Repository.ResidenciaRepository;
-import com.backend.goandstay.ImpService.ImpResidenciaService;
+import com.backend.Go.Stay.Service.ImpResidenciaService;
 import java.util.HashSet;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+//En el contenido de cada archivo no hubo ningun cambio, solo
+//organize 2 packages 1 fue el Service y el otro es nuevo el Interface, y reacomode el Application.java
 
 @RestController
 @CrossOrigin("*")

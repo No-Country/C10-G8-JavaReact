@@ -1,4 +1,4 @@
-package com.backend.goandstay;
+package com.backend.Go.Stay;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

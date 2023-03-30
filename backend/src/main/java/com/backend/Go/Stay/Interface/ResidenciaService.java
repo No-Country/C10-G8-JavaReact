@@ -1,5 +1,6 @@
 
-package com.backend.Go.Stay.Service;
+package com.backend.Go.Stay.Interface;
+
 import com.backend.Go.Stay.Entity.Residencia;
 import java.util.List;
 import java.util.Optional;
