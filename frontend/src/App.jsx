@@ -8,10 +8,12 @@ import Register from './login/Register'
 import Profile from './login/Profile'
 
 function App() {
- 
+   /*
+   x
+   */
   return (
     <HashRouter>
-     
+    
        <Register></Register>
       <Routes>
         <Route path='/' element={<Home/>} />
