@@ -16,19 +16,7 @@ const BreakdownOfAccommodation = () => {
         <main className='container w-screen h-full  bg-[#03052e] flex-col gap-10  text-white'>
             <NavbarStyle2/>
             <article className='w-full h-full p-5'>
-                <header className='w-full md:h-16 h-10 flex justify-between items-center mb-10  '>
-                    <div className='flex justify-center items-center w-20 h-full md:h-15 md:w-15 rounded-full bg-white '>
-                        <img className='  w-15 h-10 md:w-7/12' src={logo} alt="Soy un Logo" />
-                    </div>
-
-                    <nav className='relative ' >
-                        <input type="text" className='rounded-full md:h-10 w-96 ' placeholder='   Buscar' />
-                        
-
-                    </nav>
-
-                   
-                </header>
+                
 
                
 
@@ -113,27 +101,11 @@ const BreakdownOfAccommodation = () => {
                                 </div>
 
 
-                            </div>{
+                            </div>
 
 
 
-                        /* <div>
-                            
-                            
-                            <hr className='w-50'/>
-                            
-                           
-
-                        </div>
                       
-
-                        <div>
-                            
-                            
-                            <hr />
-                            
-                        </div> */}
-
 
                         </section>
 
@@ -259,7 +231,7 @@ const BreakdownOfAccommodation = () => {
                         <div className='flex flex-col text-center gap-2  font-normal text-base'>
                             <h2>Titulo</h2>
                             <p >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati enim eos facilis blanditiis? Itaque, fugiat necessitatibus. Aspernatur veniam cum odio tempora, necessitatibus magnam laboriosam mollitia aliquid deleniti ipsam quas ex.</p>
-                            <a hre>Ver más</a>
+                            <a href=''>Ver más</a>
                         </div>
 
                     </div>

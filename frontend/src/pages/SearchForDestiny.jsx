@@ -14,7 +14,7 @@ const SearchForDestiny = () => {
                     <section className='p-10 flex justify-center'>
                         {
                             arrayImage.map((item) => (
-                                <div className='relative w-64 h-64'>
+                                <div className='relative w-64 h-64' key={item}>
                                     <img className='w-56 h-56  bg-gray-100 h' src={item} alt="" />
                                     <button className=' absolute bg-[#B4B4B4] px-5 py-2 rounded-lg bottom-0.5 right-24 text-center text-base'>Ver más</button>
                                     <i className="fa-regular fa-heart absolute text-xl top-1 right-12"></i>
@@ -35,7 +35,7 @@ const SearchForDestiny = () => {
                         <div className='border-solid border-2 border-black w-8 h-8 rounded-full items-center justify-center flex'>
                             <h3>3</h3>
                         </div>
-                        <i class="fa-solid text-3xl fa-arrow-right"></i>
+                        <i className="fa-solid text-3xl fa-arrow-right"></i>
                     </div>
 
                 </section>
