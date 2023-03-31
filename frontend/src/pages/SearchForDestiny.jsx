@@ -2,6 +2,8 @@ import React from 'react';
 import Footer from '../components/Footer';
 import NavbarStyle2 from '../components/NavbarStyle2';
 import arrayImage from '../assets/ArrayExample'
+import {Link} from 'react-router-dom'
+import TravelPage from './TravelPage';
 
 const SearchForDestiny = () => {
 
@@ -42,6 +44,7 @@ const SearchForDestiny = () => {
 
             </article>
             <Footer />
+            
         </main>
     );
 };
