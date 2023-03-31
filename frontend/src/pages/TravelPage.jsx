@@ -3,10 +3,9 @@ import NavBarOnlyLogo from '../components/NavBarOnlyLogo';
 
 const TravelPage = () => {
     return (
-        <main className='bg-black'>
-            <NavBarOnlyLogo />
-            asdasdas
-        </main>
+      <div>
+        <h2>Hola</h2>
+      </div>
     );
 };
 
