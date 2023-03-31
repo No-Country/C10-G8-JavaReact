@@ -1,15 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import logo from '../assets/goandstay- only.png'
+import DesgloseAlojamiento from '../components/DesgloseAlojamiento';
+import Footer from '../components/Footer';
+import NavbarStyle2 from '../components/NavbarStyle2';
 
 const BreakdownOfAccommodation = () => {
-    const [house, setHouse] = useState({})
-
-    useEffect(() => {
-        axios.get('https://pokeapi.co/api/v2/pokemon/4/')
-            .then(res => setHouse(res.data))
-
-    }, [])
+    
 
 
 
@@ -17,6 +14,7 @@ const BreakdownOfAccommodation = () => {
 
     return (
         <main className='container w-screen h-full  bg-[#03052e] flex-col gap-10  text-white'>
+            <NavbarStyle2/>
             <article className='w-full h-full p-5'>
                 <header className='w-full md:h-16 h-10 flex justify-between items-center mb-10  '>
                     <div className='flex justify-center items-center w-20 h-full md:h-15 md:w-15 rounded-full bg-white '>
@@ -25,14 +23,14 @@ const BreakdownOfAccommodation = () => {
 
                     <nav className='relative ' >
                         <input type="text" className='rounded-full md:h-10 w-96 ' placeholder='   Buscar' />
-                        <i className="fa-solid fa-magnifying-glass absolute right-2  top-1 md:top-3 md:right-4 text-black "></i>
+                        
 
                     </nav>
 
-                    <div className=' flex justify-center items-center w-20 h-full rounded-full bg-gray-500'>
-                        <i className="fa-solid fa-user md:text-3xl "></i>
-                    </div>
+                   
                 </header>
+
+               
 
                 <section className='flex w-full max-h-max mb-10'>
                     <section className=' flex flex-col justify-center  pl-10   w-3/4'>
@@ -248,74 +246,26 @@ const BreakdownOfAccommodation = () => {
                         Qué saber para tu estadía
                     </h2>
                     <div className='flex p-2  gap-5'>
-                        <div className='flex flex-col text-center gap-2'>
+                        <div className='flex flex-col text-center gap-2 font-normal text-base'>
                             <h2>Titulo</h2>
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati enim eos facilis blanditiis? Itaque, fugiat necessitatibus. Aspernatur veniam cum odio tempora, necessitatibus magnam laboriosam mollitia aliquid deleniti ipsam quas ex.</p>
                             <a href="">Ver más</a>
                         </div>
-                        <div className='flex flex-col text-center gap-2'>
+                        <div className='flex flex-col text-center gap-2  font-normal text-base'>
                             <h2>Titulo</h2>
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati enim eos facilis blanditiis? Itaque, fugiat necessitatibus. Aspernatur veniam cum odio tempora, necessitatibus magnam laboriosam mollitia aliquid deleniti ipsam quas ex.</p>
                             <a href="">Ver más</a>
                         </div>
-                        <div className='flex flex-col text-center gap-2'>
+                        <div className='flex flex-col text-center gap-2  font-normal text-base'>
                             <h2>Titulo</h2>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati enim eos facilis blanditiis? Itaque, fugiat necessitatibus. Aspernatur veniam cum odio tempora, necessitatibus magnam laboriosam mollitia aliquid deleniti ipsam quas ex.</p>
-                            <a href="">Ver más</a>
+                            <p >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati enim eos facilis blanditiis? Itaque, fugiat necessitatibus. Aspernatur veniam cum odio tempora, necessitatibus magnam laboriosam mollitia aliquid deleniti ipsam quas ex.</p>
+                            <a hre>Ver más</a>
                         </div>
 
                     </div>
                 </section>
             </article>
-            <footer className='flex flex-col w-full p-20 text-black gap-5 bg-[#5F5F5F]'>
-                <section className='flex justify-between '>
-                    <div className='flex flex-col gap-5 bg-green'>
-                        <h2 className='text-[#B7B7B7] font-medium text-2xl'>G&&S</h2>
-                        <ul className='flex flex-col gap-5 text-lg' >
-                            <li>Home</li>
-                            <li>Filtro</li>
-                            <li>Perfil</li>
-                        </ul>
-                    </div>
-                    <div className='flex flex-col gap-5'>
-                        <h2 className='text-[#B7B7B7] font-medium text-2xl'>Como ser anfitrión</h2>
-                        <ul className='flex flex-col gap-5 text-lg'>
-                            <li>Quiero ser anfitrión</li>
-                            <li>Información sobre de anfitriones</li>
-                            <li>Ayuda</li>
-                        </ul>
-                    </div>
-                    <div className='flex flex-col gap-5'>
-                        <h2 className='text-[#B7B7B7] font-medium text-2xl'>Suscríbase al <br />
-                            newsletter</h2>
-                        <p className='text-lg'>Suscríbase y entérese de <br />
-                         nuevos hospedajes y <br />
-                         descuento. Escriba su mail.</p>
-                        <div>
-                            <input type="text" placeholder='Correo electrónico' />
-                            <button className='bg-black text-white p-2'>Suscribirse</button>
-                        </div>
-
-                    </div>
-
-                </section>
-
-                <hr className='border-1 border-solid border-black' />
-                <div className='flex justify-between'>
-                    <h5 className='text-[#C2B8FF] text-sm'>Copyright 2023 Go && Stay</h5>
-                    <div className='flex gap-5'>
-                        <div className='h-5 w-5 bg-[#FFFFFF] flex items-center justify-center'>
-                            <i className="fa-brands fa-facebook-f"></i></div>
-                        <div className='h-5 w-5 bg-[#FFFFFF] flex items-center justify-center'>
-                            <i className="fa-brands fa-instagram"></i></div>
-                        <div className='h-5 w-5 bg-[#FFFFFF] flex items-center justify-center'>
-                            <i className="fa-brands fa-twitter"></i></div>
-                    </div>
-
-                </div>
-
-
-            </footer>
+            <Footer/>
         </main >
 
 
