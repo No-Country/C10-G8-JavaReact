@@ -34,5 +34,7 @@ public class ImpResidenciaService implements ResidenciaService{
     public void deleteResidenciaById(int id) {
         residenciaRepository.deleteById(id);
     }
+    
+    
 }
 

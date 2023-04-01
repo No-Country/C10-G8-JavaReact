@@ -6,11 +6,9 @@ package com.backend.Go.Stay.Repository;
 
 import com.backend.Go.Stay.Entity.Residencia;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author acerAspire3
- */
+@Repository
 public interface ResidenciaRepository extends JpaRepository<Residencia, Integer> {
     
     
