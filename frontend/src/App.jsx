@@ -1,9 +1,7 @@
 import BreakdownOfAccommodation from './pages/BreakdownOfAccommodation'
 import { HashRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home' 
-import Profile from './pages/Profile'
-import EditForm from './pages/EditForm' 
-
+import Home from './pages/Home'
+import SearchForDestiny from './pages/SearchForDestiny'
 
 function App() {
    /*
@@ -16,8 +14,8 @@ function App() {
       
       <Route path='/' element={<Home/>} />
         <Route path="/BreakdownOfAccommodation" element={<BreakdownOfAccommodation/>} />
-        <Route path='/profile' element={<Profile/>} />
-        <Route path='/edit' element={<EditForm/>} />
+        <Route path="/SearchForDestiny" element={<SearchForDestiny/>} />
+
 
       </Routes>
  
