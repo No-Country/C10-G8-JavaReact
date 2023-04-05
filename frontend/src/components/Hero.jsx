@@ -116,7 +116,7 @@ const Hero = () => {
                     <div className='flex flex-col' >
                         <h2 className='text-3xl py-3 font-semibold'>Huespedes</h2>
                         <div className='relative flex flex-col border-b-2 justify-end'>
-                            <input readOnly={true} type="text" value={huespedes.adultos + huespedes.ninios + huespedes.mascotas} className='focus:outline-none bg-transparent w-full text-3xl text-[#d1d1d6] placeholder:text-[#d1d1d6] placeholder:text-[1.1rem] h-full italic' placeholder='Cantidad' />
+                            <input readOnly={true} type="text" value={huespedes.adultos + huespedes.ninios + huespedes.mascotas === 0 ? "":huespedes.adultos + huespedes.ninios + huespedes.mascotas } className='focus:outline-none bg-transparent w-full text-3xl text-[#d1d1d6] placeholder:text-[#d1d1d6] placeholder:text-[1.1rem] h-full italic' placeholder='Cantidad' />
                             <div className='absolute insert-y-0 right-0 flex items-end'>
                                 <img className='w-6 h-6 mb-1 hover:cursor-pointer' onClick={()=>setIsOpen(!isOpen)} src={"https://raw.githubusercontent.com/MaxiiMartins/recursos-c10-8/main/down.png"} alt="icono" />
                             </div>
