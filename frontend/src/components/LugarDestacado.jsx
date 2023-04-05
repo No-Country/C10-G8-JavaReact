@@ -28,17 +28,17 @@ const LugarDestacado = () => {
 
                     <div className='w-72 h-[309px] bg-[#202F59] group absolute left-0 top-0 rounded-3xl overflow-hidden shadow-sm shadow-black/60'>
                         <a href="#">
-                            <img className='w-full h-full opacity-80 transition-opacity group-hover:opacity-75' src={lugar.img[0]} alt={lugar.nombre} />
+                            <img className='w-full h-full opacity-90 transition-opacity group-hover:opacity-80' src={lugar.img[0]} alt={lugar.nombre} />
                         </a>
                     </div>
                     <div className='w-96 h-64 bg-[#202F59] group absolute bottom-0 left-16 rounded-3xl overflow-hidden shadow-sm shadow-black/60'>
                         <a href="#">
-                            <img className='w-full h-full opacity-80 transition-opacity group-hover:opacity-75' src={lugar.img[1]} alt={lugar.nombre} />
+                            <img className='w-full h-full opacity-90 transition-opacity group-hover:opacity-80' src={lugar.img[1]} alt={lugar.nombre} />
                         </a>
                     </div>
                     <div className='w-72 h-72 bg-[#202F59] group absolute -right-14 top-16 rounded-3xl overflow-hidden shadow-sm shadow-black/60'>
                         <a href="#">
-                            <img className='w-full h-full opacity-80 transition-opacity group-hover:opacity-75' src={lugar.img[2]} alt={lugar.nombre} />
+                            <img className='w-full h-full opacity-90 transition-opacity group-hover:opacity-80' src={lugar.img[2]} alt={lugar.nombre} />
                         </a>
                     </div>
                 </div>
