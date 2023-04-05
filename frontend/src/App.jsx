@@ -4,26 +4,13 @@ import Home from './pages/Home'
 import SearchForDestiny from './pages/SearchForDestiny'
 
 function App() {
-   /*
-   x.
-   */
+
   return (
-    <HashRouter>   
-          
-      <Routes>
-      
-      <Route path='/' element={<Home/>} />
-        <Route path="/BreakdownOfAccommodation" element={<BreakdownOfAccommodation/>} />
-        <Route path="/SearchForDestiny" element={<SearchForDestiny/>} />
-
-
-      </Routes>
- 
-
-
-    </HashRouter>
-    
-
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path="/BreakdownOfAccommodation" element={<BreakdownOfAccommodation />} />
+      <Route path="/SearchForDestiny" element={<SearchForDestiny />} />
+    </Routes>
   )
 }
 
