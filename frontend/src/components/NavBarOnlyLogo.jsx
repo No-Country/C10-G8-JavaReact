@@ -6,7 +6,7 @@ const NavBarOnlyLogo = () => {
     return (
 
         <nav className='flex p-5 w-full h-24 items-center justify-start'>
-            <img className='w-50 h-28' src={logoPerfil} alt="" />
+            <img className='w-44 h-44' src={logoPerfil} alt="" />
         </nav>
 
 
