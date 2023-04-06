@@ -4,52 +4,55 @@ import logo from '../assets/goandstay- only.png'
 import DesgloseAlojamiento from '../components/DesgloseAlojamiento';
 import Footer from '../components/Footer';
 import NavbarStyle2 from '../components/NavbarStyle2';
+import ArrayExample from '../assets/ArrayExample';
+import MorePhotos from '../components/MorePhotos';
 
 const BreakdownOfAccommodation = () => {
-    
+    const [visiblePhotos, setVisiblePhotos]= useState(false)
 
-
+    const closePhotos =()=>{
+        setVisiblePhotos(false)
+    }
 
 
 
     return (
-        <main className='container w-screen h-full  bg-[#03052e] flex-col gap-10  text-white'>
-            <NavbarStyle2/>
-            <article className='w-full h-full p-5'>
-                
+        <main className='Container   bg-[#ffff] flex-col gap-10 '>
+            <NavbarStyle2 />
+            <article className='w-full h-full p-10 flex-col'>
 
-               
+                <section className='flex w-full  mb-10 w-1/2'>
+                    <section className=' flex flex-col justify-center gap-2 pl-20  w-1/2'>
+                        <h1 className='text-6xl text-[#202F59] h-50 pb-3 '>Nombre de la <br /> Vivienda</h1>
 
-                <section className='flex w-full max-h-max mb-10'>
-                    <section className=' flex flex-col justify-center  pl-10   w-3/4'>
-                        <h1 className='text-20 h-50 pb-3 md:text-4xl'>Nombre de Vivienda</h1>
+                        <div className='flex flex-col  md:text-xl'>
+                            <div className='flex items-center justify-start gap-2 md:text-xl'>
+                                <i className="text-[#EAD201] fa-regular fa-star"></i>
+                                <h3 className='text-[#202F59] font-bold border-b-2 border-[#202F59]' >
+                                    4,7. Evaluaciones</h3>
 
-                        <div className='flex items-center gap-2 md:text-xl'>
-                            <i className=" fa-regular fa-star"></i>
-                            <h3 className='' >
-                                4,7. Evaluaciones</h3>
-                            <hr className='bg-black h-5 text-[black]' />
+                            </div>
+
+
                         </div>
                         <div className='flex items-center gap-2 md:text-xl'>
-                            <i className="pl-1 fa-solid fa-location-dot"></i>
-                            <h3>Ubicación</h3>
+                            <i className="text-[#5333ED] pl-1 fa-solid fa-location-dot"></i>
+                            <h3 className='text-[#202F59] px-1'>Ubicación</h3>
 
                         </div>
 
 
                     </section>
 
-                    <section className='w-full   gap-5 p-2 flex flex-wrap content-center items-center'>
-                        <img className='h-24 w-32' src="https://picsum.photos/200/300" alt="" />
-                        <img className='h-24 w-32' src="https://picsum.photos/200/300" alt="" />
-                        <img className='h-24 w-32' src="https://picsum.photos/200/300" alt="" />
-                        <img className='h-24 w-32' src="https://picsum.photos/200/300" alt="" />
-                        <img className='h-24 w-32' src="https://picsum.photos/200/300" alt="" />
-                        <img className='h-24 w-32' src="https://picsum.photos/200/300" alt="" />
-                        <img className='h-24 w-32' src="https://picsum.photos/200/300" alt="" />
-                        <img className='h-24 w-32' src="https://picsum.photos/200/300" alt="" />
+                    <section className='w-1/2  grid gap-5 p-2 grid-rows-3 grid-cols-3 content-center items-center h-3/5'>
+                        {
+                            ArrayExample.map(img=>(
+                               <img className='w-52 h-44' src={img} alt="" />
+                            ))
+                        }
                         <div
-                            className='h-24 w-32 flex items-center justify-center'><div className='rid-row-3 bg-gray-500 h-10 w-10 flex justify-center items-center rounded-full'><i className="fa-solid fa-arrow-right"></i></div></div>
+                            className='h-24 w-32 flex  items-center justify-center'><i onClick={()=>setVisiblePhotos(true)} className="fa-solid text-[#5333ED] text-7xl fa-arrow-right"></i>
+                        </div>
 
 
 
@@ -58,13 +61,13 @@ const BreakdownOfAccommodation = () => {
                     </section>
                 </section>
                 <section className='flex gap-5 w-full'>
-                    <section className='flex flex-col w-1/2 gap-5'>
-                        <div className='rounded-lg bg-[#0cfca7] text-black p-3'>
-                            <h2>Casa en X destino - Anfitrión: Marcelo</h2>
+                    <section className='flex flex-col w-2/5 p-5 gap-5'>
+                        <div className='rounded-lg p-8  bg-[#202F59] text-[#ffff] p-3'>
+                            <h2 className='text-2xl text-center'>Casa en X destino - Anfitrión: Marcelo</h2>
                             <h4>x huespedes - x camas - x habitaciones</h4>
                         </div>
                         <div className='flex flex-col gap-5'>
-                            <h2>Description Alojamiento</h2>
+                            <h2 className='text-[#202F59]'>Description Alojamiento</h2>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, necessitatibus praesentium rerum quae sed modi eum dolorem! Rem, iste ex? Voluptates magni modi libero. Ipsum impedit explicabo suscipit fuga aspernatur!asdas...</p>
                             <button className='w-20 p-2 bg-[blue] text-[white] rounded-full'>Leer más</button>
                             <hr />
@@ -105,7 +108,7 @@ const BreakdownOfAccommodation = () => {
 
 
 
-                      
+
 
                         </section>
 
@@ -137,10 +140,10 @@ const BreakdownOfAccommodation = () => {
                 <div className='flex h-20 rounded-full   w-full bg-blue-800'>
                     <ul className='flex m-auto gap-20'>
                         <li>Fotos</li>
-                        <li>Servicios</li>
+                        <li>Servicios</li>   
                         <li>Evaluaciones</li>
                         <li>Cambiar Fechas</li>
-                        <li></li>
+                        <li></li> 
                     </ul>
                     <ul className='flex flex-col'>
                         <li>$$$</li>
@@ -237,7 +240,10 @@ const BreakdownOfAccommodation = () => {
                     </div>
                 </section>
             </article>
-            <Footer/>
+            <MorePhotos close={closePhotos } visible={visiblePhotos}/>
+            <Footer />
+            
+        
         </main >
 
 
