@@ -28,12 +28,7 @@ const ModalLanguages = () =>
          
      </div>
      <div className="bg-neutral-300">
-        <h2 className=" 
-                px-0 pt-0 pb-0 sm:p-3 sm:pb-2 
-                text-left
-                flex-col  
-                text-1xl 
-                text-black">
+        <h2 className="px-0 pt-0 pb-0 sm:p-3 sm:pb-2 text-left flex-col text-1xl text-black">
               Idiomas que hablo
           </h2> 
           <div class="flex items-center h-5">
