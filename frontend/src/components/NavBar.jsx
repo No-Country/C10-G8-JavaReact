@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import perfil from "../assets/logoperfil.svg"
 import idioma from "../assets/idioma.svg"
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const Logo = ({ className }) => {
     return (
@@ -37,51 +37,66 @@ const Dropdown = ({ sesion }) => {
             {sesion ?
                 (<>
                     <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        <p className="block font-sans text-sm text-inherit antialiased">
-                            Ir a Perfil
-                        </p>
+                        <Link to="/" >
+                            <p className="block font-sans text-sm text-inherit antialiased">
+                                Ir a Perfil
+                            </p>
+                        </Link>
                     </button>
                     <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        <p className="block font-sans text-sm text-inherit antialiased">
-                            Favoritos
-                        </p>
+                        <Link to="/favorites" >
+                            <p className="block font-sans text-sm text-inherit antialiased">
+                                Favoritos
+                            </p>
+                        </Link>
                     </button>
                     <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        <p className="block font-sans text-sm text-inherit antialiased">
-                            Viajes
-                        </p>
-                    </button>
-                    <hr className="my-2 border-blue-gray-50" />
-                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        <p className="block font-sans text-sm text-inherit antialiased">
-                            Ser anfitrión
-                        </p>
-                    </button>
-                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        <p className="block font-sans text-sm text-inherit antialiased">
-                            Agregar alojamiento
-                        </p>
+                        <Link to="/" >
+                            <p className="block font-sans text-sm text-inherit antialiased">
+                                Viajes
+                            </p>
+                        </Link>
                     </button>
                     <hr className="my-2 border-blue-gray-50" />
                     <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        <p className="block font-sans text-sm text-inherit antialiased">
-                            Cerrar sesión
-                        </p>
+                        <Link to="/" >
+                            <p className="block font-sans text-sm text-inherit antialiased">
+                                Ser anfitrión
+                            </p>
+                        </Link>
+                    </button>
+                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                        <Link to="/" >
+                            <p className="block font-sans text-sm text-inherit antialiased">
+                                Agregar alojamiento
+                            </p>
+                        </Link>
+                    </button>
+                    <hr className="my-2 border-blue-gray-50" />
+                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                        <Link to="/" >
+                            <p className="block font-sans text-sm text-inherit antialiased">
+                                Cerrar sesión
+                            </p>
+                        </Link>
                     </button>
                 </>)
                 :
                 (
                     <>
                         <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <p className="block font-sans text-sm text-inherit antialiased">
-                                Iniciar sesión
-                            </p>
+                            <Link to="/" >
+                                <p className="block font-sans text-sm text-inherit antialiased">
+                                    Iniciar sesión
+                                </p>
+                            </Link>
                         </button>
                         <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        
-                            <p className="block font-sans text-sm text-inherit antialiased">
-                                Registrarse
-                            </p>
+                            <Link to="/" >
+                                <p className="block font-sans text-sm text-inherit antialiased">
+                                    Registrarse
+                                </p>
+                            </Link>
                         </button>
                     </>
                 )
