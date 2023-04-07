@@ -1,18 +1,22 @@
 import React from 'react';
 import NavBarOnlyLogo from '../components/NavBarOnlyLogo';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const Checkout = () => {
     return (
         <main className='Container'>
             <NavBarOnlyLogo />
             <article className='p-20 gap-10 flex flex-col bg-[#E6E6E6]'>
-                <div className='flex justify-start   '>
-                    <div className='bg-[#202F59] hover:bg-[#5333ED4D] hover:text-[#202F59] text-[#ffff] p-5 rounded-full w-14 h-14 flex items-center justify-center' >
-                        <i className="fa-solid  fa-arrow-left text-3xl"></i>
+                <Link to='/BreakdownOfAccommodation'>
+                    <div className='flex justify-start   '>
+                        <div className='bg-[#202F59] hover:bg-[#5333ED4D] hover:text-[#202F59] text-[#ffff] p-5 rounded-full w-14 h-14 flex items-center justify-center' >
+                            <i className="fa-solid  fa-arrow-left text-3xl"></i>
 
+                        </div>
                     </div>
-                </div>
+                </Link>
+
                 <h2 className='text-5xl text-[#5333ED]'>Reservar</h2>
                 <section className='flex justify-between w-full gap-10'>
                     <section className='w-1/2 flex flex-col gap-5'>
@@ -116,9 +120,9 @@ const Checkout = () => {
                             <h2>Tarifa de servicio</h2>
                             <h2>$$$$$$$</h2>
                         </div>
-                       
 
-                        <hr className='bg-[#202F59] h-0.5'  />
+
+                        <hr className='bg-[#202F59] h-0.5' />
                         <div className='flex justify-between  text-[#202F59] font-bold text-xl'>
                             <h2>Total</h2>
                             <h2>$$$$$$$</h2>
