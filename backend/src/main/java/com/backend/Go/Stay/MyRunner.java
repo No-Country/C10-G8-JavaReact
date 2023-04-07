@@ -19,7 +19,7 @@ public class MyRunner implements CommandLineRunner {
     ResidenciaRepository residenciaRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) throws Exception {//poblando DB 
         /*Residencia residencia1 = new Residencia("casa");
         Residencia residencia2 = new Residencia("depto");
         Residencia residencia3 = new Residencia("castillo");
