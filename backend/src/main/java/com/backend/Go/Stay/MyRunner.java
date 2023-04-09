@@ -1,7 +1,9 @@
 package com.backend.Go.Stay;
 
+import com.backend.Go.Stay.entity.Comentario;
 import com.backend.Go.Stay.entity.Residencia;
 import com.backend.Go.Stay.entity.Usuario;
+import com.backend.Go.Stay.repository.ComentarioRepository;
 import com.backend.Go.Stay.repository.ResidenciaRepository;
 import com.backend.Go.Stay.repository.UsuarioRepository;
 import java.util.HashSet;
@@ -17,10 +19,22 @@ public class MyRunner implements CommandLineRunner {
     UsuarioRepository usuarioRepository;
     @Autowired
     ResidenciaRepository residenciaRepository;
+    @Autowired
+    ComentarioRepository comentarioRepository;
 
     @Override
-    public void run(String... args) throws Exception {//poblando DB 
-        /*Residencia residencia1 = new Residencia("casa");
+    public void run(String... args) throws Exception {
+        
+        Usuario usuario0 = new Usuario();
+        Comentario comentario2 = new Comentario();       
+        Set<Comentario> comentarios = new HashSet<>();
+        comentarios.add(comentario2);
+        usuario0.setComentarios(comentarios);
+        usuario0.setName("paula");
+        usuarioRepository.save(usuario0);
+        
+        /*poblando DB 
+        Residencia residencia1 = new Residencia("casa");
         Residencia residencia2 = new Residencia("depto");
         Residencia residencia3 = new Residencia("castillo");
         Residencia residencia4 = new Residencia("isla");
