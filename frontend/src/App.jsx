@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import SearchForDestiny from './pages/SearchForDestiny'
 import TravelPage from './pages/TravelPage'
 import Checkout from './pages/Checkout'
+import Profile from './pages/Profile' 
 
 function App() {
    /*
@@ -12,7 +13,7 @@ function App() {
 // holi Agus
   return (
     <HashRouter>   
-         
+ 
       <Routes>
    
       <Route path='/' element={<Home/>} />
@@ -20,7 +21,7 @@ function App() {
         <Route path="/SearchForDestiny" element={<SearchForDestiny/>} />
         <Route path='/TravelPage' element={<TravelPage/>}/>
         <Route path='/Checkout' element={<Checkout/>}/>
-
+        <Route path='/Profile' element={<Profile/>}/>
 
       </Routes>
  
