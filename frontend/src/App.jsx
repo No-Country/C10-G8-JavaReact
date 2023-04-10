@@ -6,14 +6,11 @@ import TravelPage from './pages/TravelPage'
 import Checkout from './pages/Checkout'
 
 function App() {
-   /*
-   x.
-   */
-// holi Agus
+
   return (
-    <HashRouter>   
-          
+    <HashRouter>
       <Routes>
+
       
       <Route path='/' element={<Home/>} />
         <Route path="/BreakdownOfAccommodation" element={<BreakdownOfAccommodation/>} />
@@ -22,13 +19,9 @@ function App() {
         <Route path='/Checkout' element={<Checkout/>}/>
 
 
+
       </Routes>
- 
-
-
     </HashRouter>
-    
-
   )
 }
 
