@@ -12,31 +12,29 @@ const LugarDestacado = () => {
     const [lugar, setLugar] = useState(HOSPEDAJES[numeroAleatorio])
 
     return (
-        <div className='bg-transparent h-[80vh] mb-20' >
+        <div className='bg-[#5333ED0D] p-14 rounded-xl h-[80vh] mb-20' >
             <div className='flex flex-row  h-full p-4'>
-                <div className='w-1/2 flex flex-col justify-evenly text-[#585858]' >
-                    <h2 className='text-7xl' >Vacaciones en {lugar.nombre}</h2>
+                <div className='w-1/2 flex flex-col justify-evenly text-[#5333ED]' >
+                    <h2 className='text-5xl font-semibold' >Vacaciones en {lugar.nombre}</h2>
                     <div>
-                        {lugar.descripcion.split("-").map(text => (
-                            <p key={text} className='max-sm:text-2xl text-xl' >{text} </p>
-                        ))}
+                    <p className='max-sm:text-2xl text-xl text-[#202F59]' >{"Desde las bulliciosas playas de la ciudad de Río de Janeiro hasta las serenas costas de Fernando de Noroha, hay un destino de playa en Brasil para cada viajero."} </p>
                     </div>
-                    <a href="#" className='rounded-3xl w-1/2 bg-white text-[#122A29] p-4 text-center max-sm:text-2xl text-xl font-medium' >Ver más</a>
+                    <a href="#" className='rounded-3xl w-1/3 bg-[#5333ED] text-white p-4 text-center max-sm:text-2xl text-xl font-medium' >Ver más</a>
                 </div>
 
                 <div className='relative w-1/2'>
 
-                    <div className='w-72 h-[309px] bg-[#202F59] group absolute left-0 top-0 rounded-3xl overflow-hidden shadow-sm shadow-black/60'>
+                    <div className='w-52 h-[229px] bg-[#202F59] border border-[#202F59] group absolute left-0 top-0 rounded-3xl overflow-hidden shadow-xl shadow-[#202F59]/40'>
                         <a href="#">
                             <img className='w-full h-full opacity-90 transition-opacity group-hover:opacity-80' src={lugar.img[0]} alt={lugar.nombre} />
                         </a>
                     </div>
-                    <div className='w-96 h-64 bg-[#202F59] group absolute bottom-0 left-16 rounded-3xl overflow-hidden shadow-sm shadow-black/60'>
+                    <div className='w-80 h-52 bg-[#202F59] border border-[#202F59] group absolute bottom-0 right-20 rounded-3xl overflow-hidden shadow-xl shadow-[#202F59]/40'>
                         <a href="#">
                             <img className='w-full h-full opacity-90 transition-opacity group-hover:opacity-80' src={lugar.img[1]} alt={lugar.nombre} />
                         </a>
                     </div>
-                    <div className='w-72 h-72 bg-[#202F59] group absolute -right-14 top-16 rounded-3xl overflow-hidden shadow-sm shadow-black/60'>
+                    <div className='w-52 h-52 bg-[#202F59] border border-[#202F59] group absolute right-0 top-10 rounded-3xl overflow-hidden shadow-xl shadow-[#202F59]/40'>
                         <a href="#">
                             <img className='w-full h-full opacity-90 transition-opacity group-hover:opacity-80' src={lugar.img[2]} alt={lugar.nombre} />
                         </a>
