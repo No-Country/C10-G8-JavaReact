@@ -10,11 +10,14 @@ import FullDescription from '../components/FullDescription';
 import Checkout from './Checkout';
 import { Link } from 'react-router-dom';
 import MoreServices from '../components/MoreServices';
+import Rating from '../components/Rating';
+import CreateRating from '../components/CreateRating';
 
 const BreakdownOfAccommodation = () => {
     const [visiblePhotos, setVisiblePhotos] = useState(false)
     const [visibleDescription, setVisibleDescription] = useState(false)
     const [visibleServices, setVisibleServices] = useState(false)
+    const [visibleRating, setVisibleRating] = useState(false)
     const closePhotos = () => {
         setVisiblePhotos(false)
     }
@@ -25,6 +28,10 @@ const BreakdownOfAccommodation = () => {
 
     const closeServices = () => {
         setVisibleServices(false)
+    }
+
+    const closeRating=()=>{
+        setVisibleRating(false)
     }
 
 
@@ -39,7 +46,7 @@ const BreakdownOfAccommodation = () => {
                         <h1 className='text-6xl text-[#202F59] h-50 pb-3 '>Nombre de la <br /> Vivienda</h1>
 
                         <div className='flex flex-col  md:text-xl'>
-                            <div className='flex items-center justify-start gap-2 md:text-xl'>
+                            <div onClick={()=>setVisibleRating(true)} className='flex items-center justify-start gap-2 md:text-xl'>
                                 <i className="text-[#EAD201] fa-regular fa-star"></i>
                                 <h3 className='text-[#202F59] font-bold border-b-2 border-[#202F59]' >
                                     4,7. Evaluaciones</h3>
@@ -53,6 +60,12 @@ const BreakdownOfAccommodation = () => {
                             <h3 className='text-[#202F59] px-1'>Ubicación</h3>
 
                         </div>
+                        <div className='flex items-center pt-2 gap-2 md:text-xl'>
+                            <i className="text-[#E2006D]  text-2xl fa-regular fa-heart"></i>
+                            <h3 className='text-[#202F59] px-1 border-b-solid border-b-2 border-[#202F59]'>Agregar a favoritos</h3>
+
+                        </div>
+
 
                         <div className='text-[#5333ED] py-8 font-semibold flex flex-col justify-center'>
                             <h2>!Ya te hospedaste aquí! Deja una reseña.</h2>
@@ -180,10 +193,12 @@ const BreakdownOfAccommodation = () => {
                 </section>
                 <div className='flex h-20 py-2 items-centers  justify-around text-[#D9D9D9] shadow-xl  w-full '>
                     <ul className='flex  gap-20'>
-                        <li className='flex flex-col items-center'>Fotos <i className="fa-solid fa-circle"></i></li>
-                        <li className='flex flex-col items-center'>Servicios <i className="fa-solid fa-circle"></i></li>
-                        <li className='flex flex-col items-center'>Evaluaciones <i className="fa-solid fa-circle"></i></li>
-                        <li className='flex flex-col items-center'>Cambiar Fecha<i className="fa-solid fa-circle"></i></li>
+                        <li className='flex flex-col hover:text-black items-center'>Fotos <i 
+                        onClick={()=>setVisiblePhotos(true)} className="fa-solid hover:text-[#5333ED] fa-circle"></i></li>
+                        <li className='flex flex-col hover:text-black items-center'>Servicios <i  
+                        onClick={()=>setVisibleServices(true)} className="fa-solid fa-circle hover:text-[#5333ED]"></i></li>
+                        <li className='flex flex-col hover:text-black items-center'>Evaluaciones <i className="fa-solid fa-circle hover:text-[#5333ED]"></i></li>
+                        <li className='flex flex-col hover:text-black items-center'>Cambiar Fecha<i className="fa-solid fa-circle hover:text-[#5333ED]"></i></li>
 
 
                     </ul>
@@ -209,23 +224,23 @@ const BreakdownOfAccommodation = () => {
                     </section>
                     <section className='flex  w-full '>
                         <section className='w-1/2 ' >
-                            <div className='flex flex-col pt-5 p-5 '>
+                            <div className='flex flex-col pt-5 p-5 gap-5'>
                                 <div className='flex items-center gap-5'>
-                                    <i className="text-4xl fa-solid fa-language"></i>
-                                    <h2>Idiomas: texto, texto</h2>
+                                    <i className="text-4xl text-[#202F59] fa-solid fa-language"></i>
+                                    <h2 className='text-[#5333ED] text-2xl'>Idiomas: texto, texto</h2>
 
                                 </div>
-                                <div className='flex items-center gap-5'>
-                                    <i className=" fa-regular fa-star"></i>
-                                    <h3>x Evaluaciones</h3>
+                                <div onClick={()=>setVisibleRating(true)} className='flex items-center gap-5'>
+                                    <i className="text-3xl text-[#EAD201] fa-regular fa-star"></i>
+                                    <h3 className='text-xl text-[#202F59] font-semibold border-b-2 border-solid border-[#202f59]'>4.7 Evaluaciones</h3>
                                 </div>
-                                <div>
-                                    <h2>Conoce al anfitrión:</h2>
-                                    <p className='p-2'>
+                                <div className='pt-2 flex flex-col gap-5'>
+                                    <h2 className='text-[#202F59] font-medium text-3xl'>Conoce al anfitrión:</h2>
+                                    <p className='text-[#202F59] leading-8'>
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum vel mollitia aliquid ex dolorem cupiditate, assumenda ipsam amet expedita nam culpa reiciendis iste nesciunt perferendis repellendus autem deleniti illo in?
                                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor voluptatem qui natus at nobis rerum atque tempore doloribus, id ea modi cupiditate praesentium ad iste! Nostrum fugiat dolor corporis iste?
                                     </p>
-                                    <button className='bg-white rounded-full text-black p-2'>Ponte en contacto con el anfitrión</button>
+                                    <button className='bg-[#5333ED] w-2/5 font-semibold rounded-lg text-[#ffff] p-2 tracking-wide'>Contactar anfitrión</button>
 
 
                                 </div>
@@ -257,27 +272,46 @@ const BreakdownOfAccommodation = () => {
 
 
                     </section>
-                    <hr className='w-96' />
+
                 </section>
-                <section className='p-10'>
-                    <h2 className='pb-5'>
-                        Qué saber para tu estadía
-                    </h2>
-                    <div className='flex p-2  gap-5'>
-                        <div className='flex flex-col text-center gap-2 font-normal text-base'>
-                            <h2>Titulo</h2>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati enim eos facilis blanditiis? Itaque, fugiat necessitatibus. Aspernatur veniam cum odio tempora, necessitatibus magnam laboriosam mollitia aliquid deleniti ipsam quas ex.</p>
-                            <a href="">Ver más</a>
+                <section className='flex flex-col px-14 gap-8'>
+                    <div className='flex items-center gap-5 '>
+                        <h2 className='text-[#202F59] text-2xl font-semibold'> Qué saber para tu estadía </h2>
+                        <hr className='h-0.5 w-1/4 bg-opacity-30 bg-[#5333ED]' />
+
+                    </div>
+
+                    <div className='flex p-2 pb-14  gap-12'>
+                        <div className='flex w-1/3 flex-col text-center gap-2 font-normal 
+                        text-base border-solid border-2 border-[#5333ED] p-5 border-opacity-30 rounded-lg'>
+                            <h2 className='text-[#202F59] font-semibold text-xl pb-2'>Normas de la Casa</h2>
+                            <ul className='text-[#202F59] px-12  text-base list-disc'>
+                                <li>Check-in a partir de las 15:00</li>
+                                <li>Check-out antes de las 12:00</li>
+                                <li>Check-in sin restricción de horario con caja de seguridad para llaves</li>
+                                <li>No se permiten fiestas ni eventos</li>
+
+                            </ul>
+
                         </div>
-                        <div className='flex flex-col text-center gap-2  font-normal text-base'>
-                            <h2>Titulo</h2>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati enim eos facilis blanditiis? Itaque, fugiat necessitatibus. Aspernatur veniam cum odio tempora, necessitatibus magnam laboriosam mollitia aliquid deleniti ipsam quas ex.</p>
-                            <a href="">Ver más</a>
+                        <div className='flex w-1/3 flex-col text-center gap-2 font-normal 
+                        text-base border-solid border-2 border-[#5333ED] p-5    border-opacity-30 rounded-lg'>
+                            <h2 className='text-[#202F59] font-semibold text-xl pb-2'>La seguridad y la propiedad</h2>
+
+                            <ul className='text-[#202F59] px-12 text-base list-disc'>
+                                <li >Detector de monóxido de carbono instalado</li>
+                                <li>Detector de humo instalado</li>
+                                <li>Limitaciones relacionadas con los servicios</li>
+                            </ul>
+
+
                         </div>
-                        <div className='flex flex-col text-center gap-2  font-normal text-base'>
-                            <h2>Titulo</h2>
-                            <p >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati enim eos facilis blanditiis? Itaque, fugiat necessitatibus. Aspernatur veniam cum odio tempora, necessitatibus magnam laboriosam mollitia aliquid deleniti ipsam quas ex.</p>
-                            <a href=''>Ver más</a>
+                        <div className='flex w-1/3 flex-col text-center gap-2 font-normal 
+                        text-base border-solid border-2 border-[#5333ED] p-5 border-opacity-30 rounded-lg'>
+                            <h2 className='text-[#202F59] font-semibold text-xl pb-2'>Política de cancelación</h2>
+                            <p className='text-[#202F59] px-5 text-base'>Antes de hacer la reserva, asegúrate de que la política de cancelación del anfitrión te convenga. No te se cubre cancelaciones que surjan por el contagio de COVID-19.</p>
+
+
                         </div>
 
                     </div>
@@ -286,6 +320,8 @@ const BreakdownOfAccommodation = () => {
             <MorePhotos close={closePhotos} visible={visiblePhotos} />
             <FullDescription close={closeDescription} visible={visibleDescription} />
             <MoreServices visible={visibleServices} close={closeServices} />
+            <Rating visible={visibleRating} close={closeRating}/>
+            <CreateRating/>
             <Footer />
 
 
