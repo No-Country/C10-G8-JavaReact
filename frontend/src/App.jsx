@@ -12,7 +12,7 @@ function App() {
 
   return (
     <HashRouter>
-       <Register></Register>
+       
       <Routes>
 
       <Route path='/' element={<Home/>} />
