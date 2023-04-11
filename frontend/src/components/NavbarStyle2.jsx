@@ -9,8 +9,8 @@ const NavbarStyle2 = () => {
                 <input type="text" placeholder='Buscar' className='p-2 w-72 rounded-full' />
                 <i className="fa-solid fa-magnifying-glass absolute right-1  top-0 md:top-3 md:right-4 text-black "></i>
             </div>
-            <div className=' flex justify-center items-center w-14 h-14 rounded-full bg-[#D1D1D6]'>
-                <i className="fa-solid fa-user text-[#ffff] md:text-3xl lg:text-2xl   "></i>
+            <div className=' flex justify-center items-center w-14 h-14 rounded-full bg-[#202F59]'>
+                <i className="text-5xl text-[#ffff] bx bx-user   "></i>
             </div>
 
 
