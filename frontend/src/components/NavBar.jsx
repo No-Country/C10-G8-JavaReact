@@ -1,152 +1,412 @@
 import React, { useState } from 'react'
 import perfil from "../assets/logoperfil.svg"
 import idioma from "../assets/idioma.svg"
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
+import Login from './../login/Login';
+import Register from './../login/Register';
 
 const Logo = ({ className }) => {
-    return (
-        <svg className={className ? className : ""} width="492" height="115" viewBox="0 0 492 115" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M33.8986 5.37459C-6.55286 30.2452 0.0491874 65.3769 7.89507 78.2292C13.2751 56.2607 25.156 62.0891 33.0019 67.0208C33.8986 47.294 50.0387 50.8807 56.3154 56.2607C59.2296 36.534 74.473 40.3448 79.4047 45.949C82.7672 26.4464 96.8898 29.2111 103.839 34.0681C89.3129 -3.05413 51.4584 -0.379055 33.8986 5.37459Z" stroke="#202F59" strokeWidth="4" strokeLinejoin="round" />
-            <path d="M30.9964 67.6455C31.5955 68.5734 32.8335 68.84 33.7614 68.2408C34.6894 67.6417 34.9559 66.4037 34.3568 65.4758L30.9964 67.6455ZM31.6211 4.57988C28.2066 10.4389 24.2615 20.2561 23.044 31.5498C21.824 42.8658 23.3342 55.7785 30.9964 67.6455L34.3568 65.4758C27.3135 54.5672 25.8721 42.6347 27.0209 31.9785C28.1721 21.2999 31.916 12.018 35.077 6.59394L31.6211 4.57988Z" fill="#202F59" />
-            <path d="M77.5724 45.8541C78.0151 46.8661 79.1944 47.3275 80.2064 46.8848C81.2183 46.442 81.6798 45.2628 81.237 44.2508L77.5724 45.8541ZM81.237 44.2508C78.2961 37.5286 72.744 27.6083 64.9583 19.3108C57.1886 11.0303 46.9642 4.13096 34.7097 4.03522L34.6785 8.0351C45.3788 8.11869 54.6329 14.1524 62.0414 22.0479C69.4339 29.9264 74.7597 39.4251 77.5724 45.8541L81.237 44.2508Z" fill="#202F59" />
-            <path d="M81.6464 111.855L31.8811 2.23633" stroke="#202F59" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M39.951 70.8315L53.6253 95.9384M53.6253 95.9384L46.6761 110.285M53.6253 95.9384H98.0106L104.287 110.285M33.6743 112.527H148.224" stroke="#15A6A0" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-            <g clipPath="url(#clip0_23_35)">
-                <path d="M226.77 51.9201L219.48 84.0401C217.06 94.7001 206.42 97.9101 198.77 97.9101C193.03 97.9101 188.23 96.2001 185.28 93.8101C184.88 93.4701 184.92 92.9901 185.32 92.4401L188.51 88.3401C188.98 87.7901 189.43 87.5901 189.97 87.9301C192.66 89.6401 195.61 90.4601 199.71 90.4601C203.81 90.4601 210.04 88.8901 211.3 83.3501L212.14 79.6601C209.03 82.5301 205.15 84.5801 200.64 84.5801C191.28 84.5801 186.21 76.7901 188.35 67.3601C190.49 57.9301 199.09 50.1401 208.45 50.1401C212.69 50.1401 215.72 52.1201 217.55 54.9201L218.44 51.9101C218.65 51.3001 219.08 50.8901 219.7 50.8901H225.99C226.6 50.8901 226.92 51.3001 226.78 51.9101L226.77 51.9201ZM214.19 67.3001C215.26 62.5901 212.6 58.3501 207.68 58.3501C202.76 58.3501 198.17 62.3101 197.04 67.3001C195.89 72.3601 198.6 76.3901 203.59 76.3901C208.58 76.3901 213.12 72.0201 214.19 67.3001Z" fill="#15A6A0" />
-                <path d="M225.71 67.7099C227.94 57.8699 237.42 50.1499 247.05 50.1499C256.68 50.1499 262.65 57.8699 260.42 67.7099C258.19 77.5499 248.71 85.2699 239.08 85.2699C229.45 85.2699 223.48 77.5499 225.71 67.7099ZM251.74 67.7099C252.97 62.3099 249.94 58.4899 245.16 58.4899C240.38 58.4899 235.61 62.3199 234.39 67.7099C233.17 73.1099 236.12 76.9399 240.97 76.9399C245.82 76.9399 250.52 73.1099 251.74 67.7099Z" fill="#15A6A0" />
-                <path d="M316.23 80.9L312.48 84.59C311.99 85.07 311.44 85.14 310.97 84.66L305.6 79.19C301.51 82.54 296.82 85 290.94 85C282.81 85 274.9 80.15 275.06 71.13C275.17 64.84 279.61 60.95 284.38 57.87C281.49 54.86 279.16 51.52 279.23 47.48C279.34 41.4 284.69 36 292.07 36C299.45 36 304.69 41.4 304.58 47.48C304.48 53.08 300.73 56.64 296.44 59.58L305.37 68.53C306.27 67.64 307.11 66.68 307.95 65.73C308.37 65.25 308.91 65.25 309.39 65.66L313.49 69.62C313.96 70.03 314.02 70.58 313.6 71.06L310.95 74.07L316.25 79.4C316.72 79.88 316.71 80.43 316.22 80.9H316.23ZM299.96 73.59L290.16 63.61C286.84 65.8 284.28 67.98 284.22 70.92C284.17 73.93 286.99 76.73 291.43 76.73C294.64 76.73 297.4 75.5 299.96 73.59ZM290.87 53.98C294.05 52.07 296.4 50.15 296.45 47.69C296.49 45.5 294.54 43.66 291.94 43.66C289.34 43.66 287.47 45.51 287.43 47.69C287.39 49.81 288.86 51.79 290.87 53.98Z" fill="#202F59" />
-                <path d="M359.14 80.9L355.39 84.59C354.9 85.07 354.35 85.14 353.88 84.66L348.51 79.19C344.42 82.54 339.73 85 333.85 85C325.72 85 317.81 80.15 317.97 71.13C318.08 64.84 322.52 60.95 327.29 57.87C324.4 54.86 322.07 51.52 322.14 47.48C322.25 41.4 327.6 36 334.98 36C342.36 36 347.6 41.4 347.49 47.48C347.39 53.08 343.64 56.64 339.35 59.58L348.28 68.53C349.18 67.64 350.02 66.68 350.86 65.73C351.28 65.25 351.82 65.25 352.3 65.66L356.4 69.62C356.87 70.03 356.93 70.58 356.51 71.06L353.86 74.07L359.16 79.4C359.63 79.88 359.62 80.43 359.13 80.9H359.14ZM342.87 73.59L333.07 63.61C329.75 65.8 327.19 67.98 327.13 70.92C327.08 73.93 329.9 76.73 334.34 76.73C337.55 76.73 340.31 75.5 342.87 73.59ZM333.78 53.98C336.96 52.07 339.31 50.15 339.36 47.69C339.4 45.5 337.45 43.66 334.85 43.66C332.25 43.66 330.38 45.51 330.34 47.69C330.3 49.81 331.77 51.79 333.78 53.98Z" fill="#15A6A0" />
-                <path d="M399.13 75.0202C399.02 81.5102 392.32 85.2702 386.17 85.2702C380.43 85.2702 375.83 82.4702 373.49 79.6702C373.09 79.1902 373.23 78.7102 373.51 78.3002L376.24 74.5402C376.66 73.9902 377.14 74.1302 377.74 74.6102C380.44 76.3902 383.36 77.6902 386.02 77.6902C388.21 77.6902 390.34 77.0102 390.37 74.8902C390.46 69.5602 374.23 71.6102 374.43 60.3402C374.54 53.9202 380.21 50.1602 386.22 50.1602C390.52 50.1602 394.87 51.9402 397.61 55.2202C398.01 55.7002 397.87 56.2402 397.52 56.6502L394.86 60.0702C394.44 60.6202 393.97 60.4802 393.36 60.0002C390.79 58.2902 389.24 57.4002 386.85 57.4002C384.73 57.4002 383.14 58.5602 383.11 60.2702C383.02 65.7402 399.33 62.7302 399.11 75.0302L399.13 75.0202Z" fill="#202F59" />
-                <path d="M419.63 51.9201L419.54 57.2501C419.53 57.8701 419.11 58.2801 418.5 58.2801H413.72L413.28 83.3601C413.27 83.9801 412.85 84.3801 412.24 84.3801H405.27C404.65 84.3801 404.25 83.9701 404.26 83.3601L404.7 58.2801H399.92C399.3 58.2801 398.9 57.8701 398.91 57.2501L399 51.9201C399.01 51.3101 399.43 50.9001 400.04 50.9001H404.82L404.98 41.6701C404.99 41.0501 405.41 40.6401 406.02 40.6401H412.99C413.61 40.6401 414.01 41.0501 414 41.6701L413.84 50.9001H418.62C419.24 50.9001 419.64 51.3101 419.63 51.9201Z" fill="#202F59" />
-                <path d="M455.02 51.9201L454.47 83.3501C454.46 83.9701 454.04 84.3701 453.43 84.3701H447.14C446.53 84.3701 446.19 83.9601 446.13 83.3501L445.91 80.4801C443.47 83.2801 440.09 85.2601 435.71 85.2601C426.35 85.2601 419.65 77.4701 419.82 67.7001C419.99 57.9301 426.96 50.1401 436.32 50.1401C440.56 50.1401 443.94 52.1901 446.41 55.0601L446.67 51.9201C446.75 51.3101 447.1 50.9001 447.71 50.9001H454C454.61 50.9001 455.02 51.3101 455.01 51.9201H455.02ZM445.66 67.6401C445.75 62.5801 442.2 58.3501 437.28 58.3501C432.36 58.3501 428.6 62.3101 428.51 67.6401C428.42 73.0401 431.97 77.0701 436.95 77.0701C441.93 77.0701 445.57 72.7001 445.66 67.6401Z" fill="#202F59" />
-                <path d="M491.65 52.0602L473.18 96.5502C472.97 97.1002 472.48 97.3702 471.93 97.3702H465.1C464.35 97.3702 463.95 96.9602 464.3 96.2102L469.36 84.4602L457.01 52.0702C456.75 51.3202 457.1 50.9102 457.85 50.9102H464.89C465.44 50.9102 465.91 51.1802 466.1 51.7302L473.91 73.8702L482.43 51.7302C482.64 51.1802 483.13 50.9102 483.67 50.9102H490.84C491.59 50.9102 491.92 51.3202 491.64 52.0702L491.65 52.0602Z" fill="#202F59" />
-            </g>
-            <defs>
-                <clipPath id="clip0_23_35">
-                    <rect width="306.75" height="61.91" fill="white" transform="translate(185 36)" />
-                </clipPath>
-            </defs>
-        </svg>
+	return (
+		<svg className={className ? className : ""} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+			viewBox="0 0 688 224" enableBackground="new 0 0 688 224" >
+			<path fill="#202F59" opacity="1.000000" stroke="none"
+				d=" M126.898323,185.298401 
+	C80.845871,195.305664 47.149448,160.255478 47.647949,123.032043 
+	C47.862118,107.039963 47.591599,91.041855 47.728115,75.048088 
+	C47.799088,66.733421 54.960915,62.274517 61.702290,66.107979 
+	C64.932434,67.944786 66.121582,70.915123 66.223679,74.466644 
+	C66.271225,76.120384 66.032997,78.032669 67.878571,78.853203 
+	C69.968613,79.782448 71.283890,78.110580 72.599190,76.887672 
+	C80.527359,69.516342 88.349792,62.029266 96.362137,54.751030 
+	C104.944839,46.954693 116.441353,46.648212 124.914101,54.301208 
+	C139.620255,67.584534 154.051834,81.171425 168.646957,94.578331 
+	C173.005875,98.582367 174.540955,103.657593 174.863846,109.324989 
+	C175.617874,122.560242 174.590332,135.584686 170.258011,148.206421 
+	C169.171722,151.371231 167.738556,154.494186 165.428101,156.889160 
+	C161.989075,160.454025 162.867584,163.035645 166.269180,165.963806 
+	C169.285904,168.560684 171.916336,171.615326 174.646072,174.534515 
+	C178.999710,179.190338 179.183136,184.417145 175.207260,188.308929 
+	C171.678909,191.762695 165.511871,191.305939 161.312302,187.183044 
+	C158.102921,184.032257 154.936768,180.832794 151.860352,177.552765 
+	C149.783279,175.338196 147.990524,175.204681 145.412155,177.048416 
+	C139.958023,180.948547 133.843399,183.597443 126.898323,185.298401 
+M148.839706,101.668762 
+	C137.335175,91.060493 125.784004,80.502060 114.360153,69.807617 
+	C111.632568,67.254204 109.633286,67.153908 106.792160,69.799286 
+	C95.097984,80.687759 83.510048,91.727478 71.261116,101.967651 
+	C64.926338,107.263573 64.367661,113.540031 64.770477,120.638443 
+	C64.864662,122.298210 65.124306,123.948128 65.237190,125.607376 
+	C67.927719,165.152557 103.709396,176.984299 131.069931,164.226807 
+	C148.022110,156.322449 154.260757,141.180389 155.609894,123.645966 
+	C156.206284,115.894753 158.023590,107.389999 148.839706,101.668762 
+z"/>
+			<path fill="#202F59" opacity="1.000000" stroke="none"
+				d="
+M368.243530,153.594452 
+	C362.514465,154.878799 357.554749,153.600449 352.911041,151.162018 
+	C342.780487,145.842361 340.626801,133.471054 348.295380,124.928833 
+	C350.161255,122.850395 352.319977,121.034843 354.284760,119.155121 
+	C347.494080,105.878510 347.903992,99.261467 355.708405,94.095345 
+	C362.932404,89.313431 373.094391,90.391838 378.489777,96.512962 
+	C384.665924,103.519806 383.362427,110.035652 373.256714,121.562378 
+	C375.460999,125.386543 379.037598,128.040070 382.134125,131.067169 
+	C387.208771,128.097916 389.274902,128.520981 392.517487,132.865128 
+	C393.412933,134.064850 393.988586,135.436615 392.996277,136.493851 
+	C390.079071,139.601776 392.180786,141.497360 394.368530,143.472778 
+	C396.675690,145.556015 398.282745,147.504242 395.119202,150.404129 
+	C392.220520,153.061218 389.721252,155.044281 386.671448,150.753891 
+	C384.480896,147.672333 382.096283,147.033142 378.803345,149.627136 
+	C375.921967,151.896942 372.359894,153.041565 368.243530,153.594452 
+M367.323425,131.261917 
+	C365.505432,129.957336 364.461639,126.364891 361.337189,128.741074 
+	C358.715729,130.734741 355.739868,133.032227 356.620148,136.876923 
+	C357.464294,140.563736 360.684235,142.077682 364.129822,142.493942 
+	C367.895844,142.948898 371.170380,141.494614 374.101959,138.980362 
+	C372.647797,135.774704 369.841339,134.092804 367.323425,131.261917 
+M362.062164,103.274803 
+	C361.545166,104.283012 360.624695,105.277611 360.590149,106.302086 
+	C360.502075,108.913956 361.694092,111.417648 363.890259,112.540024 
+	C366.191406,113.716034 367.704041,111.277824 369.097290,109.810287 
+	C370.504425,108.328102 371.358917,106.327278 370.089630,104.396454 
+	C368.217896,101.549217 365.476257,101.678093 362.062164,103.274803 
+z"/>
+			<path fill="#5333ED" opacity="1.000000" stroke="none"
+				d="
+M418.095276,154.171875 
+	C416.029541,153.854858 414.379028,153.614304 412.758972,153.241318 
+	C405.745453,151.626511 400.660126,147.781265 398.712891,140.592636 
+	C396.749176,133.343063 399.573975,127.596565 404.712585,122.689545 
+	C405.905701,121.550217 407.200623,120.517494 408.831238,119.104179 
+	C405.314209,113.572456 401.665039,108.000885 404.496063,101.077217 
+	C405.940338,97.544991 408.395721,94.897469 411.731842,93.099083 
+	C419.101654,89.126282 428.369171,90.991982 433.392914,97.412834 
+	C438.802490,104.326912 437.011688,111.218246 426.963013,121.675102 
+	C429.583527,125.288170 433.008331,128.133133 436.531555,131.440369 
+	C440.666290,126.399841 443.584534,129.404831 446.489532,132.797226 
+	C447.584412,134.075775 448.210052,135.467728 446.985077,136.806747 
+	C444.357361,139.679092 446.057709,141.593185 448.239746,143.432510 
+	C451.105621,145.848267 452.055725,147.972290 448.747528,151.141647 
+	C445.657623,154.101868 443.437225,153.935715 441.028107,150.776932 
+	C438.751984,147.792557 436.504211,147.157608 433.102112,149.578064 
+	C428.845184,152.606720 423.759064,153.827576 418.095276,154.171875 
+M419.520416,142.625565 
+	C422.757721,142.140503 425.965057,141.587952 428.479126,138.844711 
+	C425.897583,134.896927 422.221924,132.282761 419.295990,128.989456 
+	C417.868469,127.382706 416.373291,127.848145 414.955505,129.043823 
+	C412.641632,130.995285 410.199066,133.188690 410.756561,136.432434 
+	C411.474640,140.610260 414.886444,142.082947 419.520416,142.625565 
+M420.477356,112.453804 
+	C421.551849,111.444756 422.835785,110.581017 423.657501,109.396576 
+	C425.401733,106.882423 425.467163,104.222168 422.456512,102.737328 
+	C419.707397,101.381493 416.895477,101.732803 415.296417,104.849968 
+	C413.751587,107.861473 415.957245,111.519402 420.477356,112.453804 
+z"/>
+			<path fill="#5333ED" opacity="1.000000" stroke="none"
+				d="
+M255.097794,152.697601 
+	C239.523087,155.073624 230.517807,145.123032 234.571884,130.350723 
+	C237.643784,119.157310 244.740952,111.984001 256.286530,109.297623 
+	C261.891907,107.993401 266.361633,110.063011 270.710083,113.080856 
+	C272.496399,112.419952 272.907074,110.275276 274.972931,109.815018 
+	C281.660797,108.324966 283.883087,110.319191 282.420990,117.060318 
+	C280.026367,128.100739 277.660645,139.150513 275.030731,150.136002 
+	C271.994629,162.818314 263.704193,169.471832 250.545624,170.294174 
+	C244.951523,170.643784 239.547241,169.920914 234.522659,167.410294 
+	C232.490662,166.394974 228.918640,165.545654 230.994095,162.226517 
+	C232.603867,159.652100 233.903793,155.097198 238.821686,157.788345 
+	C242.978653,160.063095 247.500198,159.989212 251.989151,159.622452 
+	C258.200958,159.114914 261.792023,155.774933 263.231354,149.408844 
+	C260.581024,150.488373 258.037140,151.524551 255.097794,152.697601 
+M249.910400,124.424507 
+	C249.399139,125.078499 248.829163,125.695175 248.386032,126.392456 
+	C245.204315,131.398911 245.245590,137.347565 248.453506,140.181839 
+	C251.822906,143.158844 258.065948,142.275162 262.481476,138.196228 
+	C267.189575,133.847031 268.437622,126.798164 265.170959,123.006165 
+	C261.846619,119.147209 256.493317,119.487045 249.910400,124.424507 
+z"/>
+			<path fill="#202F59" opacity="1.000000" stroke="none"
+				d="
+M527.332764,114.099434 
+	C527.606445,117.890762 527.186096,120.485146 522.783875,120.439995 
+	C519.817261,120.409569 520.322876,123.025818 520.246399,124.940712 
+	C519.934265,132.753693 519.381165,140.572083 519.481750,148.381226 
+	C519.548950,153.599594 516.445679,153.262955 512.958313,153.346802 
+	C509.295959,153.434875 506.743530,152.789307 506.962036,148.249634 
+	C507.321869,140.774017 507.370422,133.283813 507.683258,125.805321 
+	C507.825897,122.395210 507.436768,119.688652 503.023315,120.245575 
+	C501.466461,120.442039 501.009247,118.697235 499.459381,118.346497 
+	C497.110168,122.452438 494.071442,123.830467 489.937714,120.366585 
+	C489.127808,119.687973 487.784210,119.503120 486.655151,119.379578 
+	C484.574127,119.151886 482.313080,119.373390 481.846802,121.813759 
+	C481.437714,123.954926 483.368896,124.936714 485.095337,125.657005 
+	C488.467743,127.063950 492.011658,128.132385 495.226440,129.829865 
+	C502.785370,133.821121 503.853729,143.847443 497.522949,149.664200 
+	C490.419983,156.190445 476.812988,155.705460 470.026642,148.862198 
+	C467.654541,146.470169 468.421356,144.557327 470.021454,142.299973 
+	C471.571594,140.113068 473.113556,138.957367 475.785980,140.732574 
+	C478.443970,142.498199 481.418121,143.593796 484.677277,143.639069 
+	C486.611420,143.665955 488.600342,143.233109 489.240143,141.283264 
+	C490.000305,138.966690 487.892639,138.115829 486.264069,137.378220 
+	C483.996002,136.350967 481.601257,135.607773 479.298950,134.650970 
+	C471.187927,131.280090 468.000366,125.788467 470.025452,118.764740 
+	C471.906952,112.239044 479.846771,107.771721 487.235504,109.072495 
+	C491.905151,109.894562 496.103241,111.751587 500.220001,115.421280 
+	C500.376495,111.577820 501.679382,109.813133 505.470032,109.429436 
+	C509.314301,109.040314 507.658356,105.142677 507.705505,102.804764 
+	C507.786560,98.785851 508.867401,96.593628 513.430176,96.673943 
+	C520.025391,96.790024 520.372131,96.843010 520.303772,103.692635 
+	C520.270325,107.043022 520.010803,110.139999 524.904602,109.968719 
+	C527.057251,109.893372 527.298584,111.889885 527.332764,114.099434 
+z"/>
+			<path fill="#202F59" opacity="1.000000" stroke="none"
+				d="
+M538.907471,152.432907 
+	C529.923035,147.286087 525.394470,138.138245 526.934753,128.804031 
+	C528.729553,117.927437 534.735962,111.392982 544.773132,109.159599 
+	C550.303345,107.929077 554.866150,110.065948 559.559692,113.152885 
+	C561.073242,111.713638 562.040955,109.692780 564.818848,109.628082 
+	C571.541138,109.471504 572.342102,109.923508 572.295959,116.635040 
+	C572.228577,126.453911 572.164673,136.274765 571.889465,146.088882 
+	C571.820251,148.557663 572.602051,151.680893 569.381531,153.046829 
+	C566.347839,154.333527 561.507263,153.020523 558.942871,150.276917 
+	C552.863037,154.591095 546.293640,155.719879 538.907471,152.432907 
+M540.295593,126.084663 
+	C537.359924,134.958679 540.621155,142.098038 547.887146,142.703842 
+	C553.285583,143.153946 557.280090,140.062515 559.040955,134.071701 
+	C560.435242,129.327911 558.320129,124.035027 554.076172,121.647537 
+	C549.344360,118.985573 545.047241,120.186333 540.295593,126.084663 
+z"/>
+			<path fill="#5333ED" opacity="1.000000" stroke="none"
+				d="
+M282.722839,144.914276 
+	C278.457764,134.678070 281.672424,126.185471 288.202240,118.852333 
+	C294.842926,111.394661 303.236481,107.377571 313.538147,109.682983 
+	C323.008850,111.802444 327.985199,119.619011 326.491943,129.498184 
+	C324.454010,142.980743 312.784851,153.864975 299.898987,154.308304 
+	C292.487885,154.563263 286.593628,151.967026 282.722839,144.914276 
+M312.126190,136.504303 
+	C312.922638,134.681656 314.012665,132.927811 314.459045,131.023117 
+	C315.672028,125.847183 312.298584,121.021912 307.289581,120.414604 
+	C302.133087,119.789413 296.256470,124.042519 294.082153,129.973175 
+	C292.233398,135.015976 293.257690,139.461075 296.757599,141.583618 
+	C300.814850,144.044159 306.355591,142.613144 311.067047,137.879791 
+	C311.300201,137.645554 311.482758,137.360977 312.126190,136.504303 
+z"/>
+			{/* y */}
+			<path fill="#202F59" opacity="1.000000" stroke="none"
+				d="
+M584.000549,165.163361 
+	C589.035400,157.192139 589.299500,149.715759 585.231384,141.351959 
+	C581.100098,132.858292 578.431213,123.662956 574.887695,114.869240 
+	C573.349976,111.052979 574.356201,109.985970 578.323303,109.644829 
+	C583.877014,109.167274 586.860474,111.008926 588.368591,116.578316 
+	C590.136353,123.106781 592.813599,129.388977 595.083130,135.741058 
+	C597.240356,135.416321 597.248962,133.843918 597.691040,132.728577 
+	C600.204468,126.387306 602.634644,120.013031 605.097290,113.651566 
+	C605.764343,111.928360 606.377869,110.009369 608.624878,109.941460 
+	C611.720398,109.847893 615.491821,108.427910 617.700806,110.801338 
+	C619.690125,112.938759 617.031372,115.780296 616.076843,118.125984 
+	C609.806702,133.535187 603.400940,148.889496 596.977905,164.235931 
+	C594.952942,169.074142 589.630981,171.126022 584.813599,169.231049 
+	C582.614136,168.365845 583.576050,166.910004 584.000549,165.163361 
+z"/>
+			{/* windows */}
+			<path fill="#5333ED" opacity="1.000000" stroke="none"
+				d="
+M107.090393,113.150558 
+	C106.853325,120.582199 101.927994,123.706871 95.433754,120.978470 
+	C92.499771,119.745842 91.362099,110.724472 94.114471,108.569069 
+	C96.924324,106.368652 100.397652,106.890724 103.671669,107.450272 
+	C106.594627,107.949829 107.026146,110.260193 107.090393,113.150558 
+z"/>
+			<path fill="#5333ED" opacity="1.000000" stroke="none"
+				d="
+M107.061752,134.186905 
+	C106.915588,141.635773 106.159584,142.628830 100.801201,142.860901 
+	C93.584496,143.173447 89.914589,137.567871 93.281006,131.116409 
+	C95.287140,127.271828 99.112289,128.944168 102.226860,128.769608 
+	C105.563080,128.582596 106.905991,130.668411 107.061752,134.186905 
+z"/>
+			<path fill="#5333ED" opacity="1.000000" stroke="none"
+				d="
+M128.008179,132.476349 
+	C128.418579,142.096725 126.911469,143.654236 118.725594,142.894196 
+	C116.082802,142.648804 114.103996,141.597824 113.949837,138.864197 
+	C113.761490,135.524200 112.562767,131.695236 116.175064,129.316452 
+	C119.232506,127.303070 125.754776,128.965286 128.008179,132.476349 
+z"/>
+			<path fill="#5333ED" opacity="1.000000" stroke="none"
+				d="
+M114.207733,118.378967 
+	C113.951035,116.309769 113.822327,114.652901 113.766281,112.993591 
+	C113.654793,109.692604 114.947403,107.356987 118.515808,107.276421 
+	C121.849777,107.201157 126.174934,105.769119 127.634781,110.120926 
+	C128.743820,113.426964 129.377213,117.494591 126.175865,120.390022 
+	C123.878128,122.468193 117.109108,121.367012 114.207733,118.378967 
+z"/>
+		</svg>
 
-    )
+
+	)
 }
 
-const Dropdown = ({ sesion }) => {
-    return (
-        <ul className="absolute z-10 flex min-w-[180px] right-3 flex-col gap-2 overflow-auto font-normal tracking-wide rounded-b-3xl border border-blue-gray-50 bg-white py-3 font-sans text-sm text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
-            {sesion ?
-                (<>
-                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        <p className="block font-sans text-sm text-inherit antialiased">
-                            Ir a Perfil
-                        </p>
-                    </button>
-                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        <p className="block font-sans text-sm text-inherit antialiased">
-                            Favoritos
-                        </p>
-                    </button>
-                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        <p className="block font-sans text-sm text-inherit antialiased">
-                            Viajes
-                        </p>
-                    </button>
-                    <hr className="my-2 border-blue-gray-50" />
-                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        <p className="block font-sans text-sm text-inherit antialiased">
-                            Ser anfitrión
-                        </p>
-                    </button>
-                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        <p className="block font-sans text-sm text-inherit antialiased">
-                            Agregar alojamiento
-                        </p>
-                    </button>
-                    <hr className="my-2 border-blue-gray-50" />
-                    <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        <p className="block font-sans text-sm text-inherit antialiased">
-                            Cerrar sesión
-                        </p>
-                    </button>
-                </>)
-                :
-                (
-                    <>
-                        <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <p className="block font-sans text-sm text-inherit antialiased">
-                                Iniciar sesión
-                            </p>
-                        </button>
-                        <button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                        
-                            <p className="block font-sans text-sm text-inherit antialiased">
-                                Registrarse
-                            </p>
-                        </button>
-                    </>
-                )
-            }
-        </ul>
-    )
-}
+const Dropdown = ({ sesion, tools }) => {
 
+	const { changeModal } = tools
+	return (
+		<ul className="absolute z-10 flex min-w-[180px] right-3 flex-col gap-2 overflow-auto font-normal tracking-wide rounded-b-3xl border border-blue-gray-50 bg-white py-3 font-sans text-sm text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
+			{sesion ?
+				(<>
+					<button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+						<Link to="/" >
+							<p className="block font-sans text-sm text-inherit antialiased hover:text-[#5333ED]">
+								Ir a Perfil
+							</p>
+						</Link>
+					</button>
+					<button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+						<Link to="/favorites" >
+							<p className="block font-sans text-sm text-inherit antialiased hover:text-[#5333ED]">
+								Favoritos
+							</p>
+						</Link>
+					</button>
+					<button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+						<Link to="/" >
+							<p className="block font-sans text-sm text-inherit antialiased hover:text-[#5333ED]">
+								Viajes
+							</p>
+						</Link>
+					</button>
+					<hr className="my-2 border-blue-gray-50" />
+					<button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+						<Link to="/" >
+							<p className="block font-sans text-sm text-inherit antialiased hover:text-[#5333ED]">
+								Ser anfitrión
+							</p>
+						</Link>
+					</button>
+					<button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+						<Link to="/" >
+							<p className="block font-sans text-sm text-inherit antialiased hover:text-[#5333ED]">
+								Agregar alojamiento
+							</p>
+						</Link>
+					</button>
+					<hr className="my-2 border-blue-gray-50" />
+					<button className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+						<Link to="/" >
+							<p className="block font-sans text-sm text-inherit antialiased hover:text-[#5333ED]">
+								Cerrar sesión
+							</p>
+						</Link>
+					</button>
+				</>)
+				:
+				(
+					<>
+						<button onClick={() => changeModal("login")} className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+							<Link to="/" >
+								<p className="block font-sans text-sm text-inherit antialiased hover:text-[#5333ED]">
+									Iniciar sesión
+								</p>
+							</Link>
+						</button>
+						<button onClick={() => changeModal("register")} className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+							<Link to="/" >
+								<p className="block font-sans text-sm text-inherit antialiased hover:text-[#5333ED]">
+									Registrarse
+								</p>
+							</Link>
+						</button>
+					</>
+				)
+			}
+		</ul>
+	)
+}
 
 const NavBar = () => {
-    const [isOpen, setIsOpen] = useState(false)
-    const [isOpenPerfil, setIsOpenPerfil] = useState(false)
+	const [isOpen, setIsOpen] = useState(false)
+	const [isOpenDropdown, setIsOpenDropdown] = useState(false)
+	const [modalIsOpen, setModalIsOpen] = useState("")
 
-    return (
-        <nav className="bg-[#E9E8E8]  w-screen z-50 fixed shadow-xl">
-            <div className="mx-auto max-w-7xl p-4 px-8">
-                <div className="relative flex h-16 items-center justify-between">
-                    <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                        {/* <!-- Mobile menu button--> */}
-                        <button onClick={() => setIsOpen(!isOpen)} type="button" className="inline-flex items-center justify-center rounded-md p-2 text-[#D1D1D6] hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                            {isOpen ?
-                                <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" >
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                                :
-                                <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" >
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                                </svg>
-                            }
-                        </button>
-                    </div>
-                    <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                        <div className="flex flex-shrink-0 items-center">
-                            <Link to="/" > <Logo className={"block h-8 w-auto lg:hidden"} /> </Link>
-                            <Link to="/" > <Logo className={"hidden h-12 w-auto lg:block"} /> </Link>
-                        </div>
-                    </div>
-                    <div className="absolute inset-y-0 right-0 flex flex-row items-center justify-between pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                        <button type="button" className="max-[540px]:hidden rounded-full p-1 mx-5 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2">
-                            <img className='h-8 w-8 rounded-full' src={idioma} alt="" />
-                        </button>
+	const closeModal = () => setModalIsOpen("")
+	const changeModal = (value) => (setIsOpenDropdown(!isOpenDropdown), setModalIsOpen(value))
+	const viewModal = (value) => (value === "login" ? <Login closeModal={closeModal} /> : value === "register" ? <Register closeModal={closeModal} /> : "")
 
-                        {/* <!-- Profile dropdown --> */}
-                        <div className="relative ml-3">
-                            <div>
-                                <button type="button" onClick={() => setIsOpenPerfil(!isOpenPerfil)} className="flex rounded-full bg-[#D1D1D6] text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 ">
-                                    <img className="h-8 w-8 rounded-full p-1" src={perfil} alt="" />
-                                </button>
-                                {isOpenPerfil && <Dropdown sesion={true} />}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className={`absolute bg-[#E9E8E8] w-full min-[540px]:hidden ${isOpen ? "block" : "hidden"}`}>
-                <div className="space-y-1 px-2 pt-2 pb-3">
-                    <a href="#" className="text-gray-300 focus:text-gray-700 block rounded-md px-3 py-2 text-base font-medium" >Home</a>
 
-                    <a href="#" className="text-gray-300 focus:text-gray-700 block rounded-md px-3 py-2 text-base font-medium">Buscar destino</a>
 
-                    <a href="#" className="text-gray-300 focus:text-gray-700 block rounded-md px-3 py-2 text-base font-medium">Ser anfitrion</a>
-                </div>
-            </div>
-        </nav>
-    )
+	return (
+		<nav className="bg-[#E9E8E8]  w-screen z-50 fixed shadow-xl">
+			<div className="mx-auto max-w-7xl p-4 px-8">
+				<div className="relative flex h-16 items-center justify-between">
+					{
+						viewModal(modalIsOpen)
+					}
+
+					<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+						{/* <!-- Mobile menu button--> */}
+						<button onClick={() => setIsOpen(!isOpen)} type="button" className="inline-flex items-center justify-center rounded-md p-2 text-[#D1D1D6] hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+							{isOpen ?
+								<svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" >
+									<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+								</svg>
+								:
+								<svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" >
+									<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+								</svg>
+							}
+						</button>
+					</div>
+					<div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+						<div className="flex flex-shrink-0 items-center">
+							<Link to="/" > <Logo className={"block h-14 w-auto lg:hidden"} /> </Link>
+							<Link to="/" > <Logo className={"hidden h-16 w-auto lg:block"} /> </Link>
+						</div>
+					</div>
+					<div className="absolute inset-y-0 right-0 flex flex-row gap-5 items-center justify-between pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+						<button type="button" className="flex rounded-full w-9 h-w-9 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 ">
+							<svg className='w-full h-full' viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M32 0V62.6667" stroke="#202F59" stroke-width="3" />
+								<path d="M62.667 31.3333L0.000323653 31.3333" stroke="#202F59" stroke-width="3" />
+								<path d="M31.9996 1.33325C17.333 3.99992 5.33301 38.6666 27.9997 62.6666" stroke="#202F59" stroke-width="3" />
+								<path d="M32.0004 1.33325C46.667 3.99992 58.667 38.6666 36.0003 62.6666" stroke="#202F59" stroke-width="3" />
+								<path d="M9.33301 12C17.7775 16 39.733 21.6 54.6663 12" stroke="#202F59" stroke-width="3" />
+								<path d="M9.33301 53.3008C17.7775 49.3008 38.3997 43.7008 53.333 53.3008" stroke="#202F59" stroke-width="3" />
+								<circle cx="32" cy="32" r="30.5" stroke="#202F59" stroke-width="3" />
+							</svg>
+						</button>
+
+						{/* <!-- Profile dropdown --> */}
+						<div className="relative ml-3">
+							<div>
+								<button type="button" onClick={() => setIsOpenDropdown(!isOpenDropdown)} className="flex rounded-full w-9 h-w-9 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 ">
+									{/* <img className="h-8 w-8 rounded-full p-1" src={perfil} alt="" /> */}
+									<svg className='w-full h-full' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12Z" fill="#202F59" />
+										<path d="M20 19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+										<path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+									</svg>
+
+								</button>
+								{isOpenDropdown && <Dropdown sesion={false} tools={{ closeModal, changeModal, statusModal: modalIsOpen }} />}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className={`absolute bg-[#E9E8E8] w-full min-[540px]:hidden ${isOpen ? "block" : "hidden"}`}>
+				<div className="space-y-1 px-2 pt-2 pb-3">
+					<a href="#" className="text-gray-300 focus:text-gray-700 block rounded-md px-3 py-2 text-base font-medium" >Home</a>
+
+					<a href="#" className="text-gray-300 focus:text-gray-700 block rounded-md px-3 py-2 text-base font-medium">Buscar destino</a>
+
+					<a href="#" className="text-gray-300 focus:text-gray-700 block rounded-md px-3 py-2 text-base font-medium">Ser anfitrion</a>
+				</div>
+			</div>
+		</nav>
+	)
 }
 
 export default NavBar
