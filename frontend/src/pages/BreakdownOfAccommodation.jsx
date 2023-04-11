@@ -12,12 +12,15 @@ import { Link } from 'react-router-dom';
 import MoreServices from '../components/MoreServices';
 import Rating from '../components/Rating';
 import CreateRating from '../components/CreateRating';
+import SuccessfullQualification from '../components/SuccessfullQualification';
 
 const BreakdownOfAccommodation = () => {
     const [visiblePhotos, setVisiblePhotos] = useState(false)
     const [visibleDescription, setVisibleDescription] = useState(false)
     const [visibleServices, setVisibleServices] = useState(false)
     const [visibleRating, setVisibleRating] = useState(false)
+    const [visibleQualify, setVisibleQualify] = useState(false)
+    const [visibleCheck, setVisibleCheck] = useState(false)
     const closePhotos = () => {
         setVisiblePhotos(false)
     }
@@ -32,6 +35,13 @@ const BreakdownOfAccommodation = () => {
 
     const closeRating=()=>{
         setVisibleRating(false)
+    }
+
+    const closeQualify=()=>{
+        setVisibleQualify(false)
+    }
+    const closeCheck=()=>{
+        setVisibleCheck(false)
     }
 
 
@@ -67,7 +77,7 @@ const BreakdownOfAccommodation = () => {
                         </div>
 
 
-                        <div className='text-[#5333ED] py-8 font-semibold flex flex-col justify-center'>
+                        <div onClick={()=>setVisibleQualify(true)} className='text-[#5333ED] py-8 font-semibold flex flex-col justify-center'>
                             <h2>!Ya te hospedaste aquí! Deja una reseña.</h2>
                             <hr className='h-1 w-80 bg-opacity-30  bg-[#5333ED]' />
 
@@ -321,7 +331,8 @@ const BreakdownOfAccommodation = () => {
             <FullDescription close={closeDescription} visible={visibleDescription} />
             <MoreServices visible={visibleServices} close={closeServices} />
             <Rating visible={visibleRating} close={closeRating}/>
-            <CreateRating/>
+            <CreateRating visible={visibleQualify} close={closeQualify}/>
+            <SuccessfullQualification visible={visibleCheck} close={closeCheck}/>
             <Footer />
 
 
