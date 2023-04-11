@@ -6,6 +6,7 @@ import info from "../assets/info.svg"
 import plus from "../assets/plus.svg"
 import heart from "../assets/heart.svg"
 import suitcase from "../assets/suitcase.svg"
+import NavBarOnlyLogo from "./NavBarOnlyLogo";
 
 
 const EditForm = () =>
@@ -14,7 +15,7 @@ const EditForm = () =>
      return(
 
         <div className='w-screen h-screen bg-[#E9E8E8] overflow-x-hidden'>
-        <NavBar />
+        <NavBarOnlyLogo />
     <div className='flex flex-col mt-24 min-[540px]:px-18 py-4' >
        <br></br>
         <div className='w-screen h-[120vh] bg-[#ADADAD] px-16 py-2' >

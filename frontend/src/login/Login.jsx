@@ -1,21 +1,55 @@
 import React from "react";
-import { useState } from "react";
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from 'axios'; 
 
-const Login = () =>
+const Login = ({visible, onClose}) =>
 {
+  
+//Boton Login
+/*
+    const handleClose = () =>
+    {
+      onClose()
+    };
+    if(!visible) return null;
+*/
 
     const[body, setBody] = useState({usuario: '', password: ''})
-
-    const[changeColor ,setChangeColor] = useState(false)
+    const [btnColor, setBtnColor] = useState('violet-light');
+  
     const inputChange= ({target}) =>{
-        const{name, value} = target
-        setChangeColor(!changeColor)
+   
+        if(body.usuario !== '' && body.password !== '')
+        {
+            setBtnColor('violet-dark')
+        }
+        else
+        {
+            setBtnColor('violet-light')
+        }
+
+        const{name, value} = target 
         setBody({
             ...body,
             [name]: value
         })
+        
     }
+
+    const onSubmit = () =>
+    { 
+     console.log(body)
+        /*
+        axios.post('')//consultamos a la url
+        .then(({data}) =>{
+            console.log(data)
+        })
+        .catch(({response}) =>{
+            console.log(response.data);
+        })
+        */
+    }
+ 
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     
@@ -25,15 +59,10 @@ const Login = () =>
     } 
       
    
-    const onSubmit = () =>
-    { 
-        console.log(body);
-
-    }
-
-    //
     return( 
-        <div className="fixed inset-0 bg-white/20 opacity-72 flex justify-center items-center h-30 rounded-lg"> 
+       
+       
+        <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center h-30 rounded-lg"> 
             <div class="fixed justify-center bg-[#202F59] text-sm leading-normal text-white rounded-full">
                     <div class="bg-[#202F59] text-2xl text-white rounded-t-lg px-3 py-3 w-screen max-w-sm not-italic">
                         <button data-modal-toggle="defaultModal" type="button" class="sm:align-middle rounded-lg text-sm p-1.0 ml-auto">
@@ -52,7 +81,8 @@ const Login = () =>
                         <p></p>
                          <form className="rounded-lg body-font font-poppins space-y-4">  
                          <div class="flex flex-col items-center justify-center ">
-                            <input type="text" className='rounded-lg p-2 focus:border-blue border-2 border-solid h-9 w-22 text-xl text-black' placeholder="Usuario" value={body.usuario} onChange={inputChange} name='usuario' required>
+                            <input type="text" className='rounded-lg p-2 focus:border-blue border-2 border-solid h-9 w-22 text-xl text-black' placeholder="Usuario" value={body.usuario} onChange={inputChange} name='usuario'
+                             required>
                             </input>
                          </div>                  
                          <div class="relative w-full flex flex-col items-center justify-center"> 
@@ -65,15 +95,16 @@ const Login = () =>
                          <p class="px-14 text-[#202F59] underline text-sm body-font font-poppins cursor-pointer">¿Has olvidado tu contraseña?</p> 
                          <br></br>  
                          <div class="flex flex-col items-center justify-center">
-                            <button type="button" className="text-sm leading-normal body-font font-poppins w-22 h-8 text-white bg-violet-light rounded-lg py-2 px-6" onClick={onSubmit}>
+                            <button type="button" onClick={onSubmit} className={`text-sm leading-normal body-font font-poppins w-22 h-8 text-white rounded-lg py-2 px-6 bg-${btnColor}`}> 
                                 Ingresar
-                            </button>  
+                            </button>
                             <br></br>
                         </div>   
                          </form>
                     </div>
             </div>
        </div> 
+ 
     );
 }
 
