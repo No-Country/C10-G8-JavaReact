@@ -46,6 +46,10 @@ public class Residencia {
     @NotNull
     private double precio;
     
+    @NotNull
+    private String imagen;
+    
+    
     @ManyToOne (optional = false)
     @JoinColumn (name = "usuario_id")
     @JsonIgnoreProperties("residencias")
@@ -58,7 +62,7 @@ public class Residencia {
         this.name = name;
     }
 
-    public Residencia(int id, String name, String servicio, int cantidadHabitacion, int cantidadBaño, int cantidadCama, boolean estadoResidencia, String ubicacion, double precio, Usuario usuario) {
+    public Residencia(int id, String name, String servicio, int cantidadHabitacion, int cantidadBaño, int cantidadCama, boolean estadoResidencia, String ubicacion, double precio, Usuario usuario, String imagen) {
         this.id = id;
         this.name = name;
         this.servicio = servicio;
@@ -69,6 +73,7 @@ public class Residencia {
         this.ubicacion = ubicacion;
         this.precio = precio;
         this.usuario = usuario;
+        this.imagen = imagen;
     }
 
     public int getId() {
@@ -150,8 +155,14 @@ public class Residencia {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
     
+    public String getImagen(){
+        return imagen;
+    }
+
+    public void setImagen(String imagen){
+        this.imagen = imagen;
+    }
     
     
 }

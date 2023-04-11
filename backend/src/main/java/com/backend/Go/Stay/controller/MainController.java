@@ -1,6 +1,7 @@
 
 package com.backend.Go.Stay.controller;
 
+import com.backend.Go.Stay.entity.Comentario;
 import com.backend.Go.Stay.entity.Residencia;
 import com.backend.Go.Stay.entity.Usuario;
 import com.backend.Go.Stay.service.MainService;
@@ -30,6 +31,12 @@ public class MainController {
     public ResponseEntity<List<Residencia>> residencias(){
         List<Residencia> residencias = mainService.residencias();
         return new ResponseEntity(residencias, HttpStatus.OK);
+    }
+    // List de todos los comentarios
+    @GetMapping("comentario/traer")
+    public ResponseEntity<List<Comentario>> comentarios(){
+        List<Comentario> comentarios = mainService.comentarios();
+        return new ResponseEntity(comentarios, HttpStatus.OK);
     }
     
 }

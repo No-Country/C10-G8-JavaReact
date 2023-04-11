@@ -33,8 +33,9 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<Residencia> residencias = new HashSet<>();
     
+    @JsonIgnoreProperties("usuarios")
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name= "calificacion",
+    @JoinTable(name= "calificacion", // tabla intermedia entre Usuario y Comentario
             joinColumns = @JoinColumn(name="usuario_id",
                     referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "comentario_id",referencedColumnName = "id"))

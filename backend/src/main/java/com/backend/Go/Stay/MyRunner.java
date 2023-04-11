@@ -25,16 +25,17 @@ public class MyRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         
-        Usuario usuario0 = new Usuario();
-        Comentario comentario2 = new Comentario();       
+        /*Usuario usuario0 = new Usuario();
+        Comentario comentario2 = new Comentario();      
         Set<Comentario> comentarios = new HashSet<>();
+        comentario2.setComentario("la residencia es excelente para pasar unas vacaciones!");
         comentarios.add(comentario2);
         usuario0.setComentarios(comentarios);
         usuario0.setName("paula");
-        usuarioRepository.save(usuario0);
+        usuarioRepository.save(usuario0);*/
         
-        /*poblando DB 
-        Residencia residencia1 = new Residencia("casa");
+        //poblando DB
+        /*Residencia residencia1 = new Residencia("casa");
         Residencia residencia2 = new Residencia("depto");
         Residencia residencia3 = new Residencia("castillo");
         Residencia residencia4 = new Residencia("isla");
@@ -55,6 +56,13 @@ public class MyRunner implements CommandLineRunner {
         residenciasB.add(residencia3);
         residenciasB.add(residencia4);
         
+        Comentario comentario1 = new Comentario ();
+        comentario1.setComentario("que lindas vacaciones pasarías aca si venis!!");
+        
+        Set<Comentario> testComentario = new HashSet<>();
+        testComentario.add(comentario1);
+        
+        usuario1.setComentarios(testComentario);
         usuario1.setResidencias(residenciasN);
         usuario2.setResidencias(residenciasB);
         
