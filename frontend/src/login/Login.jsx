@@ -38,7 +38,7 @@ const Login = ({visible, onClose}) =>
 
     const onSubmit = () =>
     { 
-     
+     //console.log(body)
        /*
         axios.post('https://goandstay-production.up.railway.app/usuario/traer', body)//consultamos a la url
         .then(({data}) =>{
