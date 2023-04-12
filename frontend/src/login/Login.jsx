@@ -1,121 +1,117 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios'; 
 
-const Login = () =>
+const Login = ({visible, onClose}) =>
 {
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    
-    const Password = () =>
+  
+ //Boton Login
+/*
+    const handleClose = () =>
     {
-        setIsPasswordVisible((prevState) => !prevState);
-    } 
-      
-    return( 
-    <div className="fixed inset-0 
-    bg-white/20 opacity-72      
-         flex justify-center
-        items-center">
-   <div className="fixed justify-center
-         items-center
-         h screen">
-   <div class="bg-gray-300 
-        px-10 py-8 
-        rounded-xl 
-        w-screen 
-        shadow-md max-w-sm">
-        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal">
-        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-        <span class="sr-only">Close modal</span>
-        </button>
-    <div class="w-96 p-60 
-        shadow-lg 
-        bg-white 
-        rounded-md
-        sm:inline-block
-        sm:align-middle" 
-         className="sm:my-4 sm:max-w-lg w-full">
-            
-    <div className="modal-wrapper px-4 pt-5 pb-4 sm:p-4 sm:pb-2 rounded-3xl 
-        flex-col bg-gray-400 
-        text-1xl text-center
-        text-grey-700 lowcase
-         bg-gray-400">
-        Iniciar Sesión  
-    </div> 
-    <br></br>
-    <h2 className="text-left p-0">¡Bienvenido de vuelta!</h2>
-     <br></br>
-     
-    <form className="bg-gray-300 mb-2 ">
-             <p> 
-            <input
-            type="text"
-            className="block w-full 
-            px-4 py-4 
-            rounded-t-lg
-            mt-1 text-purple-700 
-            bg-white 
-             border focus:border-purple-400
-             focus:ring-purple-300 
-             focus:outline-none 
-             focus:ring focus:ring-opacity-40"
-             placeholder="Usuario"
-            />
-            </p>
-             
-            <input
-            type={isPasswordVisible ? "text" : "password"}
-            className="block w-full 
-            px-4 py-4 
-            mt-0 text-purple-700 
-            rounded-b-lg
-            bg-white 
-            border focus:border-purple-400
-            focus:ring-purple-300 
-            focus:outline-none 
-            focus:ring focus:ring-opacity-40"  
-            placeholder="Contraseña" 
-            />   
-                <button
-                className="text-blue-700 
-                absolute inset-y-0 
-                right-11 
-                pt-32
-                underline 
-                flex items-center "
-                onClick={Password}
-                >
-                Mostrar                  
-                </button>
-             <label className="text-sm
-                font-light 
-                text-gray-500
-                dark:text-gray-400
-                italic px-2 pt-2 
-                pb-2 sm:p-2 sm:pb-2">
-               ¿Olvidaste tu contraseña?
-             </label>  
-              <br></br>
-              <br></br>
-             <button type="submit" 
-                class="w-full text-black
-                bg-gray-400  
-                hover:bg-primary-700
-                focus:ring-4 focus:outline-none
-                focus:ring-primary-300 
-                font-medium rounded-lg 
-                text-sm px-5 py-2.5 text-center
-                dark:bg-primary-600
-                dark:hover:bg-primary-700 
-                dark:focus:ring-primary-800">
-                Ingresar
-              </button>   
-    </form>
-     </div>
-    </div>
-    </div>
-    </div>
-    );
+      onClose()
+    };
+    if(!visible) return null;
+*/
+
+const[body, setBody] = useState({usuario: '', password: ''})
+const [btnColor, setBtnColor] = useState('[#C4B5FD]');
+
+const inputChange= ({target}) =>{
+
+    if(body.usuario !== '' && body.password !== '')
+    {
+        setBtnColor('[#5333ED]')
+    }
+    else
+    {
+        setBtnColor('[#C4B5FD]')
+    }
+
+    const{name, value} = target 
+    setBody({
+        ...body,
+        [name]: value
+    })
+    
+}
+
+const onSubmit = () =>
+{ 
+ //console.log(body)
+   /*
+    axios.post('https://goandstay-production.up.railway.app/usuario/traer', body)//consultamos a la url
+    .then(({data}) =>{
+        console.log(data)
+    })
+    .catch(({response}) =>{
+        console.log(response.data);
+    })
+    */
+}
+
+
+const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+const Password = () =>
+{
+    setIsPasswordVisible((prevState) => !prevState);
+} 
+  
+
+return( 
+   
+   <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50"> 
+    <div className="bottom-80 h-90 flex justify-center items-center rounded-lg"> 
+        <div class="fixed justify-center bg-[#202F59] text-sm leading-normal text-white rounded-full">
+                <div class="bg-[#202F59] text-2xl text-white rounded-t-lg px-3 py-3 w-screen max-w-sm not-italic">
+                    <button data-modal-toggle="defaultModal" type="button" class="sm:align-middle rounded-lg text-sm p-1.0 ml-auto">
+                        <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div className="sm:inline px-20 body-font font-poppins">
+                        Iniciar sesión  
+                    </div>
+                    
+                </div>
+                <div className="bg-[white] rounded-b-lg">
+                    <br></br>
+                 
+                     <p className="text-[#202F59] p-3 body-font font-poppins text-xl">¡Bienvenido de vuelta!</p>
+                    <p></p>
+                    <p></p>
+                     <form className="rounded-lg body-font font-poppins ">  
+                     <div class="flex flex-col items-center justify-center ">
+                        <div class="p-6 space-y-6">
+                                <div class="w-56 relative group ">
+                                    <input type="text" id="usuario" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-22 px-4 text-base peer bg-white outline-none" value={body.usuario} onChange={inputChange} name='usuario' required/>
+                                    <label for="usuario" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Usuario</label>
+                                </div>
+                                <div class="w-56 relative group">
+                                    <input type={isPasswordVisible ? "text" : "password"} id="password" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-22 px-4 text-base peer bg-white outline-none" placeholder="" value={body.password} onChange={inputChange} name='password' required/>
+                                    <label for="password" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Contraseña</label>
+                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
+                                    <label class="rounded px-30 text-xs text-blue-700 underline cursor-pointer js-password-label" for="toggle" onClick={Password}>Mostrar</label>
+                                    </div>
+                                </div>
+                                <div class="w-56 relative group">
+                                <p class="px-0 text-[#202F59] underline text-sm body-font font-poppins cursor-pointer">¿Has olvidado tu contraseña?</p> 
+                                </div>
+                        </div>
+                     </div>    
+                     
+                     <div class="flex flex-col items-center justify-center">
+                        <button type="button" onClick={onSubmit} className={`text-sm leading-normal body-font font-poppins w-22 h-8 text-white rounded-lg py-2 px-6 bg-${btnColor}`}> 
+                            Ingresar
+                        </button>
+                        <br></br>
+                    </div>   
+                     </form>
+                </div>
+        </div>
+   </div> 
+   </div>
+);
 }
 
 export default Login;

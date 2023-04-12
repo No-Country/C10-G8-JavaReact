@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import perfil from "../assets/logoperfil.svg"
-import idioma from "../assets/idioma.svg"
 import { Link } from "react-router-dom"
 import Login from './../login/Login';
 import Register from './../login/Register';

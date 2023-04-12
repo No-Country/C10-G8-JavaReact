@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import perfil from "../assets/logoperfil.svg"
-import NavBar from '../components/NavBar'; 
+import NavBarOnlyLogo from '../components/NavBarOnlyLogo'; 
 import Footer from '../components/Footer'; 
 import info from "../assets/info.svg"
 import heart from "../assets/heart.svg"
-import suitcase from "../assets/suitcase.svg"
+import suitcase from "../assets/suitcase.svg" 
 
 const Profile = () => {
 
+  
     return (
-     <div className='w-screen h-screen bg-[#E9E8E8] overflow-x-hidden'>
-             <NavBar />
-         <div className='flex flex-col mt-24 min-[540px]:px-18  py-4' >
+ 
+     <div className='w-screen h-screen bg-[#E9E8E8] overflow-x-hidden '>
+        
+             <NavBarOnlyLogo />
+         <div className='flex flex-col mt-24 min-[540px]:px-18  py-4 ' >
             <br></br>
              <div className='w-screen h-[80vh] bg-[#ADADAD] px-16 py-8 ' >
                 <div className='bg-[#E9E8E8] w-full h-full rounded-3xl p-12 flex flex-row ' >
                         <div className='p-0 flex'>       
-                        <button type="button" className="h-36 w-36 flex items-center justify-center rounded-full bg-[#D1D1D6] ">  
+                        <button type="button" className="h-36 w-36 flex items-center justify-center rounded-full bg-[#D1D1D6] " >  
                         <img className="h-32 w-26 rounded-full p-1" src={perfil} alt="" />                 
                         </button>
                         <div className="flex flex-col space-y-1 p-6"> 
@@ -44,7 +47,8 @@ const Profile = () => {
              </div> 
              <Footer />
         </div>
-</div>
+    </div>
+ 
     );
 }
 export default Profile;

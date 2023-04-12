@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors = require('tailwindcss/colors')
 module.exports = {
   content: [
     "./index.html",
@@ -8,6 +10,9 @@ module.exports = {
     
   theme: {
     extend: {
+      fontFamily:{
+        'poppins':['Poppins', 'sans-serif']
+      }
  
     },
   },
