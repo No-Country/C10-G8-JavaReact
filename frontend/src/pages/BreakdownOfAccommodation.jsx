@@ -44,6 +44,7 @@ const BreakdownOfAccommodation = () => {
         setVisibleCheck(false)
     }
 
+  
 
 
     return (
