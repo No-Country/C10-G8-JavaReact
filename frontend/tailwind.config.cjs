@@ -10,16 +10,10 @@ module.exports = {
     
   theme: {
     extend: {
-      fontFamily: {
-        'poppins': ['Poppins', 'sans-serif']
-      },
-      colors: {
-       violet:
-       {
-        light: '#C4B5FD',
-        dark: '#5333ED',
-       }
+      fontFamily:{
+        'poppins':['Poppins', 'sans-serif']
       }
+ 
     },
   },
   plugins: [],
