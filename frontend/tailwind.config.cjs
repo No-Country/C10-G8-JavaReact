@@ -16,8 +16,9 @@ module.exports = {
       colors: {
        violet:
        {
-        light: '#C4B5FD',
         dark: '#5333ED',
+        light: '#C4B5FD',
+ 
        }
       }
     },
