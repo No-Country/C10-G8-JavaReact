@@ -8,14 +8,15 @@ const EditForm = () =>
 
 {
     
+ 
    return(
 
       <div className='w-screen h-screen bg-[#E9E8E8] overflow-x-hidden'>
       <NavBarOnlyLogo />
-         <div className='flex flex-col mt-24 min-[540px]:px-18 py-4' >
-          <br></br>
-          <div className='w-screen h-[120vh] bg-[white] px-16 py-2' >
-             <div className='bg-[#EFEFEF] w-full h-full rounded-3xl p-12 flex flex-row ' >
+  <div className='flex flex-col mt-24 min-[540px]:px-18 py-4' >
+     <br></br>
+      <div className='w-screen h-[120vh] bg-[white] px-16 py-2' >
+         <div className='bg-[#EFEFEF] w-full h-full rounded-3xl p-12 flex flex-row ' >
                  <div className='p-0 flex'>       
                  <button type="button" className="h-36 w-36 flex items-center justify-center rounded-full bg-[#D1D1D6] "  >  
                  <img className="h-32 w-26 rounded-full p-1 display: 'none'" src={perfil} alt=""   />                 
@@ -79,9 +80,9 @@ const EditForm = () =>
                 </div> 
         
               </div> 
-       <Footer />
-      </div>
-   </div>
+      <Footer />
+ </div>
+</div>
    );
 }
 

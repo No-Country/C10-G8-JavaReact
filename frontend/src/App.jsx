@@ -6,12 +6,13 @@ import Favorites from './pages/Favorites'
 import TravelPage from './pages/TravelPage'
 import Checkout from './pages/Checkout'
 import Profile from './pages/Profile'  
+ 
 
 function App() {
 
   return (
     <HashRouter>
-      
+     
       <Routes>
 
       <Route path='/' element={<Home/>} />
