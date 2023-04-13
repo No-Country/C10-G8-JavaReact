@@ -7,7 +7,7 @@ import heart from "../assets/heart.svg"
 import suitcase from "../assets/suitcase.svg"
 
 const Profile = () => {
-
+//
     
     return (
  
