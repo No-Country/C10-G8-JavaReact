@@ -5,14 +5,13 @@ import SearchForDestiny from './pages/SearchForDestiny'
 import Favorites from './pages/Favorites'
 import TravelPage from './pages/TravelPage'
 import Checkout from './pages/Checkout'
-import Profile from './pages/Profile' 
-import Register from './login/Register'
+import Profile from './pages/Profile'       
 
 function App() {
 
   return (
     <HashRouter>
-       
+ 
       <Routes>
 
       <Route path='/' element={<Home/>} />
@@ -23,6 +22,7 @@ function App() {
         <Route path='/Profile' element={<Profile/>}/>
         <Route path='/favorites' element={<Favorites />} />
     
+ 
  
       </Routes>
     </HashRouter>
