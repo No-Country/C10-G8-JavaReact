@@ -38,7 +38,7 @@ const CardHospedaje = ({ src = "https://a0.muscache.com/im/pictures/miso/Hosting
 const Card = ({ title, subtitle, src }) => {
 
     return (
-        <Link to={"/"} className="flex justify-center w-96 h-72 bg-[#202F59] items-center drop-shadow-md rounded-3xl group relative overflow-hidden hover:shadow-xl">
+        <Link to={"BreakdownOfAccommodation"} className="flex justify-center w-96 h-72 bg-[#202F59] items-center drop-shadow-md rounded-3xl group relative overflow-hidden hover:shadow-xl">
             <img
                 alt="Hospedaje"
                 src={src || "https://a0.muscache.com/im/pictures/580a9684-8d59-4cfc-a34e-09c788f64659.jpg?im_w=720"}
