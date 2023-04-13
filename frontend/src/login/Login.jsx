@@ -2,18 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from 'axios'; 
 
-const Login = ({visible, onClose,closeModal}) =>
+const Login = ({closeModal}) =>
 {
-  
- //Boton Login
-/*
-    const handleClose = () =>
-    {
-      onClose()
-    };
-    if(!visible) return null;
-*/
-
+   
 const[body, setBody] = useState({usuario: '', password: ''})
 const [btnColor, setBtnColor] = useState('[#C4B5FD]');
 

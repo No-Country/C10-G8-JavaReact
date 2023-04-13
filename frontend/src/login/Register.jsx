@@ -1,10 +1,15 @@
  import React  from "react";
  import { useState} from "react";
- 
+ import ModalProfile from './ModalProfile.jsx'
+
 const Register = ({closeModal}) =>
 {
+      const [showModal, setShowModal] = useState(false);
+
+      const handleOnClose = () => setShowModal(false);
+      
       const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    
+      
       const Password = () =>
       {
           setIsPasswordVisible((prevState) => !prevState);
@@ -70,11 +75,11 @@ const Register = ({closeModal}) =>
                             </div> 
                      </div>
                 <br></br>  
-                                 <div class="flex flex-col items-center justify-center">
-                                       <button type="button" className="text-sm leading-normal body-font font-poppins w-22 h-8 text-white rounded-lg py-2 px-6 bg-[#C4B5FD]">
-                                       Aceptar y Continuar
-                                       </button>
-                                       <br></br>
+                         <div class="flex flex-col items-center justify-center">
+                           <button onClick={() => setShowModal(true)} type="button" className="text-sm leading-normal body-font font-poppins w-22 h-8 text-white rounded-lg py-2 px-6 bg-[#C4B5FD]">
+                                Aceptar y Continuar
+                             </button>
+                                <br></br>
                                  </div>
                              </div>
                       </div>  
@@ -82,6 +87,7 @@ const Register = ({closeModal}) =>
             </div>
           </div>
         </div>
+        <ModalProfile onClose={handleOnClose} visible={showModal} />
       </div>
   );
    

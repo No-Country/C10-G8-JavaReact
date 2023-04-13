@@ -1,7 +1,7 @@
 import React, { useState, useRef }  from "react"; 
 import perfil from "../assets/logoperfil.svg"
-import Footer from './Footer'; 
-import NavBarOnlyLogo from "./NavBarOnlyLogo";
+import Footer from '../components/Footer'; 
+import NavBarOnlyLogo from "../components/NavBarOnlyLogo";
  
 
 const EditForm = () =>
