@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBarOnlyLogo from '../components/NavBarOnlyLogo';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Checkout = () => {
+    const [validate, setValidate]=useState({})
+    const {id} = useParams()
+    const navigate = useNavigate()
+    const values = {
+        service:25,
+        taxes:78
+
+    }
+    const timexweek = validate.precio * 7
+
+    useEffect(() => {
+        axios.get(`https://goandstay-production.up.railway.app/traer/residencia/${id}`)
+             .then(res => setValidate(res.data))
+    }, [id])
+
+  
+
+
+
     return (
         <main className='Container'>
             <NavBarOnlyLogo />
@@ -100,32 +120,32 @@ const Checkout = () => {
                     </section>
                     <section className='bg-[#ffff] w-2/5 flex flex-col p-5 gap-5 h-1/5 rounded-2xl'>
                         <div className='flex gap-5'>
-                            <img className='bg-gray-200 h-32 w-32 rounded-2xl' src="" alt="" />
+                            <img className='bg-gray-200 h-32 w-32 rounded-2xl' src={validate.imagen?.[0]} alt="" />
                             <div className='flex flex-col justify-center text-[#202F59]'>
-                                <h2 className='font-semibold text-xl'>Nombre de Hospedaje</h2>
-                                <h3 className='text-lg'>Ubicación</h3>
-                                <h3 className='font-semibold text-lg'>Evaluaciones</h3>
+                                <h2 className='font-semibold text-xl'>{validate?.name?.[0].toUpperCase()+validate.name?.substring(1)}</h2>
+                                <h3 className='text-lg'>{validate.ubicacion}</h3>
+                                <h3 className='font-semibold text-lg'>{validate.comentarios?.length}</h3>
                             </div>
                         </div>
                         <hr className='bg-[#202F59] h-0.5' />
                         <div className='flex justify-between  text-[#202F59] text-xl'>
-                            <h2>$$$$ por x noches</h2>
-                            <h2>$$$$$$$</h2>
+                            <h2>${validate.precio} por noche</h2>
+                            <h2>{timexweek}</h2>
                         </div>
                         <div className='flex justify-between text-[#202F59] text-xl '>
                             <h2>Tarifa de servicio</h2>
-                            <h2>$$$$$$$</h2>
+                            <h2>{values.service}</h2>
                         </div>
                         <div className='flex justify-between  text-[#202F59] text-xl'>
-                            <h2>Tarifa de servicio</h2>
-                            <h2>$$$$$$$</h2>
+                            <h2>Tarifa de impuestos</h2>
+                            <h2>{values.taxes}</h2>
                         </div>
 
 
                         <hr className='bg-[#202F59] h-0.5' />
                         <div className='flex justify-between  text-[#202F59] font-bold text-xl'>
                             <h2>Total</h2>
-                            <h2>$$$$$$$</h2>
+                            <h2>${timexweek+values.service+values.taxes}</h2>
                         </div>
 
                     </section>

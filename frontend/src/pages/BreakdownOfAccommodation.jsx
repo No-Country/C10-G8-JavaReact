@@ -8,7 +8,7 @@ import ArrayExample from '../assets/ArrayExample';
 import MorePhotos from '../components/MorePhotos';
 import FullDescription from '../components/FullDescription';
 import Checkout from './Checkout';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MoreServices from '../components/MoreServices';
 import Rating from '../components/Rating';
 import CreateRating from '../components/CreateRating';
@@ -21,7 +21,8 @@ const BreakdownOfAccommodation = () => {
     const [visibleRating, setVisibleRating] = useState(false)
     const [visibleQualify, setVisibleQualify] = useState(false)
     const [visibleCheck, setVisibleCheck] = useState(false)
-    const [placeId, setPlaceId]= useState({})
+    const [placeId, setPlaceId] = useState({})
+   const navigate = useNavigate()
     const closePhotos = () => {
         setVisiblePhotos(false)
     }
@@ -45,15 +46,15 @@ const BreakdownOfAccommodation = () => {
         setVisibleCheck(false)
     }
 
-    let randomId = Math.round(Math.random() * 1)+1
+    let randomId = Math.round(Math.random() * 1) + 1
 
     useEffect(() => {
         axios.get(`https://goandstay-production.up.railway.app/traer/residencia/${randomId}`)
-        .then(res => setPlaceId(res.data))
+            .then(res => setPlaceId(res.data))
 
     }, [])
 
-   
+
 
 
 
@@ -64,7 +65,7 @@ const BreakdownOfAccommodation = () => {
 
                 <section className='flex w-full p-10 px-14  mb-10 w-1/2'>
                     <section className=' flex flex-col justify-center gap-2 pl-10 m-auto  w-1/2'>
-                        <h1 className='text-6xl text-[#202F59] h-50 pb-3 '>{placeId.name}</h1>
+                        <h1 className='text-6xl text-[#202F59] h-50 pb-3 '>{placeId.name?.[0].toUpperCase() + placeId.name?.substring(1)}</h1>
 
                         <div className='flex flex-col  md:text-xl'>
                             <div onClick={() => setVisibleRating(true)} className='flex items-center justify-start gap-2 md:text-xl'>
@@ -102,7 +103,7 @@ const BreakdownOfAccommodation = () => {
                     <section className='w-1/2  grid gap-5 p-2 grid-rows-3 grid-cols-3 content-center items-center h-3/5'>
                         {
                             placeId.imagen?.map(img => (
-                                <img className='w-52 h-44' src={img} alt="" />
+                                <img className='w-52 h-44 rounded-2xl' src={img} alt="" />
                             ))
                         }
                         <div
@@ -118,7 +119,7 @@ const BreakdownOfAccommodation = () => {
                 <section className='p-10 px-14  flex gap-5 w-full '>
                     <section className='flex flex-col w-1/2   gap-5'>
                         <div className='rounded-2xl py-8 gap-5 flex flex-col  bg-[#202F59] text-[#ffff] p-3'>
-                            <h2 className='text-3xl text-center '>Casa en X destino - Anfitrión: Marcelo</h2>
+                            <h2 className='text-3xl text-center '>Casa en {placeId.ubicacion} - Anfitrión: {placeId.usuario?.name}</h2>
                             <h4 className='px-12 text-lg font-medium'>x huéspedes - x camas - x habitaciones</h4>
                         </div>
                         <div className='flex flex-col gap-5'>
@@ -164,10 +165,9 @@ const BreakdownOfAccommodation = () => {
 
                         </section>
                         <div className='flex justify-center'>
-                            <Link to='/Checkout'>
-                                <button className='rounded-lg  bg-[#5333ED] text-lg text-[#ffff] font-bold h-10 w-full mx-5'>Reservar</button>
-                            </Link>
-
+                           
+                                <button onClick={()=>navigate(`/Checkout/${randomId}`)} className='rounded-lg  bg-[#5333ED] text-lg text-[#ffff] font-bold h-10 w-full mx-5'>Reservar</button>
+                           
                         </div>
 
 
@@ -177,19 +177,34 @@ const BreakdownOfAccommodation = () => {
 
                 </section>
 
-                <section className='p-10 px-14  flex flex-col py-5 w-1/2 gap-3 text-[#202F59]'>
+                <section className='p-5 px-14  flex flex-col w-1/2 gap-3 text-[#202F59]'>
                     <div className='flex items-center gap-5 pb-10'>
                         <h3 className='text-2xl font-semibold'>Acomodaciones</h3>
                         <hr className='h-0.5 w-4/5 bg-opacity-30 bg-[#5333ED]' />
                     </div>
+                    <div className='flex flex-col gap-2'>
+                        <div className='flex w-3/5 gap-5  items-center'>
+                            <i className="w-5 text-xl fa-solid fa-person-shelter"></i>
+                            <h2 className='text-lg'>{`Cantidad de habitaciones ${placeId.cantidadHabitacion}`}</h2>
+                        </div>
+
+                        <div className='flex w-3/5 gap-5  items-center'>
+                            <i className="w-5 text-xl fa-solid fa-bed"> </i>
+                            <h2 className='text-lg'> {`Cantidad de camas ${placeId.cantidadCama}`}</h2>
+
+                        </div>
+                        <div className='flex gap-5 items-center'>
+                            <i className="w-5 text-xl fa-solid fa-toilet"></i>
+                            <h2 className='text-lg'>{`Cantidad de baños ${placeId.cantidadBaño}`}</h2>
+                        </div>
 
 
-                    <i className=" flex  fa-solid fa-wifi"><h3 className='pl-5'>
-                        Wifi
-                    </h3></i>
-                    <i className=" flex  fa-solid fa-kitchen-set"><h3 className='pl-5'>Cocina</h3></i>
-                    <i className=" flex  fa-regular fa-circle"><h3 className='pl-5'>Acomodacion 3</h3></i>
-                    <i className=" flex  fa-regular fa-circle"><h3 className='pl-5'>Acomodacion 4</h3></i>
+                    </div>
+
+
+
+
+
 
 
 
@@ -201,11 +216,18 @@ const BreakdownOfAccommodation = () => {
                         <hr className='h-0.5 w-4/5 bg-opacity-30 bg-[#5333ED]' />
                     </div>
                     <div className='grid grid-cols-2 grid-rows-3 gap-5'>
-                        <i className="flex fa-solid fa-paw"><h3 className='pl-5'>Se permiten Mascotas</h3></i>
-                        <i className=" flex  fa-regular fa-circle"><h3 className='pl-5'>Acomodacion 3</h3></i>
-                        <i className=" flex  fa-regular fa-circle"><h3 className='pl-5'>Acomodacion 4</h3></i>
-                        <i className=" flex  fa-regular fa-circle"><h3 className='pl-5'>Acomodacion 3</h3></i>
-                        <i className=" flex  fa-regular fa-circle"><h3 className='pl-5'>Acomodacion 4</h3></i>
+                        {
+                            placeId.servicio?.map(service => (
+                                <div className='flex gap-5 items-center'>
+                                    <i className="w-5 text-xl flex  fa-regular fa-circle"></i>
+                                    <h3 className='text-lg'>{service[0].toUpperCase() + service.substring(1)}</h3>
+                                </div>
+
+                            ))
+                        }
+
+
+
 
                     </div>
 
@@ -237,8 +259,8 @@ const BreakdownOfAccommodation = () => {
                             <img src="pexels-sandro-tavares-15728332" alt="" />
                         </div>
                         <div className='flex flex-col justify-center'>
-                            <h2 className='text-[#202F59] text-3xl font-semibold'>{`Anfitrión: ${placeId.usuario?.name} `}</h2>
-                            <h3 className='text-opacity-30 italic font-normal text-xl text-[#5333ED4D]'>Anfitrión desde aaaa</h3>
+                            <h2 className='text-[#202F59] text-3xl font-semibold'>{`Anfitrión: ${placeId.usuario?.name[0].toUpperCase()+ placeId.usuario?.name.substring(1)} `}</h2>
+                            <h3 className='text-opacity-30 italic font-normal text-xl text-[#5333ED4D]'>Anfitrión desde {placeId.fechaCreacion?.slice(0,10)}</h3>
                         </div>
 
 
@@ -338,9 +360,9 @@ const BreakdownOfAccommodation = () => {
                     </div>
                 </section>
             </article>
-            <MorePhotos close={closePhotos} visible={visiblePhotos} />
+            <MorePhotos images={placeId.imagen} close={closePhotos} visible={visiblePhotos} />
             <FullDescription close={closeDescription} visible={visibleDescription} />
-            <MoreServices visible={visibleServices} close={closeServices} />
+            <MoreServices id={randomId} visible={visibleServices} close={closeServices} />
             <Rating visible={visibleRating} close={closeRating} />
             <CreateRating visible={visibleQualify} close={closeQualify} />
             <SuccessfullQualification visible={visibleCheck} close={closeCheck} />

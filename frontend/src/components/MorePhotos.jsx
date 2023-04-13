@@ -1,12 +1,18 @@
-import React from 'react';
-import ArrayExample from '../assets/ArrayExample';
-const MorePhotos = ({visible, close}) => {
-    if(!visible) return null
+import React, { useEffect, useState } from 'react';
 
-    const closeModal =(e)=>{
+import axios from 'axios';
+const MorePhotos = ({ visible, close, images }) => {
+    const [photos, setPhotos] = useState({})
+    if (!visible) return null
+
+    const closeModal = (e) => {
         if (e.target.id === 'container')
-        close()
+            close()
     }
+
+
+
+    console.log(setPhotos)
 
 
 
@@ -17,8 +23,8 @@ const MorePhotos = ({visible, close}) => {
             </div>
             <div className='flex gap-5 flex-wrap'>
                 {
-                    ArrayExample.map(img => (
-                        <img className='rounded-lg w-58 h-44' src={img} alt="" />
+                    images.map(img => (
+                        <img className='w-59 h-44 rounded-xl' src={img} alt="" />
                     ))
                 }
             </div>
