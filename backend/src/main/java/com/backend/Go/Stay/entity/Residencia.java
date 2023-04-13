@@ -3,7 +3,10 @@ package com.backend.Go.Stay.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
+import java.sql.Timestamp;
+import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,11 +25,11 @@ public class Residencia {
     private int id;
     
     @NotNull
-    @Column(unique = true)
-    private String name;
+    private String categoria;
     
     @NotNull
-    private String servicio; 
+    @ElementCollection
+    private List<String> servicio; 
     
     @NotNull
     private int cantidadHabitacion; 
@@ -46,6 +49,14 @@ public class Residencia {
     @NotNull
     private double precio;
     
+    @NotNull
+    @ElementCollection
+    private List<String> imagen;
+    
+    @NotNull
+    private Timestamp fechaCreacion;
+    
+    
     @ManyToOne (optional = false)
     @JoinColumn (name = "usuario_id")
     @JsonIgnoreProperties("residencias")
@@ -54,13 +65,14 @@ public class Residencia {
     public Residencia() {
     }
 
-    public Residencia(String name) {
-        this.name = name;
+    public Residencia(String categoria) {
+        this.categoria = categoria;
     }
 
-    public Residencia(int id, String name, String servicio, int cantidadHabitacion, int cantidadBaño, int cantidadCama, boolean estadoResidencia, String ubicacion, double precio, Usuario usuario) {
+    public Residencia(int id, String categoria, List<String> servicio, int cantidadHabitacion, int cantidadBaño,
+            int cantidadCama, boolean estadoResidencia, String ubicacion, double precio, List<String> imagen, Timestamp fechaCreacion, Usuario usuario) {
         this.id = id;
-        this.name = name;
+        this.categoria = categoria;
         this.servicio = servicio;
         this.cantidadHabitacion = cantidadHabitacion;
         this.cantidadBaño = cantidadBaño;
@@ -68,6 +80,8 @@ public class Residencia {
         this.estadoResidencia = estadoResidencia;
         this.ubicacion = ubicacion;
         this.precio = precio;
+        this.imagen = imagen;
+        this.fechaCreacion = fechaCreacion;
         this.usuario = usuario;
     }
 
@@ -80,18 +94,18 @@ public class Residencia {
     }
 
     public String getName() {
-        return name;
+        return categoria;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String categoria) {
+        this.categoria = categoria;
     }
 
-    public String getServicio() {
+    public List<String> getServicio() {
         return servicio;
     }
 
-    public void setServicio(String servicio) {
+    public void setServicio(List<String> servicio) {
         this.servicio = servicio;
     }
 
@@ -143,6 +157,22 @@ public class Residencia {
         this.precio = precio;
     }
 
+    public List<String> getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(List<String> imagen) {
+        this.imagen = imagen;
+    }
+
+    public Timestamp getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Timestamp fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -151,7 +181,6 @@ public class Residencia {
         this.usuario = usuario;
     }
 
-    
     
     
 }

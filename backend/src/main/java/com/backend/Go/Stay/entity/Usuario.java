@@ -2,6 +2,7 @@
 package com.backend.Go.Stay.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -26,8 +27,10 @@ public class Usuario {
     private int id;
     
     @NotNull
-    @Column(unique=true)
     private String name;
+    private String nombreUsuario;
+    private String password;
+    private Date fechaNacimiento;
     
     @JsonIgnoreProperties("usuario")
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -63,6 +66,30 @@ public class Usuario {
         this.name = name;
     }
 
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
     public Set<Residencia> getResidencias() {
         return residencias;
     }
@@ -78,7 +105,7 @@ public class Usuario {
     public void setComentarios(Set<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
-    
+
     
     
 }

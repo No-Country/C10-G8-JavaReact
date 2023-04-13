@@ -1,8 +1,9 @@
-
 package com.backend.Go.Stay.service;
 
 import com.backend.Go.Stay.entity.Residencia;
 import com.backend.Go.Stay.entity.Usuario;
+import com.backend.Go.Stay.entity.Comentario;
+import com.backend.Go.Stay.repository.ComentarioRepository;
 import com.backend.Go.Stay.repository.ResidenciaRepository;
 import com.backend.Go.Stay.repository.UsuarioRepository;
 import java.util.List;
@@ -18,16 +19,34 @@ public class MainService {
     @Autowired
     ResidenciaRepository residenciaRepository;
     
-    public List<Usuario> usuarios(){
+    @Autowired
+    ComentarioRepository comentarioRepository;
+    
+    public List<Usuario> usuarios() {
         return usuarioRepository.findAll();
     }
+
+    // traer 1 Usuario
+    public Usuario traerUsuario(int id) {
+        Usuario usuario = usuarioRepository.findById(id).orElse(null);
+        return usuario;
+    }
     
-    public List<Residencia> residencias(){
+    public List<Residencia> residencias() {
         return residenciaRepository.findAll();
     }
     
-    public void deleteUsuario(int id){
+    public void deleteUsuario(int id) {
         usuarioRepository.deleteById(id);
+    }
+    
+    public Usuario guardarUsuario(Usuario usuario) {
+        usuarioRepository.save(usuario);
+        return usuario;
+    }
+    
+    public void guardarComentario(Comentario comentario) {
+        comentarioRepository.save(comentario);
     }
     
 }
