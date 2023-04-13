@@ -21,6 +21,7 @@ const BreakdownOfAccommodation = () => {
     const [visibleRating, setVisibleRating] = useState(false)
     const [visibleQualify, setVisibleQualify] = useState(false)
     const [visibleCheck, setVisibleCheck] = useState(false)
+    const [placeId, setPlaceId]= useState({})
     const closePhotos = () => {
         setVisiblePhotos(false)
     }
@@ -33,18 +34,27 @@ const BreakdownOfAccommodation = () => {
         setVisibleServices(false)
     }
 
-    const closeRating=()=>{
+    const closeRating = () => {
         setVisibleRating(false)
     }
 
-    const closeQualify=()=>{
+    const closeQualify = () => {
         setVisibleQualify(false)
     }
-    const closeCheck=()=>{
+    const closeCheck = () => {
         setVisibleCheck(false)
     }
 
-  
+    let randomId = Math.round(Math.random() * 1)+1
+
+    useEffect(() => {
+        axios.get(`https://goandstay-production.up.railway.app/traer/residencia/${randomId}`)
+        .then(res => setPlaceId(res.data))
+
+    }, [])
+
+   
+
 
 
     return (
@@ -54,10 +64,10 @@ const BreakdownOfAccommodation = () => {
 
                 <section className='flex w-full p-10 px-14  mb-10 w-1/2'>
                     <section className=' flex flex-col justify-center gap-2 pl-10 m-auto  w-1/2'>
-                        <h1 className='text-6xl text-[#202F59] h-50 pb-3 '>Nombre de la <br /> Vivienda</h1>
+                        <h1 className='text-6xl text-[#202F59] h-50 pb-3 '>{placeId.name}</h1>
 
                         <div className='flex flex-col  md:text-xl'>
-                            <div onClick={()=>setVisibleRating(true)} className='flex items-center justify-start gap-2 md:text-xl'>
+                            <div onClick={() => setVisibleRating(true)} className='flex items-center justify-start gap-2 md:text-xl'>
                                 <i className="text-[#EAD201] fa-regular fa-star"></i>
                                 <h3 className='text-[#202F59] font-bold border-b-2 border-[#202F59]' >
                                     4,7. Evaluaciones</h3>
@@ -78,7 +88,7 @@ const BreakdownOfAccommodation = () => {
                         </div>
 
 
-                        <div onClick={()=>setVisibleQualify(true)} className='text-[#5333ED] py-8 font-semibold flex flex-col justify-center'>
+                        <div onClick={() => setVisibleQualify(true)} className='text-[#5333ED] py-8 font-semibold flex flex-col justify-center'>
                             <h2>!Ya te hospedaste aquí! Deja una reseña.</h2>
                             <hr className='h-1 w-80 bg-opacity-30  bg-[#5333ED]' />
 
@@ -91,7 +101,7 @@ const BreakdownOfAccommodation = () => {
 
                     <section className='w-1/2  grid gap-5 p-2 grid-rows-3 grid-cols-3 content-center items-center h-3/5'>
                         {
-                            ArrayExample.map(img => (
+                            placeId.imagen?.map(img => (
                                 <img className='w-52 h-44' src={img} alt="" />
                             ))
                         }
@@ -120,7 +130,7 @@ const BreakdownOfAccommodation = () => {
                     </section>
                     <section className='flex flex-col bg-white h-full p-7 border-2 border-solid border-[#5333ED] border-opacity-30 h-52  text-[black] rounded-3xl w-1/2'>
                         <div className='flex p-2 w-50 h-full'>
-                            <h2 className=' text-4xl'><span className='font-bold'>$$$$ </span> noche</h2>
+                            <h2 className=' text-4xl'><span className='font-bold'>${placeId.precio}</span> noche</h2>
 
                         </div>
                         <section className='flex justify-between items-center borde-solid border-2 border-[#5333ED] m-4  rounded-3xl '>
@@ -204,10 +214,10 @@ const BreakdownOfAccommodation = () => {
                 </section>
                 <div className='flex h-20 py-2 items-centers  justify-around text-[#D9D9D9] shadow-xl  w-full '>
                     <ul className='flex  gap-20'>
-                        <li className='flex flex-col hover:text-black items-center'>Fotos <i 
-                        onClick={()=>setVisiblePhotos(true)} className="fa-solid hover:text-[#5333ED] fa-circle"></i></li>
-                        <li className='flex flex-col hover:text-black items-center'>Servicios <i  
-                        onClick={()=>setVisibleServices(true)} className="fa-solid fa-circle hover:text-[#5333ED]"></i></li>
+                        <li className='flex flex-col hover:text-black items-center'>Fotos <i
+                            onClick={() => setVisiblePhotos(true)} className="fa-solid hover:text-[#5333ED] fa-circle"></i></li>
+                        <li className='flex flex-col hover:text-black items-center'>Servicios <i
+                            onClick={() => setVisibleServices(true)} className="fa-solid fa-circle hover:text-[#5333ED]"></i></li>
                         <li className='flex flex-col hover:text-black items-center'>Evaluaciones <i className="fa-solid fa-circle hover:text-[#5333ED]"></i></li>
                         <li className='flex flex-col hover:text-black items-center'>Cambiar Fecha<i className="fa-solid fa-circle hover:text-[#5333ED]"></i></li>
 
@@ -227,7 +237,7 @@ const BreakdownOfAccommodation = () => {
                             <img src="pexels-sandro-tavares-15728332" alt="" />
                         </div>
                         <div className='flex flex-col justify-center'>
-                            <h2 className='text-[#202F59] text-3xl font-semibold'>Anfitrión: Marcelo Apellido</h2>
+                            <h2 className='text-[#202F59] text-3xl font-semibold'>{`Anfitrión: ${placeId.usuario?.name} `}</h2>
                             <h3 className='text-opacity-30 italic font-normal text-xl text-[#5333ED4D]'>Anfitrión desde aaaa</h3>
                         </div>
 
@@ -241,7 +251,7 @@ const BreakdownOfAccommodation = () => {
                                     <h2 className='text-[#5333ED] text-2xl'>Idiomas: texto, texto</h2>
 
                                 </div>
-                                <div onClick={()=>setVisibleRating(true)} className='flex items-center gap-5'>
+                                <div onClick={() => setVisibleRating(true)} className='flex items-center gap-5'>
                                     <i className="text-3xl text-[#EAD201] fa-regular fa-star"></i>
                                     <h3 className='text-xl text-[#202F59] font-semibold border-b-2 border-solid border-[#202f59]'>4.7 Evaluaciones</h3>
                                 </div>
@@ -331,9 +341,9 @@ const BreakdownOfAccommodation = () => {
             <MorePhotos close={closePhotos} visible={visiblePhotos} />
             <FullDescription close={closeDescription} visible={visibleDescription} />
             <MoreServices visible={visibleServices} close={closeServices} />
-            <Rating visible={visibleRating} close={closeRating}/>
-            <CreateRating visible={visibleQualify} close={closeQualify}/>
-            <SuccessfullQualification visible={visibleCheck} close={closeCheck}/>
+            <Rating visible={visibleRating} close={closeRating} />
+            <CreateRating visible={visibleQualify} close={closeQualify} />
+            <SuccessfullQualification visible={visibleCheck} close={closeCheck} />
             <Footer />
 
 
