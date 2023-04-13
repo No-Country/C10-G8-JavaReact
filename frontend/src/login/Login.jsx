@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from 'axios'; 
 
-const Login = ({visible, onClose}) =>
+const Login = ({visible, onClose,closeModal}) =>
 {
   
  //Boton Login
