@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import perfil from "../assets/logoperfil.svg"
 import NavBarOnlyLogo from '../components/NavBarOnlyLogo'; 
 import Footer from '../components/Footer'; 
+import { Link } from 'react-router-dom'
 
 const Profile = () => {
 //
@@ -22,7 +23,7 @@ return (
                        <div className="flex flex-col space-y-1 p-6"> 
                            <h1 className="px-5 text-[#202F59] text-3xl font-bold body-font font-poppins not-italic">Susana</h1>
                            <h2 className="px-5 text-xl text-[#5333ED4D] body-font font-poppins italic">Se registro en aaaa</h2>
-                           <a href="" className="p-1 px-6 underline underline-offset-8 text-xl text-[#202F59] body-font font-poppins">Editar Perfil</a> 
+                           <Link to="/EditForm" className="p-1 px-6 underline underline-offset-8 text-xl text-[#202F59] body-font font-poppins">Editar Perfil</Link>
                            <br></br>   
                              <br></br>    
                                 <div className='p-2 flex'> 
@@ -47,6 +48,7 @@ return (
    </div>
 
    );
+
 
 }
 export default Profile;

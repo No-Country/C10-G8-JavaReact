@@ -6,7 +6,7 @@ import Favorites from './pages/Favorites'
 import TravelPage from './pages/TravelPage'
 import Checkout from './pages/Checkout'
 import Profile from './pages/Profile'  
- 
+import EditForm from './pages/EditForm'
 
 function App() {
 
@@ -22,7 +22,7 @@ function App() {
         <Route path='/Checkout' element={<Checkout/>}/>
         <Route path='/Profile' element={<Profile/>}/>
         <Route path='/favorites' element={<Favorites />} />
-    
+        <Route path='/EditForm' element={<EditForm/>}/>
  
       </Routes>
     </HashRouter>
