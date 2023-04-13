@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 const Profile = () => {
 
 //
+//
     return (
  
      <div className='w-screen h-screen bg-[#E9E8E8] overflow-x-hidden '>
