@@ -9,12 +9,14 @@ import LugarDestacado from '../components/LugarDestacado';
 
 const Home = () => {
     return (
-        <div className='w-screen h-screen bg-[#E9E8E8] overflow-x-hidden'>
+        <div className='w-screen h-screen bg-white overflow-x-hidden'>
             <NavBar />
-            <div className='flex flex-col mt-24 min-[540px]:px-20  py-4' >
-                <Hero />
+            <Hero />
+            <div className='flex flex-col min-[540px]:px-20  py-4' >
                 <Populares />
-                <LugarDestacado/>
+            </div>
+            <LugarDestacado />
+            <div className='flex flex-col min-[540px]:px-20  py-4' >
                 <ExploraHospedajes />
             </div>
             <Anfitrion />

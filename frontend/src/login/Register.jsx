@@ -1,9 +1,9 @@
  import React  from "react";
  import { useState} from "react";
  
-const Register = () =>
+const Register = ({closeModal}) =>
 {
-   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+      const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     
    const Password = () =>
    {

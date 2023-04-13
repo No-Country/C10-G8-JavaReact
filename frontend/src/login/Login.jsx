@@ -2,10 +2,10 @@ import React from "react";
 import { useState} from "react";
 import axios from 'axios'; 
 
-const Login = ({visible, onClose}) =>
+const Login = ({visible, onClose,closeModal}) =>
 {
   
-//Boton Login
+ //Boton Login
 /*
     const handleClose = () =>
     {
@@ -15,32 +15,32 @@ const Login = ({visible, onClose}) =>
 */
 
     const[body, setBody] = useState({usuario: '', password: ''})
-    const [btnColor, setBtnColor] = useState('[#C4B5FD]');
+    const [btnColor, setBtnColor] = useState('violet-light');
   
     const inputChange= ({target}) =>{
    
         if(body.usuario !== '' && body.password !== '')
         {
-            setBtnColor('[#5333ED]')
+            setBtnColor('violet-dark')
         }
         else
         {
-            setBtnColor('[#C4B5FD]')
+            setBtnColor('violet-light')
         }
 
-        const{name, value} = target 
-        setBody({
-            ...body,
-            [name]: value
-        })
-        
-    }
+    const{name, value} = target 
+    setBody({
+        ...body,
+        [name]: value
+    })
+    
+}
 
     const onSubmit = () =>
     { 
-     //console.log(body)
-       /*
-        axios.post('https://goandstay-production.up.railway.app/usuario/traer', body)//consultamos a la url
+     console.log(body)
+        /*
+        axios.post('')//consultamos a la url
         .then(({data}) =>{
             console.log(data)
         })
@@ -61,8 +61,8 @@ const Login = ({visible, onClose}) =>
    
     return( 
        
-       <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50"> 
-        <div className="bottom-80 h-90 flex justify-center items-center rounded-lg"> 
+       
+        <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center h-30 rounded-lg"> 
             <div class="fixed justify-center bg-[#202F59] text-sm leading-normal text-white rounded-full">
                     <div class="bg-[#202F59] text-2xl text-white rounded-t-lg px-3 py-3 w-screen max-w-sm not-italic">
                         <button data-modal-toggle="defaultModal" type="button" class="sm:align-middle rounded-lg text-sm p-1.0 ml-auto">
@@ -75,31 +75,25 @@ const Login = ({visible, onClose}) =>
                         
                     </div>
                     <div className="bg-[white] rounded-b-lg">
-                        <br></br>
-                     
+                         <br></br>
                          <p className="text-[#202F59] p-3 body-font font-poppins text-xl">¡Bienvenido de vuelta!</p>
                         <p></p>
                         <p></p>
-                         <form className="rounded-lg body-font font-poppins ">  
+                         <form className="rounded-lg body-font font-poppins space-y-4">  
                          <div class="flex flex-col items-center justify-center ">
-                            <div class="p-6 space-y-6">
-                                    <div class="w-56 relative group ">
-                                        <input type="text" id="usuario" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-22 px-4 text-base peer bg-white outline-none" value={body.usuario} onChange={inputChange} name='usuario' required/>
-                                        <label for="usuario" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Usuario</label>
-                                    </div>
-                                    <div class="w-56 relative group">
-                                        <input type={isPasswordVisible ? "text" : "password"} id="password" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-22 px-4 text-base peer bg-white outline-none" placeholder="" value={body.password} onChange={inputChange} name='password' required/>
-                                        <label for="password" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Contraseña</label>
-                                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
-                                        <label class="rounded px-30 text-xs text-blue-700 underline cursor-pointer js-password-label" for="toggle" onClick={Password}>Mostrar</label>
-                                        </div>
-                                    </div>
-                                    <div class="w-56 relative group">
-                                    <p class="px-0 text-[#202F59] underline text-sm body-font font-poppins cursor-pointer">¿Has olvidado tu contraseña?</p> 
-                                    </div>
+                            <input type="text" className='rounded-lg p-2 focus:border-blue border-2 border-solid h-9 w-22 text-xl text-black' placeholder="Usuario" value={body.usuario} onChange={inputChange} name='usuario'
+                             required>
+                            </input>
+                         </div>                  
+                         <div class="relative w-full flex flex-col items-center justify-center"> 
+                            <input type={isPasswordVisible ? "text" : "password"} className='rounded-lg p-2 focus:border-blue border-2 border-solid h-9 w-22 text-xl text-black' placeholder="Contraseña" value={body.password} onChange={inputChange} name='password' required/>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-2">
+                            <label class="rounded px-14 py-1 text-sm text-blue-700 underline cursor-pointer js-password-label" for="toggle" onClick={Password}>Mostrar</label> 
                             </div>
+                            
                          </div>    
-                         
+                         <p class="px-14 text-[#202F59] underline text-sm body-font font-poppins cursor-pointer">¿Has olvidado tu contraseña?</p> 
+                         <br></br>  
                          <div class="flex flex-col items-center justify-center">
                             <button type="button" onClick={onSubmit} className={`text-sm leading-normal body-font font-poppins w-22 h-8 text-white rounded-lg py-2 px-6 bg-${btnColor}`}> 
                                 Ingresar
@@ -110,7 +104,7 @@ const Login = ({visible, onClose}) =>
                     </div>
             </div>
        </div> 
-       </div>
+ 
     );
 }
 
