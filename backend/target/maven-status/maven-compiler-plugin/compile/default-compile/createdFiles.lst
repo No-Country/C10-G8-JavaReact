@@ -1,0 +1,8 @@
+com\backend\Go\Stay\repository\ResidenciaRepository.class
+com\backend\Go\Stay\Application.class
+com\backend\Go\Stay\repository\UsuarioRepository.class
+com\backend\Go\Stay\entity\Usuario.class
+com\backend\Go\Stay\controller\MainController.class
+com\backend\Go\Stay\entity\Residencia.class
+com\backend\Go\Stay\MyRunner.class
+com\backend\Go\Stay\service\MainService.class
