@@ -116,6 +116,10 @@ public class MyRunner implements CommandLineRunner {
         
         Usuario usuario1 = new Usuario("nicolas");
         Usuario usuario2 = new Usuario("belkis");
+        usuario1.setNombreUsuario("nicolas");
+        usuario2.setNombreUsuario("belkis");
+        usuario1.setPassword("1234");
+        usuario2.setPassword("123456");
         
         residencia1.setUsuario(usuario1);
         residencia2.setUsuario(usuario1);
