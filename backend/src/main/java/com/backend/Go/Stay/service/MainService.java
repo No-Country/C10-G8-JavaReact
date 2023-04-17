@@ -1,10 +1,11 @@
-
 package com.backend.Go.Stay.service;
 
 import com.backend.Go.Stay.entity.Alquiler;
+import com.backend.Go.Stay.entity.Comentario;
 import com.backend.Go.Stay.entity.Residencia;
 import com.backend.Go.Stay.entity.Usuario;
 import com.backend.Go.Stay.repository.AlquilerRepository;
+import com.backend.Go.Stay.repository.ComentarioRepository;
 import com.backend.Go.Stay.repository.ResidenciaRepository;
 import com.backend.Go.Stay.repository.UsuarioRepository;
 import java.util.List;
@@ -23,6 +24,8 @@ public class MainService {
     @Autowired
     AlquilerRepository alquilerRepository;
     
+    @Autowired
+    ComentarioRepository comentarioRepository;
     
     public List<Usuario> usuarios(){
         return usuarioRepository.findAll();
@@ -56,8 +59,12 @@ public class MainService {
         return alquilerRepository.findById(id).orElse(null);
     }
     
-    public Alquiler getAlquileresByNumeroReservacion(Long numeroReservacion){
-        return alquilerRepository.findByNumeroReservacion(numeroReservacion);
+    public Alquiler getAlquileresByNumeroReserva(int numeroReserva){
+        return alquilerRepository.findByNumeroReserva(numeroReserva);
+    }
+    
+    public void guardarComentario(Comentario comentario) {
+        comentarioRepository.save(comentario);
     }
     
 }

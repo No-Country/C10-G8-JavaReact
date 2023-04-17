@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AlquilerRepository extends JpaRepository<Alquiler, Integer> {
-    public Alquiler findByNumeroReservacion(int numeroReservacion);
+    public Alquiler findByNumeroReserva(int numeroReserva);
 }

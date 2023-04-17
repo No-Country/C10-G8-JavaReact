@@ -2,13 +2,11 @@
 package com.backend.Go.Stay.controller;
 
 import com.backend.Go.Stay.entity.Alquiler;
+import com.backend.Go.Stay.entity.Comentario;
 import com.backend.Go.Stay.entity.Residencia;
 import com.backend.Go.Stay.entity.Usuario;
 import com.backend.Go.Stay.service.MainService;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +66,20 @@ public class MainController {
             return new ResponseEntity<>(objectAlquiler,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+    }
+    
+    @GetMapping("alquiler/traer/{numero_reserva}")
+    public ResponseEntity<Alquiler> findAlquilerByNumeroReserva(@PathVariable("numero_reserva") int numReserva){
+        try{
+            return new ResponseEntity<>(mainService.getAlquileresByNumeroReserva(numReserva), HttpStatus.FOUND );
+        }catch(NullPointerException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @PostMapping("comentario/crear")
+    public void crearComentario(@RequestBody Comentario comentario) {
+        mainService.guardarComentario(comentario);
     }
         
 }

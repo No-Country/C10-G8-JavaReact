@@ -1,4 +1,3 @@
-
 package com.backend.Go.Stay.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -27,36 +26,36 @@ public class Residencia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @NotNull
+    
     private String categoria;
     
-    @NotNull
+    
     @ElementCollection
     private List<String> servicio; 
     
-    @NotNull
+    
     private int cantidadHabitacion; 
     
-    @NotNull
+    
     private int cantidadBaño;
     
-    @NotNull
+    
     private int cantidadCama; 
     
-    @NotNull
+    
     private boolean estadoResidencia;
     
-    @NotNull
+    
     private String ubicacion;
     
-    @NotNull
+    
     private double precio;
     
-    @NotNull
+    
     @ElementCollection
     private List<String> imagen;
     
-    @NotNull
+    
     private Timestamp fechaCreacion;
     
     
@@ -64,11 +63,10 @@ public class Residencia {
     @JoinColumn (name = "usuario_id")
     @JsonIgnoreProperties("residencias")
     private Usuario usuario;
-        
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "residencia_id", nullable = false)
+    
+    @OneToOne(mappedBy = "alquiler", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private Alquiler alquiler;
-
+    
     public Residencia() {
     }
 
@@ -76,7 +74,9 @@ public class Residencia {
         this.categoria = categoria;
     }
 
-    public Residencia(int id, String categoria, List<String> servicio, int cantidadHabitacion, int cantidadBaño, int cantidadCama, boolean estadoResidencia, String ubicacion, double precio, List<String> imagen, Timestamp fechaCreacion, Usuario usuario, Alquiler alquiler) {
+    public Residencia(int id, String categoria, List<String> servicio, int cantidadHabitacion, int cantidadBaño,
+            int cantidadCama, boolean estadoResidencia, String ubicacion, double precio, List<String> imagen, Timestamp fechaCreacion, Usuario usuario,
+            Alquiler alquiler) {
         this.id = id;
         this.categoria = categoria;
         this.servicio = servicio;
@@ -91,8 +91,7 @@ public class Residencia {
         this.usuario = usuario;
         this.alquiler = alquiler;
     }
-    
-  
+
     public int getId() {
         return id;
     }
@@ -189,21 +188,15 @@ public class Residencia {
         this.usuario = usuario;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
     public Alquiler getAlquiler() {
         return alquiler;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
     }
 
     public void setAlquiler(Alquiler alquiler) {
         this.alquiler = alquiler;
     }
+
+    
     
     
 }

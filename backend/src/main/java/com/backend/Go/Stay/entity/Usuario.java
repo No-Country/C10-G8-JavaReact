@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,17 +35,16 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<Residencia> residencias = new HashSet<>();
     
-    /*
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name= "calificacion",
-            joinColumns = @JoinColumn(name="usuario_id",
-            referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "comentario_id",referencedColumnName = "id"))
-    private Set<Comentario> comentarios = new HashSet<>();
-*/ 
     @JsonIgnoreProperties("usuario")
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<Alquiler> alquileres = new HashSet<>();
+    
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name= "calificacion",
+            joinColumns = @JoinColumn(name="usuario_id",
+                    referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "comentario_id",referencedColumnName = "id"))
+    private Set<Comentario> comentarios = new HashSet<>();
 
     public Usuario() {
     }
@@ -102,16 +100,13 @@ public class Usuario {
     public void setResidencias(Set<Residencia> residencias) {
         this.residencias = residencias;
     }
-    
-    public void setAlquileres(Set<Alquiler> alquileres) {
-        this.alquileres = alquileres;
+
+    public Set<Comentario> getComentarios() {
+        return comentarios;
     }
 
-    public Set<Alquiler> getAlquileres() {
-        return alquileres;
+    public void setComentarios(Set<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
-    
-    
-    
-    
+
 }

@@ -2,7 +2,6 @@ package com.backend.Go.Stay.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -38,7 +37,7 @@ public class Alquiler {
     private Date fechaSalida;
     
     @NotNull
-    private int numeroReservacion;
+    private int numeroReserva;
     
     @NotNull
     private String tipoResidencia;
@@ -51,8 +50,8 @@ public class Alquiler {
     @JsonIgnoreProperties("alquiler")
     private Usuario usuario;
     
-
-    @OneToOne(mappedBy = "alquiler", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "alquiler_id", nullable = false)
     private Residencia residencia;
     
 
