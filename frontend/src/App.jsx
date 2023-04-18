@@ -5,9 +5,10 @@ import SearchForDestiny from './pages/SearchForDestiny'
 import Favorites from './pages/Favorites'
 import TravelPage from './pages/TravelPage'
 import Checkout from './pages/Checkout'
-import Profile from './pages/Profile'  
+import Profile from './pages/Profile'       
 import EditForm from './pages/EditForm'
  
+
 function App() {
 
   return (
@@ -23,7 +24,6 @@ function App() {
         <Route path='/Profile' element={<Profile/>}/>
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/EditForm' element={<EditForm/>}/>
- 
       </Routes>
     </HashRouter>
   )

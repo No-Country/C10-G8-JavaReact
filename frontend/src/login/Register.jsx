@@ -4,6 +4,7 @@
 
 const Register = ({closeModal}) =>
 {
+   
       const [showModal, setShowModal] = useState(false);
 
       const handleOnClose = () => setShowModal(false);
@@ -90,6 +91,7 @@ const Register = ({closeModal}) =>
         <ModalProfile onClose={handleOnClose} visible={showModal} />
       </div>
   );
+   
    
 } 
 
