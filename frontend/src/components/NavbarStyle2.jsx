@@ -3,8 +3,10 @@ import logoPerfil from '../assets/logoperfil2.svg'
 import { Link } from 'react-router-dom';
 
 const NavbarStyle2 = () => {
-   
+
     const [open, setOPen] = useState(false)
+    const [isLogin, setIsLogin] = useState(false)
+    const [isRegister, setIsRegister] = useState(false)
     return (
         <nav className='flex p-10 w-full h-24 items-center justify-between'>
             <img className='w-44 h-44' src={logoPerfil} alt="" />
@@ -18,6 +20,31 @@ const NavbarStyle2 = () => {
             </div>
             {
                 open && (
+                    <div className='absolute top-20   z-50 bg-[#ffff] w-25    right-12 rounded-xl     '>
+                        <ul className='flex flex-col gap-5 font-semibold border-2 border-[#C4B5FD] rounded-xl p-8'>
+
+
+                            <li className='hover:text-[#5333ED] text-[#202F59]  poppins'>Iniciar Sesión</li>
+
+
+
+
+
+                            <li className='hover:text-[#5333ED] text-[#202F59]  poppins'>
+                                Registrarse
+                            </li>
+
+
+
+
+                        </ul>
+
+                    </div>
+
+                )
+            }
+            {/* {
+                open && isLogin(
                     <div className='absolute top-20   z-50 bg-[#ffff] w-25    right-12 rounded-xl     '>
                         <ul className='flex flex-col gap-5 font-semibold border-2 border-[#C4B5FD] rounded-xl p-8'>
 
@@ -42,7 +69,7 @@ const NavbarStyle2 = () => {
                     </div>
 
                 )
-            }
+            } */}
 
 
 

@@ -13,16 +13,51 @@ import MoreServices from '../components/MoreServices';
 import Rating from '../components/Rating';
 import CreateRating from '../components/CreateRating';
 import SuccessfullQualification from '../components/SuccessfullQualification';
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+
+
 
 const BreakdownOfAccommodation = () => {
-    const [visiblePhotos, setVisiblePhotos] = useState(false)
-    const [visibleDescription, setVisibleDescription] = useState(false)
-    const [visibleServices, setVisibleServices] = useState(false)
-    const [visibleRating, setVisibleRating] = useState(false)
-    const [visibleQualify, setVisibleQualify] = useState(false)
-    const [visibleCheck, setVisibleCheck] = useState(false)
-    const [placeId, setPlaceId] = useState({})
-   const navigate = useNavigate()
+    const [visiblePhotos, setVisiblePhotos] = useState(false);
+    const [visibleDescription, setVisibleDescription] = useState(false);
+    const [visibleServices, setVisibleServices] = useState(false);
+    const [visibleRating, setVisibleRating] = useState(false);
+    const [visibleQualify, setVisibleQualify] = useState(false);
+    const [visibleCheck, setVisibleCheck] = useState(false);
+    const [placeId, setPlaceId] = useState({});
+    const [inicio, setInicio] = useState(new Date());
+    const [final, setFinal] = useState(new Date());
+    const [guests, setGuests] = useState(false);
+    const [adults, setAdults] = useState(1);
+    const [children, setChildren] = useState(0);
+    const [pets, setPets] = useState(0)
+    const navigate = useNavigate()
+
+    const changeFechaInicio = (inicio) => {
+        setInicio(inicio)
+    }
+    const changeFechaFinal = (final) => {
+        setFinal(final)
+    }
+
+    const openGuests = () => {
+
+        setGuests(true)
+
+    }
+    const closeGuests = () => {
+
+        setGuests(false)
+
+    }
+    
+
+
+
+
+
+
     const closePhotos = () => {
         setVisiblePhotos(false)
     }
@@ -49,7 +84,7 @@ const BreakdownOfAccommodation = () => {
     let randomId = Math.round(Math.random() * 1) + 1
 
     useEffect(() => {
-        axios.get(`https://goandstay-production.up.railway.app/traer/residencia/${randomId}`)
+        axios.get(`https://c10-g8-javareact-production-740a.up.railway.app/residencia/traer${randomId}`)
             .then(res => setPlaceId(res.data))
 
     }, [])
@@ -135,15 +170,21 @@ const BreakdownOfAccommodation = () => {
 
                         </div>
                         <section className='flex justify-between items-center borde-solid border-2 border-[#5333ED] m-4  rounded-3xl '>
-                            <div className='flex flex-col w-full'>
+                            <div className='flex flex-col w-full  '>
                                 <div className='flex justify-between px-7 mt-2 '>
                                     <h3 className='text-[#202F59] text-2xl font-semibold'>Check In</h3>
-                                    <i className='text-4xl text-[#5333ED] bx bx-calendar-alt'></i>
+
+
                                     <h3 className='text-[#202F59] text-2xl font-semibold'>Check Out</h3>
                                 </div>
-                                <div className='flex justify-between px-7 '>
-                                    <h3 className='italic text-xl mb-2 text-[#5333ED] text-opacity-30'>d/mm/aaaa</h3>
-                                    <h3 className='italic text-xl mb-2 text-[#5333ED] text-opacity-30 '>d/mm/aaaa</h3>
+                                <div className='flex w-full justify-between px-7 '>
+                                    <h3 className='italic text-xl mb-2 text-[#5333ED] text-opacity-30'>
+                                        <DatePicker selected={inicio} onChange={changeFechaInicio} className='w-28 italic' />
+
+                                    </h3>
+                                    <h3 className='italic pl-40  text-xl mb-2 text-[#5333ED] flex  text-opacity-30 '>
+                                        <DatePicker selected={final} onChange={changeFechaFinal} className='italic w-28 ' />
+                                    </h3>
 
                                 </div>
                                 <hr className='w-full h-0.5 bg-[#5333ED]' />
@@ -151,9 +192,72 @@ const BreakdownOfAccommodation = () => {
                                     <h2 className='text-[#202F59] text-2xl font-semibold'>Huéspedes</h2>
 
                                 </div>
-                                <div className='flex px-7 mt-2 mb-5 justify-between items-center'>
-                                    <h3 className='italic text-xl mb-2 text-[#5333ED] text-opacity-30'>x huespedes</h3>
-                                    <i className='text-[#5333ED] text-6xl bx bx-down-arrow-alt'></i>
+                                <div className='flex px-7 realtive mt-2 mb-5 justify-between items-center'>
+                                    <h3 className='italic text-xl mb-2 text-[#5333ED] text-opacity-30'>
+                                        {`${children + adults + pets} Huéspedes`}
+
+                                    </h3>
+                                    <i onClick={openGuests} className={`bx text-[#5333ED] 
+                                        ${guests ? 'bx-up-arrow-alt ' : ' bx-down-arrow-alt'} text-6xl  `}>
+                                        {
+                                            guests && (
+                                                <div className='bg-[#fff] absolute flex flex-col right-40 gap-1 text-xl z-10 p-2  w-64 border-2 border-[#C4B5FD] rounded-2xl '>
+                                                    <div className='flex flex-col w-full gap-5 justify-between p-4  ' >
+                                                        <div className='flex items-center '>
+                                                            <h2 className='w-28'>Adultos</h2>
+                                                            <div className='w-28 gap-5 flex items-center justify-center'>
+                                                                <button disabled={adults === 1} onClick={() => setAdults(adults - 1)}>
+                                                                    <i className="fa-solid fa-minus"></i>
+                                                                </button>
+
+                                                                <h2>{adults}</h2>
+                                                                <button
+                                                                    onClick={() => setAdults(adults + 1)}>
+                                                                    <i className="fa-solid fa-plus">                                                                        </i>
+                                                                </button>
+
+                                                            </div>
+                                                        </div>
+                                                        <div className='flex items-center '>
+                                                            <h2 className='w-28 '>Niños</h2>
+                                                            <div className='w-28 gap-5 flex items-center justify-center'>
+                                                                <button onClick={() => setChildren(children - 1)} disabled={children === 0}>
+                                                                    <i className="fa-solid fa-minus"></i>
+                                                                </button>
+
+                                                                <h2>{children}</h2>
+                                                                <button onClick={() => setChildren(children + 1)}>
+                                                                    <i className="fa-solid fa-plus"></i>
+                                                                </button>
+
+                                                            </div>
+                                                        </div>
+                                                        <div className='flex items-center '>
+                                                            <h2 className='w-28'>Mascotas</h2>
+                                                            <div className='w-28 gap-5 flex items-center justify-center'>
+                                                                <button disabled={pets === 0} onClick={() => setPets(pets - 1)}>
+                                                                    <i className="fa-solid fa-minus"></i>
+                                                                </button>
+
+                                                                <h2>{pets}</h2>
+                                                                <button onClick={() => setPets(pets + 1)}>
+                                                                    <i className="fa-solid fa-plus"></i>
+                                                                </button>
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+                                                    </div>
+
+                                                </div>
+                                            )
+                                        }
+
+                                    </i>
                                 </div>
 
 
@@ -165,9 +269,9 @@ const BreakdownOfAccommodation = () => {
 
                         </section>
                         <div className='flex justify-center'>
-                           
-                                <button onClick={()=>navigate(`/Checkout/${randomId}`)} className='rounded-lg  bg-[#5333ED] text-lg text-[#ffff] font-bold h-10 w-full mx-5'>Reservar</button>
-                           
+
+                            <button onClick={() => navigate(`/Checkout/${randomId}`)} className='rounded-lg  bg-[#5333ED] text-lg text-[#ffff] font-bold h-10 w-full mx-5'>Reservar</button>
+
                         </div>
 
 
@@ -259,8 +363,8 @@ const BreakdownOfAccommodation = () => {
                             <img src="pexels-sandro-tavares-15728332" alt="" />
                         </div>
                         <div className='flex flex-col justify-center'>
-                            <h2 className='text-[#202F59] text-3xl font-semibold'>{`Anfitrión: ${placeId.usuario?.name[0].toUpperCase()+ placeId.usuario?.name.substring(1)} `}</h2>
-                            <h3 className='text-opacity-30 italic font-normal text-xl text-[#5333ED4D]'>Anfitrión desde {placeId.fechaCreacion?.slice(0,10)}</h3>
+                            <h2 className='text-[#202F59] text-3xl font-semibold'>{`Anfitrión: ${placeId.usuario?.name[0].toUpperCase() + placeId.usuario?.name.substring(1)} `}</h2>
+                            <h3 className='text-opacity-30 italic font-normal text-xl text-[#5333ED4D]'>Anfitrión desde {placeId.fechaCreacion?.slice(0, 10)}</h3>
                         </div>
 
 

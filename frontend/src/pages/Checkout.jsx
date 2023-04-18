@@ -3,6 +3,7 @@ import NavBarOnlyLogo from '../components/NavBarOnlyLogo';
 import Footer from '../components/Footer';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Calendar } from '@syncfusion/ej2-react-calendars';
 
 const Checkout = () => {
     const [validate, setValidate]=useState({})
@@ -46,7 +47,7 @@ const Checkout = () => {
                                 <h3 className='text-[#202F59] font-semibold text-xl '>Fecha</h3>
                                 <div className='flex justify-between'>
                                     <h3>Del dd al dd del mes</h3>
-                                    <a href="">Cambiar</a>
+                                   
                                 </div>
 
                             </div>
