@@ -7,12 +7,12 @@ import TravelPage from './pages/TravelPage'
 import Checkout from './pages/Checkout'
 import Profile from './pages/Profile'  
 import EditForm from './pages/EditForm'
-
+ 
 function App() {
 
   return (
     <HashRouter>
-     
+      
       <Routes>
 
       <Route path='/' element={<Home/>} />

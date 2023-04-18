@@ -1,27 +1,78 @@
-import React from "react"; 
-import perfil from "../assets/logoperfil.svg"
+import React , {useState} from "react"; 
 import Footer from '../components/Footer';  
 import NavBarOnlyLogo from "../components/NavBarOnlyLogo";
+import ModalLanguages from '../components/ModalLanguages'
+import perfil from '../assets/logoperfil.svg'
 
-
-const EditForm = () =>
+const EditForm = ({lang}) =>
 
 {
-    
+   const [showModal, setShowModal] = useState(false);
+
+   const handleOnClose = () => setShowModal(false);
+   
  
+
+  const [images, setimages] = useState([perfil]);
+
+   const changeInput = (e) =>{
+
+       readmultifiles(e)
+      
+   }
+
+   function readmultifiles(e) {
+      const files = e.currentTarget.files;
+  
+  
+      Object.keys(files).forEach((i) => {
+        const file = files[i];
+  
+        let url = URL.createObjectURL(file);
+         setimages(url)
+       
+         
+        });
+ 
+      };
+  
+     
+     
    return(
 
       <div className='w-screen h-screen bg-[#E9E8E8] overflow-x-hidden'>
       <NavBarOnlyLogo />
-  <div className='flex flex-col mt-24 min-[540px]:px-18 py-4' >
-     <br></br>
-      <div className='w-screen h-[120vh] bg-[white] px-16 py-2' >
-         <div className='bg-[#EFEFEF] w-full h-full rounded-3xl p-12 flex flex-row ' >
-                 <div className='p-0 flex'>       
-                 <button type="button" className="h-36 w-36 flex items-center justify-center rounded-full bg-[#D1D1D6] "  >  
-                 <img className="h-32 w-26 rounded-full p-1 display: 'none'" src={perfil} alt=""   />                 
-                 </button>
-                 <div className="flex flex-col space-y-1 p-6"> 
+       <div className='flex flex-col mt-24 min-[540px]:px-18 py-4' >
+         <br></br>
+            <div className='w-screen h-[120vh] bg-[white] px-16 py-2' >
+               <div className='bg-[#EFEFEF] w-full h-full rounded-3xl p-12 flex flex-row ' >
+                 <div className='p-0 flex'>    
+                    
+                 <div className="container-fluid">
+                <br></br>
+              
+               <label className="btn btn-warning">
+                  
+               <div className="row"> 
+               <img
+                        alt="Imagen de Perfil"
+                        src={images}
+                        data-toggle="modal"
+                        data-target="#ModalPreViewImg"
+                        className="h-44 w-44 rounded-full p-0 bg-[#202F59] " 
+                        title="Agregar foto de Perfil"
+                     />
+                     
+               <input hidden type="file" multiple onChange={changeInput}></input>
+               
+            
+                  </div>
+               </label>
+         
+         
+         
+    </div>
+                 <div className="flex flex-col space-y-1 p-9"> 
                      <h1 className="px-5 text-[#202F59] text-3xl font-bold body-font font-poppins not-italic">Susana</h1>
                      <h2 className="px-5 text-xl text-[#5333ED4D] body-font font-poppins italic">Se registro en aaaa</h2>
                      <a href="" className="p-1 px-6 underline underline-offset-8 text-xl text-[#202F59] body-font font-poppins">Editar Perfil</a> 
@@ -50,16 +101,21 @@ const EditForm = () =>
                                    </div>
                                    <div className="flex py-2 p-14"> 
                                       <h4 className="p-1 py-0 text-[#202F59] body-font font-poppins not-italic text-xl">Idiomas</h4>&nbsp;
-                                   <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus text-[#5333ED]" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/> </svg></a> <br></br><br></br>   
-                                   
+                                   <button onClick={() => setShowModal(true)}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus text-[#5333ED]" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/> </svg><br></br><br></br>   
+                                    </button>
                                    </div>
-                                  
+                                  <div>
+                                    <button type="button" class=" py-2 w-20 text-lg font-medium text-[#202F59] bg-[#5333ED4D] rounded-full space-x-4">
+                                     {lang}
+                                    </button>
+                                  </div>
                                   <div class=" flex items-center justify-center" role="group">
                                       <button type="button" class=" py-2 w-20 text-lg font-medium text-[#585858] rounded-lg underline">
                                           Cancelar
                                       </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <button type="button" class="py-1 w-20 h-8 text-base font-medium text-white border border-gray-200 rounded-lg bg-[#5333ED]">
+                                      <button  type="button" class="py-1 w-20 h-8 text-base font-medium text-white border border-gray-200 rounded-lg bg-[#5333ED]">
                                         Guardar  
                                       </button> 
                                       
@@ -78,7 +134,7 @@ const EditForm = () =>
                        </div>
                      
                 </div> 
-        
+                <ModalLanguages onClose={handleOnClose} visible={showModal} />
               </div> 
       <Footer />
  </div>

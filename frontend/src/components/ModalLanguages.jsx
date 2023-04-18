@@ -1,146 +1,118 @@
-import React from "react";
-import scroll from '../assets/scroll.svg'
+import React, { useState } from "react";
+import EditForm from "../pages/EditForm";
+ 
 
-const ModalLanguages = () =>
+const ModalLanguages = ({visible, onClose}) =>
 {
-
+   const handleOnClose = () =>
+   {
+       onClose();
+   };
+   if(!visible) return null;
       
+   const [selectLang, setSelectLang] = useState([]);
+
+   const [idioma, setIdioma] = useState([]);
+
+  const handleChange = e => {
+    setIdioma(e.target.value);
+  };
+
+  const chooseLang = () => {
+    setSelectLang(prevState => [...prevState, idioma]);
+  };
+ 
     return(
-        <div  
-        className="fixed inset-0 
-        bg-white/20 opacity-72  
-           flex justify-center
-           items-center">
-       <div  
-       className="fixed justify-center
-           items-center
-           h-26">
-       <div        
-       class="bg-stone-400 
-           px-10 py-8 
-           rounded-t-lg
-           w-screen 
-           shadow-md max-w-sm">
-             <button data-modal-toggle="defaultModal" type="button" class="text-black-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"  >
-            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-           <span class="sr-only">Close modal</span>
-           </button>
-         
-     </div>
-     <div className="bg-neutral-300">
-        <h2 className="px-0 pt-0 pb-0 sm:p-3 sm:pb-2 text-left flex-col text-1xl text-black">
-              Idiomas que hablo
-          </h2> 
-          <div class="flex items-center h-5">
-   &nbsp;&nbsp;&nbsp;<input id="remember"
-                type="checkbox"
-                class="w-4 h-4 
-                accent-gray-400" required=""/>
-                  <div class="ml-3 text-sm">
-                     <label for="remember" 
-                     class="text-black
-                    text-1xl">
-                    Idioma
-                    </label>
-                 </div>
-             </div><br></br>
-             <div class="flex items-center h-5">
-   &nbsp;&nbsp;&nbsp;<input id="remember"
-                type="checkbox"
-                class="w-4 h-4 
-                accent-gray-400" required=""/>
-                  <div class="ml-3 text-sm">
-                     <label for="remember" 
-                     class="text-black
-                    text-1xl">
-                    Idioma
-                    </label>
-                 </div>
-             </div><br></br>
-             <div class="flex items-center h-5">
-   &nbsp;&nbsp;&nbsp;<input id="remember"
-                type="checkbox"
-                class="w-4 h-4 
-                accent-gray-400" required=""/>
-                  <div class="ml-3 text-sm">
-                     <label for="remember" 
-                     class="text-black
-                    text-1xl">
-                    Idioma
-                    </label>
-                 </div>
-             </div><br></br>
-             <div class="flex items-center h-5">
-   &nbsp;&nbsp;&nbsp;<input id="remember"
-                type="checkbox"
-                class="w-4 h-4 
-                accent-gray-400" required=""/>
-                  <div class="ml-3 text-sm">
-                     <label for="remember" 
-                     class="text-black
-                    text-1xl">
-                    Idioma
-                    </label>
-                 </div>
-             </div><br></br>
-             <div class="flex items-center h-5 ">
-   &nbsp;&nbsp;&nbsp;<input id="remember"
-                type="checkbox"
-                class="w-4 h-4 
-                accent-gray-400" required=""/>
-                  <div class="ml-3 text-sm">
-                     <label for="remember" 
-                     class="text-black
-                    text-1xl">
-                    Idioma
-                    </label>
-                 </div>
-             </div><br></br>
-             <div class="flex items-center h-5
-           ">
-   &nbsp;&nbsp;&nbsp;<input id="remember"
-                type="checkbox"
-                class="w-4 h-4 
-                accent-gray-400" required=""/>
-                  <div class="ml-3 text-sm">
-                     <label for="remember" 
-                     class="text-black
-                    text-1xl">
-                    Idioma
-                    </label>
-                 </div>
-             </div><br></br>
-             <div class="flex items-center h-5">
-   &nbsp;&nbsp;&nbsp;<input id="remember"
-                type="checkbox"
-                class="w-4 h-4 
-                accent-gray-400" required=""/>
-                  <div class="ml-3 text-sm">
-                     <label for="remember" 
-                     class="text-black
-                    text-1xl">
-                    Idioma
-                    </label>
-                 </div>
-             </div><br></br>
-             <div class="flex items-center h-5 
-             overflow-auto ">
-   &nbsp;&nbsp;&nbsp;<input id="remember"
-                type="checkbox"
-                class="w-4 h-4 
-                accent-gray-400" required=""/>
-                  <div class="ml-3 text-sm">
-                     <label for="remember" 
-                     class="text-black
-                    text-1xl">
-                    Idioma
-                    </label>
-                 </div>
-             </div>
+      <div className="h-screen w-full fixed left-0 top-0 pt-8 z-[999] flex justify-center items-center bg-black bg-opacity-50">    
+        <div className="flex justify-center items-center  rounded-2xl">
+        <div class="fixed justify-center bg-[#202F59] py-0 text-sm text-white rounded-2xl">
+            <div class="bg-[#202F59] text-lg text-white rounded-2xl px-3 py-3 w-90 max-w-1xl not-italic">
+                <button onClick={handleOnClose} data-modal-toggle="defaultModal" type="button" class="sm:align-middle rounded-lg text-sm p-0 ml-auto">
+                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"/><path d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linejoin="round"/><path d="M29.6569 18.3431L18.3432 29.6568" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.3432 18.3431L29.6569 29.6568" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                   
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Idiomas que hablo
+                                
+            </div>
+            --
+  <div className="bg-[white] rounded-b-lg">
+                <form className="rounded-lg body-font font-poppins space-y-4">  
+                  
+                  <ul class="py-4 divide-y divide-[#d1c4e9]" aria-labelledby="states-button "id="type-value">
+                      <li>
+                      <div class="grid max-w-sm grid-cols-2 mx-auto text-center divide-y divide-blue-200">
+                        <button onClick={chooseLang} type="button" class=" inline-flex rounded-lg w-64 px-4 py-2 text-sm body-font font-poppins font-semibold not-italic text-[#202F59] hover:bg-[#d1c4e9] dark:hover:bg-[#d1c4e9] dark:hover:text-[#202F59]">                       
+                        <option value="Ingles" onClick={handleChange} type="text" className="font-bold"> Ingles </option> 
+  
+                       </button> 
+                       </div>
+                     </li> 
+                     
+                     <li>
+                      <div class="grid max-w-sm grid-cols-2 mx-auto text-center divide-y divide-blue-200">
+                        <button onClick={chooseLang} type="button" class=" inline-flex rounded-lg w-64 px-4 py-2 text-sm body-font font-poppins font-semibold not-italic text-[#202F59] hover:bg-[#d1c4e9] dark:hover:bg-[#d1c4e9] dark:hover:text-[#202F59]">
+                        <option value="Español"  onClick={handleChange}  type="text" className="font-bold">Español</option>         
+                       </button> 
+                       </div>
+                     </li>  
+                     <li>
+                      <div class="grid max-w-sm grid-cols-2 mx-auto text-center divide-y divide-blue-200">
+                        <button  onClick={chooseLang} type="button" class=" inline-flex rounded-lg w-64 px-4 py-2 text-sm body-font font-poppins font-semibold not-italic text-[#202F59] hover:bg-[#d1c4e9] dark:hover:bg-[#d1c4e9] dark:hover:text-[#202F59]">
+                        <option  value="Alemán"  onClick={handleChange}  type="text" className="font-bold">Alemán</option>                
+                       </button> 
+                       </div>
+                     </li>  
+                     <li>
+                      <div class="grid max-w-sm grid-cols-2 mx-auto text-center divide-y divide-blue-200">
+                        <button  onClick={chooseLang} type="button" class=" inline-flex rounded-lg w-64 px-4 py-2 text-sm body-font font-poppins font-semibold not-italic text-[#202F59] hover:bg-[#d1c4e9] dark:hover:bg-[#d1c4e9] dark:hover:text-[#202F59]">
+                        <option value="Portugués"  onClick={handleChange}  type="text" className="font-bold">Portugués </option>            
+                       </button> 
+                       </div>
+                     </li>  
+                     <li>
+                      <div class="grid max-w-sm grid-cols-2 mx-auto text-center divide-y divide-blue-200">
+                        <button  onClick={chooseLang} type="button" class=" inline-flex rounded-lg w-64 px-4 py-2 text-sm body-font font-poppins font-semibold not-italic text-[#202F59] hover:bg-[#d1c4e9] dark:hover:bg-[#d1c4e9] dark:hover:text-[#202F59]">
+                        <option  value="Italiano"  onClick={handleChange}  type="text" className="font-bold">Italiano </option>  
+                       </button> 
+                       </div>
+                     </li>  
+                     <li>
+                      <div class="grid max-w-sm grid-cols-2 mx-auto text-center divide-y divide-blue-200">
+                        <button onClick={chooseLang} type="button" class=" inline-flex rounded-lg w-64 px-4 py-2 text-sm body-font font-poppins font-semibold not-italic text-[#202F59] hover:bg-[#d1c4e9] dark:hover:bg-[#d1c4e9] dark:hover:text-[#202F59]">
+                        <option  value="Francés" onClick={handleChange}  type="text" className="font-bold">Francés</option>         
+                       </button> 
+                       </div>
+                     </li>  
+                     <li>
+                      <div class="grid max-w-sm grid-cols-2 mx-auto text-center divide-y divide-blue-200">
+                        <button onClick={chooseLang} type="button" class=" inline-flex rounded-lg w-64 px-4 py-2 text-sm body-font font-poppins font-semibold not-italic text-[#202F59] hover:bg-[#d1c4e9] dark:hover:bg-[#d1c4e9] dark:hover:text-[#202F59]">
+                         <option value="Japonés" onClick={handleChange}  type="text" className="font-bold">Japonés </option>         
+                       </button> 
+                       </div>
+                     </li>  
+                     <li>
+                      <div class="grid max-w-sm grid-cols-2 mx-auto text-center divide-y divide-blue-200">
+                        <button onClick={chooseLang} type="button" class=" inline-flex rounded-lg w-64 px-4 py-2 text-sm body-font font-poppins font-semibold not-italic text-[#202F59] hover:bg-[#d1c4e9] dark:hover:bg-[#d1c4e9] dark:hover:text-[#202F59]">
+                      <option value="Coreano" onClick={handleChange}  type="text" className="font-bold"> Coreano </option>          
+                       </button> 
+                       </div>
+                     </li>  
+                  </ul> 
+                </form>   
+                           
+               </div>
+          </div>
+           <div >
+            
+              <EditForm lang={selectLang} />
+            
+          </div>  
         </div>
         
-    </div>
-    </div> 
+      </div>
+       
     );
+   
 }
 export default ModalLanguages;

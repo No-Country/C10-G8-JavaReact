@@ -16,9 +16,9 @@ return (
            <br></br>
             <div className='w-screen h-[80vh] bg-[white] px-16 py-8 ' >
                <div className='bg-[white] w-full h-full rounded-3xl p-12 flex flex-row ' >
-                       <div className='p-0 flex'>       
-                       <button type="button" className="h-36 w-36 flex items-center justify-center rounded-full bg-[#D1D1D6] " >  
-                       <img className="h-32 w-26 rounded-full p-1" src={perfil} alt="" />                 
+                       <div className='p-0 flex '>       
+                       <button type="button" className="h-36 flex items-center justify-center" >  
+                       <img className="h-44 w-44 rounded-full p-0 bg-[#202F59]"src={perfil} alt="" />                 
                        </button>
                        <div className="flex flex-col space-y-1 p-6"> 
                            <h1 className="px-5 text-[#202F59] text-3xl font-bold body-font font-poppins not-italic">Susana</h1>
