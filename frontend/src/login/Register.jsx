@@ -4,6 +4,7 @@
 
 const Register = ({closeModal}) =>
 {
+   
       const [showModal, setShowModal] = useState(false);
 
       const handleOnClose = () => setShowModal(false);
@@ -18,9 +19,9 @@ const Register = ({closeModal}) =>
       
        return(
          <div className="h-screen w-full fixed left-0 top-0 pt-8 z-[999] flex justify-center items-center bg-black bg-opacity-50">    
-               <div className=" flex justify-center items-center  rounded-lg"> 
-                 <div class="fixed justify-center bg-[#202F59] py-0 text-sm text-white rounded-full">
-                     <div class="bg-[#202F59] text-2xl text-white rounded-t-lg px-3 py-0 w-90 max-w-1xl not-italic">
+               <div className=" flex justify-center items-center    rounded-2xl"> 
+                 <div class="fixed justify-center bg-[#202F59] py-0 text-sm text-white   rounded-2xl">
+                     <div class="bg-[#202F59] text-2xl text-white   rounded-2xl px-3 py-0 w-90 max-w-1xl not-italic">
                            <button onClick={closeModal} data-modal-toggle="defaultModal" type="button" class="sm:align-middle rounded-lg text-sm p-1.0 ml-auto">
                            <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                            <span class="sr-only">Close modal</span>
@@ -90,6 +91,7 @@ const Register = ({closeModal}) =>
         <ModalProfile onClose={handleOnClose} visible={showModal} />
       </div>
   );
+   
    
 } 
 
