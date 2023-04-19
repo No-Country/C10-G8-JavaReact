@@ -1,5 +1,6 @@
 package com.backend.Go.Stay.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import java.sql.Timestamp;
@@ -17,56 +18,45 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "residencias")
 public class Residencia {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    
+
     private String categoria;
-    
-    
+
     @ElementCollection
-    private List<String> servicio; 
-    
-    
-    private int cantidadHabitacion; 
-    
-    
+    private List<String> servicio;
+
+    private int cantidadHabitacion;
+
     private int cantidadBaño;
-    
-    
-    private int cantidadCama; 
-    
-    
+
+    private int cantidadCama;
+
     private boolean estadoResidencia;
-    
-    
+
     private String ubicacion;
-    
-    
+
     private double precio;
-    
-    
+
     @ElementCollection
     private List<String> imagen;
-    
-    
+
     private Timestamp fechaCreacion;
-    
-    
-    @ManyToOne (optional = false)
-    @JoinColumn (name = "usuario_id")
-    @JsonIgnoreProperties("residencias")
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "usuario_id")
+    @JsonIgnore
     private Usuario usuario;
     
-    @OneToOne(mappedBy = "alquiler", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JsonIgnore
+    @OneToOne(mappedBy = "residencia", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private Alquiler alquiler;
-    
+
     public Residencia() {
     }
 
@@ -196,7 +186,4 @@ public class Residencia {
         this.alquiler = alquiler;
     }
 
-    
-    
-    
 }

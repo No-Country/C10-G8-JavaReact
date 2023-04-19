@@ -1,5 +1,6 @@
 package com.backend.Go.Stay.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -47,9 +48,10 @@ public class Alquiler {
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "usuario_id")
-    @JsonIgnoreProperties("alquiler")
+    @JsonIgnore
     private Usuario usuario;
     
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "alquiler_id", nullable = false)
     private Residencia residencia;

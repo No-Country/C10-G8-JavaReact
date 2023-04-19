@@ -1,6 +1,7 @@
 
 package com.backend.Go.Stay.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Date;
 import java.util.HashSet;
@@ -31,11 +32,11 @@ public class Usuario {
     private String password;
     private Date fechaNacimiento;
     
-    @JsonIgnoreProperties("usuario")
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<Residencia> residencias = new HashSet<>();
     
-    @JsonIgnoreProperties("usuario")
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<Alquiler> alquileres = new HashSet<>();
     

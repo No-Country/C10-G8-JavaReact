@@ -1,70 +1,95 @@
 package com.backend.Go.Stay.service;
 
-import com.backend.Go.Stay.entity.Alquiler;
 import com.backend.Go.Stay.entity.Comentario;
 import com.backend.Go.Stay.entity.Residencia;
 import com.backend.Go.Stay.entity.Usuario;
-import com.backend.Go.Stay.repository.AlquilerRepository;
 import com.backend.Go.Stay.repository.ComentarioRepository;
 import com.backend.Go.Stay.repository.ResidenciaRepository;
 import com.backend.Go.Stay.repository.UsuarioRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MainService {
     
-    @Autowired
-    UsuarioRepository usuarioRepository;
     
     @Autowired
-    ResidenciaRepository residenciaRepository;
-    
+    private UsuarioRepository usuarioRepository;
+
     @Autowired
-    AlquilerRepository alquilerRepository;
-    
+    private ResidenciaRepository residenciaRepository;
+
     @Autowired
-    ComentarioRepository comentarioRepository;
-    
-    public List<Usuario> usuarios(){
+    private ComentarioRepository comentarioRepository;
+
+    // Create operations
+
+    public Usuario saveUsuario(Usuario usuario) {
+        return usuarioRepository.save(usuario);
+    }
+
+    public Residencia saveResidencia(Residencia residencia) {
+        return residenciaRepository.save(residencia);
+    }
+
+    public Comentario saveComentario(Comentario comentario) {
+        return comentarioRepository.save(comentario);
+    }
+
+    // Read operations
+
+    public List<Usuario> findAllUsuarios() {
         return usuarioRepository.findAll();
     }
-    
-    public void deleteUsuario(int id){
-        usuarioRepository.deleteById(id);
-    }
-    
-    public List<Residencia> getAllResidencias(){
+
+    public List<Residencia> findAllResidencias() {
         return residenciaRepository.findAll();
     }
-    
-    public Residencia getResidenciaById(int id){
+
+    public List<Comentario> findAllComentarios() {
+        return comentarioRepository.findAll();
+    }
+
+    public Usuario findUsuarioById(int id) {
+        return usuarioRepository.findById(id).orElse(null);
+    }
+
+    public Residencia findResidenciaById(int id) {
         return residenciaRepository.findById(id).orElse(null);
     }
-    
-    public Alquiler saveAlquiler(Alquiler alquiler){
-        return alquilerRepository.save(alquiler);
+
+    public Comentario findComentarioById(int id) {
+        return comentarioRepository.findById(id).orElse(null);
     }
-    
-    public List<Alquiler> getAllalquileres(){
-        return alquilerRepository.findAll();
+
+    // Update operations
+
+    public Usuario updateUsuario(Usuario usuario) {
+        return usuarioRepository.save(usuario);
     }
-    
-    public void cancelAlquiler(int id){
-        alquilerRepository.deleteById(id);
+
+    public Residencia updateResidencia(Residencia residencia) {
+        return residenciaRepository.save(residencia);
     }
-    
-    public Alquiler getAlquileresById(int id){
-        return alquilerRepository.findById(id).orElse(null);
+
+    public Comentario updateComentario(Comentario comentario) {
+        return comentarioRepository.save(comentario);
     }
-    
-    public Alquiler getAlquileresByNumeroReserva(int numeroReserva){
-        return alquilerRepository.findByNumeroReserva(numeroReserva);
+
+    // Delete operations
+
+    public void deleteUsuarioById(int id) {
+        usuarioRepository.deleteById(id);
     }
-    
-    public void guardarComentario(Comentario comentario) {
-        comentarioRepository.save(comentario);
+
+    public void deleteResidenciaById(int id) {
+        residenciaRepository.deleteById(id);
+    }
+
+    public void deleteComentarioById(int id) {
+        comentarioRepository.deleteById(id);
     }
     
 }

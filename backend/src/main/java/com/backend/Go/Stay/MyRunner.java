@@ -32,10 +32,29 @@ public class MyRunner implements CommandLineRunner {
         Usuario usuario1 = new Usuario("nicolas");
         Usuario usuario2 = new Usuario("belkis");
         
+        Alquiler alquiler1 = new Alquiler();
+        Alquiler alquiler2 = new Alquiler();
+        Alquiler alquiler3 = new Alquiler();
+        Alquiler alquiler4 = new Alquiler();
+        
+        alquiler1.setResidencia(residencia1);
+        alquiler2.setResidencia(residencia2);
+        alquiler3.setResidencia(residencia3);
+        alquiler4.setResidencia(residencia4);
+        
+        alquiler1.setUsuario(usuario1);
+        alquiler2.setUsuario(usuario1);
+        alquiler3.setUsuario(usuario2);
+        alquiler4.setUsuario(usuario2);
+        
         residencia1.setUsuario(usuario1);
         residencia2.setUsuario(usuario1);
         residencia3.setUsuario(usuario2);
         residencia4.setUsuario(usuario2);
+        residencia1.setAlquiler(alquiler1);
+        residencia2.setAlquiler(alquiler2);
+        residencia3.setAlquiler(alquiler3);
+        residencia4.setAlquiler(alquiler4);
         
         Set<Residencia> residenciasN = new HashSet<>();
         Set<Residencia> residenciasB = new HashSet<>();
