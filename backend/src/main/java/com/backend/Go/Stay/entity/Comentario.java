@@ -16,6 +16,8 @@ public class Comentario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
+    private String descripcion;
+    
     @ManyToMany(mappedBy = "comentarios")
     private Set<Usuario> usuarios = new HashSet<>();
     
@@ -27,5 +29,23 @@ public class Comentario {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Set<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Set<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+    
+    
 
 }
