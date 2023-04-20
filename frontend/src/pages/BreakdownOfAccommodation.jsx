@@ -154,7 +154,7 @@ const BreakdownOfAccommodation = () => {
                 <section className='p-10 px-14  flex gap-5 w-full '>
                     <section className='flex flex-col w-1/2   gap-5'>
                         <div className='rounded-2xl py-8 gap-5 flex flex-col  bg-[#202F59] text-[#ffff] p-3'>
-                            <h2 className='text-3xl text-center '>Casa en {placeId.ubicacion} - Anfitrión: {placeId.usuario?.name}</h2>
+                            <h2 className='text-3xl text-center '>Casa en {placeId.ubicacion} - Anfitrión: {placeId.usuario?.nombre}</h2>
                             <h4 className='px-12 text-lg font-medium'>x huéspedes - x camas - x habitaciones</h4>
                         </div>
                         <div className='flex flex-col gap-5'>
@@ -363,7 +363,7 @@ const BreakdownOfAccommodation = () => {
                             <img src="pexels-sandro-tavares-15728332" alt="" />
                         </div>
                         <div className='flex flex-col justify-center'>
-                            <h2 className='text-[#202F59] text-3xl font-semibold'>{`Anfitrión: ${placeId.usuario?.name[0].toUpperCase() + placeId.usuario?.name.substring(1)} `}</h2>
+                            <h2 className='text-[#202F59] text-3xl font-semibold'>{`Anfitrión: ${placeId.usuario?.nombre[0].toUpperCase() + placeId.usuario?.name?.substring(1)} `}</h2>
                             <h3 className='text-opacity-30 italic font-normal text-xl text-[#5333ED4D]'>Anfitrión desde {placeId.fechaCreacion?.slice(0, 10)}</h3>
                         </div>
 

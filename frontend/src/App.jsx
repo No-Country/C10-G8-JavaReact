@@ -7,14 +7,17 @@ import TravelPage from './pages/TravelPage'
 import Checkout from './pages/Checkout'
 import Profile from './pages/Profile'       
 import EditForm from './pages/EditForm'
+import LoadingPage from './components/LoadingPage'
  
 
 function App() {
 
   return (
     <HashRouter>
+      
  
       <Routes>
+     
 
       <Route path='/' element={<Home/>} />
         <Route path="/BreakdownOfAccommodation" element={<BreakdownOfAccommodation/>} />
@@ -25,6 +28,7 @@ function App() {
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/EditForm' element={<EditForm/>}/>
       </Routes>
+      
     </HashRouter>
   )
 }

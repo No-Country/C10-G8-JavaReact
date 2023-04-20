@@ -286,7 +286,7 @@ const Checkout = () => {
       <Footer />
       <ModalCountries visible={countries} close={closeCountries} />
       <BookSuccesfull visible={booked} close={closeBooked} />
-      <LoadingPage/>
+      
     </main>
   );
 };
