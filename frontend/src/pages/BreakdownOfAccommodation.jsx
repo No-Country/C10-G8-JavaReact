@@ -84,7 +84,7 @@ const BreakdownOfAccommodation = () => {
     let randomId = Math.round(Math.random() * 1) + 1
 
     useEffect(() => {
-        axios.get(`https://c10-g8-javareact-production-740a.up.railway.app/residencia/traer${randomId}`)
+        axios.get(`https://c10-g8-javareact-production-740a.up.railway.app/residencia/traer/${randomId}`)
             .then(res => setPlaceId(res.data))
 
     }, [])

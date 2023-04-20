@@ -10,12 +10,12 @@ const MoreServices = ({ visible, close, id }) => {
             .then(res => setServices(res.data))
     }, [])
 
-    const closeMoldal = (e) => {
+    const closeModal = (e) => {
         if (e.target.id === 'container')
             close()
     }
     return (
-        <div onClick={closeMoldal} id='container' className=' bg-black fixed inset-0 bg-opacity-20 backdrop-blur-sm'>
+        <div onClick={closeModal} id='container' className=' bg-black fixed inset-0 bg-opacity-20 backdrop-blur-sm'>
             <div className=' fixed inset-0 w-2/5 rounded-2xl h-4/5 m-auto bg-[#ffff]   overflow-y-scroll'>
                 <section className='bg-[#202F59] sticky top-0 text-lg text-[#ffff] p-5'>
                     <i onClick={close} className="fa-solid fa-x"></i>
