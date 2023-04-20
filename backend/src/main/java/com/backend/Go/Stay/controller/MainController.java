@@ -104,6 +104,11 @@ public class MainController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Residencia creada con el ID: " + savedResidencia.getId());
     }
     
+    @GetMapping("/residencia/{ubicacion}")
+    public ResponseEntity<List<Residencia>> getResidenciaByPais(@PathVariable("ubicacion") String ubicacion){
+        return new ResponseEntity<>(mainService.getResidenciaByPais(ubicacion), HttpStatus.FOUND);
+    }
+    
     //Security
     
     @PostMapping("/auth/nuevo")
@@ -138,4 +143,5 @@ public class MainController {
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
+    
 }
