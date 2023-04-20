@@ -1,11 +1,15 @@
 
 package com.backend.Go.Stay.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,6 +36,8 @@ public class Usuario {
     private String email;
     private String password;
     private Date fechaNacimiento;
+    @ElementCollection
+    private List<String> favorito;
     
     @JsonIgnoreProperties("usuario")
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -48,6 +54,10 @@ public class Usuario {
     @JoinTable (name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Favorito> favoritos = new ArrayList<>();
 
     public Usuario() {
     }
@@ -63,15 +73,15 @@ public class Usuario {
         this.email = email;
         this.password = password;
     }
-    
 
-    public Usuario(int id, String nombre, String nombreUsuario, String email, String password, Date fechaNacimiento) {
+    public Usuario(int id, String nombre, String nombreUsuario, String email, String password, Date fechaNacimiento, List<String> favorito) {
         this.id = id;
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
         this.fechaNacimiento = fechaNacimiento;
+        this.favorito = favorito;
     }
 
     public int getId() {
@@ -122,6 +132,14 @@ public class Usuario {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public List<String> getFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(List<String> favorito) {
+        this.favorito = favorito;
+    }
+
     public Set<Residencia> getResidencias() {
         return residencias;
     }
@@ -144,6 +162,14 @@ public class Usuario {
 
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
+    }
+
+    public List<Favorito> getFavoritos() {
+        return favoritos;
+    }
+
+    public void setFavoritos(List<Favorito> favoritos) {
+        this.favoritos = favoritos;
     }
 
     

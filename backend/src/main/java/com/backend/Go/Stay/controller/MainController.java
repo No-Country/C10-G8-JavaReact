@@ -1,6 +1,7 @@
 package com.backend.Go.Stay.controller;
 
 import com.backend.Go.Stay.entity.Comentario;
+import com.backend.Go.Stay.entity.Favorito;
 import com.backend.Go.Stay.entity.Residencia;
 import com.backend.Go.Stay.entity.Rol;
 import com.backend.Go.Stay.entity.Usuario;
@@ -137,5 +138,18 @@ public class MainController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity(jwtDto, HttpStatus.OK);
+    }
+    
+    //GET Favoritos []
+    @GetMapping("favoritos/traer")
+    public ResponseEntity<List<Favorito>> favortitos() {
+        List<Favorito> favoritos = mainService.favoritos();
+        return new ResponseEntity<>(favoritos, HttpStatus.OK);
+    }
+    
+    //POST Favoritos
+    @PostMapping("agregar/favorito/{id}")
+    public Usuario addFavorito(@PathVariable ("id") int usuarioId, @RequestBody Favorito favorito) {
+        return usuarioService.addFavorito(usuarioId, favorito);
     }
 }

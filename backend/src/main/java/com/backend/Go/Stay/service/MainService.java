@@ -2,9 +2,11 @@
 package com.backend.Go.Stay.service;
 
 import com.backend.Go.Stay.entity.Comentario;
+import com.backend.Go.Stay.entity.Favorito;
 import com.backend.Go.Stay.entity.Residencia;
 import com.backend.Go.Stay.entity.Usuario;
 import com.backend.Go.Stay.repository.ComentarioRepository;
+import com.backend.Go.Stay.repository.FavoritoRepository;
 import com.backend.Go.Stay.repository.ResidenciaRepository;
 import com.backend.Go.Stay.repository.UsuarioRepository;
 import java.util.List;
@@ -23,6 +25,9 @@ public class MainService {
     @Autowired
     ComentarioRepository comentarioRepository;
     
+    @Autowired
+    FavoritoRepository favoritoRepository;
+    
     public List<Usuario> usuarios() {
         return usuarioRepository.findAll();
     }
@@ -36,6 +41,11 @@ public class MainService {
     public Usuario traerUsuario(int id) {
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
         return usuario;
+    }
+    
+    //traer favoritos
+    public List<Favorito> favoritos(){
+        return favoritoRepository.findAll();
     }
     
     public List<Residencia> residencias() {
