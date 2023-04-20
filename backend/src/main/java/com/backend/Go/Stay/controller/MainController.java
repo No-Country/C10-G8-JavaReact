@@ -68,6 +68,12 @@ public class MainController {
         List<Residencia> residencias = mainService.residencias();
         return new ResponseEntity(residencias, HttpStatus.OK);
     }
+    // Get de todas las Residencias filtro por Ubicacion
+    @GetMapping("/residencia/{ubicacion}")
+    public ResponseEntity<List<Residencia>> getResidenciaByPais(@PathVariable("ubicacion") String ubicacion){
+        return new ResponseEntity<>(mainService.getResidenciaByPais(ubicacion), HttpStatus.FOUND);
+    }
+    
     // Post de Usuario para crear usuario
     @PostMapping("usuario/crear")
     public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {

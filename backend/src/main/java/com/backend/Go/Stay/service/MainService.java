@@ -31,6 +31,11 @@ public class MainService {
         Residencia residencia = residenciaRepository.findById(id).orElse(null);
         return residencia;
     }
+    // traer todas las residencias filtradas por la Query
+    public List<Residencia> getResidenciaByPais(String ubicacion){
+        List<Residencia> residencias = residenciaRepository.findResidenciaByPais(ubicacion);
+        return residencias;
+    }
 
     // traer 1 Usuario
     public Usuario traerUsuario(int id) {
