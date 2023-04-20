@@ -112,8 +112,6 @@ public class MyRunner implements CommandLineRunner {
         residencia4.setImagen(listaImg3);
         residencia4.setFechaCreacion(new Timestamp(System.currentTimeMillis()));
         
-        
-        
         Usuario usuario1 = new Usuario("nicolas");
         Usuario usuario2 = new Usuario("belkis");
         usuario1.setNombreUsuario("nicolas");

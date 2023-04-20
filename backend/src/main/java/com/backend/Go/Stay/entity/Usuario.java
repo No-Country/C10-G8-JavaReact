@@ -52,6 +52,11 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String nombre) {
+        this.nombre = nombre;
+    }
+    
+
     public Usuario(String nombre, String nombreUsuario, String email, String password) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
