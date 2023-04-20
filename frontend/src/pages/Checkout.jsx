@@ -6,6 +6,7 @@ import axios from "axios";
 import { Calendar } from "@syncfusion/ej2-react-calendars";
 import ModalCountries from "../components/ModalCountries";
 import BookSuccesfull from "../components/BookSuccesfull";
+import LoadingPage from "../components/LoadingPage";
 
 const Checkout = () => {
   const [validate, setValidate] = useState({});
@@ -285,6 +286,7 @@ const Checkout = () => {
       <Footer />
       <ModalCountries visible={countries} close={closeCountries} />
       <BookSuccesfull visible={booked} close={closeBooked} />
+      
     </main>
   );
 };
