@@ -6,8 +6,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,8 +27,9 @@ public class Usuario {
     private int id;
     
     @NotNull
-    private String name;
+    private String nombre;
     private String nombreUsuario;
+    private String email;
     private String password;
     private Date fechaNacimiento;
     
@@ -42,12 +43,30 @@ public class Usuario {
                     referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "comentario_id",referencedColumnName = "id"))
     private Set<Comentario> comentarios = new HashSet<>();
+    
+    @ManyToMany(fetch= FetchType.EAGER)
+    @JoinTable (name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id"))
+    private Set<Rol> roles = new HashSet<>();
 
     public Usuario() {
     }
 
-    public Usuario(String name) {
-        this.name = name;
+    public Usuario(String nombre, String nombreUsuario, String email, String password) {
+        this.nombre = nombre;
+        this.nombreUsuario = nombreUsuario;
+        this.email = email;
+        this.password = password;
+    }
+    
+
+    public Usuario(int id, String nombre, String nombreUsuario, String email, String password, Date fechaNacimiento) {
+        this.id = id;
+        this.nombre = nombre;
+        this.nombreUsuario = nombreUsuario;
+        this.email = email;
+        this.password = password;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public int getId() {
@@ -58,12 +77,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getNombreUsuario() {
@@ -72,6 +91,14 @@ public class Usuario {
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -106,6 +133,13 @@ public class Usuario {
         this.comentarios = comentarios;
     }
 
-    
+    public Set<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
+    }
+
     
 }
