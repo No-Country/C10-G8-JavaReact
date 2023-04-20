@@ -195,7 +195,7 @@ const Checkout = () => {
                 <label
                   for="Código Postal"
                   htmlFor=""
-                  className="bg-[#ffff] peer-focus:text-[#5333ED] duration-500 peer-focus:text-xs peer-focus:-top-2 absolute top-4 left-5 text-[#000] text-opacity-30 "
+                  className="bg-[#ffff] peer-focus:text-[#5333ED] transition duration-500 peer-focus:text-xs peer-focus:-top-2 absolute top-4 left-5 text-[#000] text-opacity-30 "
                 >
                   Código Postal
                 </label>
@@ -286,7 +286,7 @@ const Checkout = () => {
       <Footer />
       <ModalCountries visible={countries} close={closeCountries} />
       <BookSuccesfull visible={booked} close={closeBooked} />
-      
+      <LoadingPage/>
     </main>
   );
 };

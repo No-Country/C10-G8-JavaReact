@@ -12,7 +12,18 @@ module.exports = {
     extend: {
       fontFamily:{
         'poppins':['Poppins', 'sans-serif']
-      }
+      },
+      animation: {
+        wiggle: 'wiggle 1s ease-in-out infinite',
+      },
+      
+    
+  
+
+        
+      
+
+      
  
     },
   },
