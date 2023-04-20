@@ -1,3 +1,4 @@
+
 import BreakdownOfAccommodation from './pages/BreakdownOfAccommodation'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
@@ -8,11 +9,14 @@ import Checkout from './pages/Checkout'
 import Profile from './pages/Profile'       
 import EditForm from './pages/EditForm'
 import LoadingPage from './components/LoadingPage'
- 
+import { useState } from 'react'
+import 'tailwindcss/tailwind.css'
+
 
 function App() {
 
   return (
+
     <HashRouter>
       
  
@@ -34,3 +38,5 @@ function App() {
 }
 
 export default App
+
+
