@@ -363,7 +363,7 @@ const BreakdownOfAccommodation = () => {
                             <img src="pexels-sandro-tavares-15728332" alt="" />
                         </div>
                         <div className='flex flex-col justify-center'>
-                            <h2 className='text-[#202F59] text-3xl font-semibold'>{`Anfitrión: ${placeId.usuario?.nombre[0].toUpperCase() + placeId.usuario?.name?.substring(1)} `}</h2>
+                            <h2 className='text-[#202F59] text-3xl font-semibold'>{`Anfitrión: ${placeId.usuario?.nombre[0].toUpperCase() + placeId.usuario?.nombre?.substring(1)} `}</h2>
                             <h3 className='text-opacity-30 italic font-normal text-xl text-[#5333ED4D]'>Anfitrión desde {placeId.fechaCreacion?.slice(0, 10)}</h3>
                         </div>
 
