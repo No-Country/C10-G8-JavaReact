@@ -10,20 +10,20 @@ import BookSuccesfull from "../components/BookSuccesfull";
 const Checkout = () => {
   const [validate, setValidate] = useState({});
   const [card, setCard] = useState(false);
-  const [countries, setCountries]=useState(false);
-  const [booked, setBooked] = useState(false)
+  const [countries, setCountries] = useState(false);
+  const [booked, setBooked] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
   const values = {
     service: 25,
     taxes: 78,
   };
-  const closeCountries = ()=>{
-    setCountries(false)
-  }
-  const closeBooked = ()=>{
-    setBooked(false)
-  }
+  const closeCountries = () => {
+    setCountries(false);
+  };
+  const closeBooked = () => {
+    setBooked(false);
+  };
   const timexweek = validate.precio * 7;
   const total = Math.round(timexweek + values.service + values.taxes);
 
@@ -202,38 +202,42 @@ const Checkout = () => {
 
               <div className=" items-center flex justify-between bg-white p-5 border-2 border-solid border-[#5333ED] border-opacity-30 text-[#5333ED] rounded-lg text-lg font-semibold   px-5">
                 <h2>País/Región</h2>
-                <i onClick={()=>setCountries(true)} className="fa-solid fa-arrow-down"></i>
+                <i
+                  onClick={() => setCountries(true)}
+                  className="fa-solid fa-arrow-down"
+                ></i>
               </div>
             </form>
             <hr className="h-1 bg-[#5333ED] w-full" />
-            <h2 className="text-3xl text-[#202F59] font-bold pb-5">
+            <h2 className="text-3xl text-[#202F59] font-bold pb-3">
               Política de cancelación
             </h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptatibus at, laudantium, quo ut rem iste, ipsum harum
-              asperiores consectetur in fugiat consequuntur. Amet enim aliquam
-              veniam eaque ea reprehenderit minus. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Mollitia nobis rerum, perspiciatis
-              provident incidunt blanditiis tempore magni? Iusto dicta eligendi
-              quod et. Consectetur aliquid similique aperiam officiis nobis
-              mollitia quas.
+            <p className="pb-4 text-[#202F59]  text-xl tracking-wider">
+              Si cancelas antes de las 15:00hs a una semana de su hospedaje, va
+              a obtener un reembolso total de lo que pago. Si cancelas antes de
+              las 15:00hs del dia del check in, vas a obtener un Reembolso
+              parcial: vas a recibir el 50 % del monto de todas las noches. No
+              se reembolsan la primera noche ni la tarifa por servicio.
             </p>
             <hr className="h-1 bg-[#5333ED] w-full" />
-            <h2 className="text-3xl text-[#202F59] font-bold pb-5">
+            <h2 className="text-3xl text-[#202F59] font-bold pb-3">
               Normas del hospedaje
             </h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex
-              impedit eveniet officia, non facere eum sapiente sed autem nostrum
-              dignissimos quod? Maxime nulla error dolore quis doloribus? Vitae,
-              quod quia. Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Quasi quas dicta impedit maxime perspiciatis neque facilis,
-              hic earum iste nobis libero exercitationem! Eos, dolorum.
-              Voluptatem harum recusandae perspiciatis omnis eaque!
+            <p className="pb-4 text-[#202F59] text-xl tracking-wider">
+              Les pedimos a todos los huéspedes que tengan en cuenta algunos
+              detalles que hacen que un huésped sea excelente.
+              <ul className="list-disc px-5 text-[#202F59] text-xl tracking-wider">
+                <li>Seguí normas de la casa.</li>
+                <li>
+                  Traté el alojamiento de tu anfitrión como si fuera tu casa.
+                </li>
+              </ul>
             </p>
             <hr className="h-1 bg-[#5333ED] w-full" />
-            <button onClick={()=>setBooked(true)} className="py-2 bg-[#5333ED] text-[#ffff] rounded-lg text-2xl font-semibold w-2/5">
+            <button
+              onClick={() => setBooked(true)}
+              className="py-2 bg-[#5333ED] text-[#ffff] rounded-lg text-2xl font-semibold w-2/5"
+            >
               Realizar Reserva
             </button>
           </section>
@@ -279,8 +283,8 @@ const Checkout = () => {
       </article>
 
       <Footer />
-      <ModalCountries visible={countries} close ={closeCountries}/>
-      <BookSuccesfull visible={booked} close={closeBooked}/>
+      <ModalCountries visible={countries} close={closeCountries} />
+      <BookSuccesfull visible={booked} close={closeBooked} />
     </main>
   );
 };
