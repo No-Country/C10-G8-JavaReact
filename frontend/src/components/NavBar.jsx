@@ -248,8 +248,9 @@ z"/>
 	)
 }
 
-const Dropdown = ({ sesion, tools }) => {
-
+  const Dropdown = ({ sesion, tools }) => {
+     
+	 
 	const { changeModal } = tools
 	return (
 		<ul className="absolute z-10 flex min-w-[180px] right-3 flex-col gap-2 overflow-auto font-normal tracking-wide rounded-b-3xl border border-blue-gray-50 bg-white py-3 font-sans text-sm text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
@@ -324,7 +325,7 @@ const Dropdown = ({ sesion, tools }) => {
 	)
 }
 
-const NavBar = () => {
+  const NavBar = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isOpenDropdown, setIsOpenDropdown] = useState(false)
 	const [modalIsOpen, setModalIsOpen] = useState("")
@@ -388,7 +389,7 @@ const NavBar = () => {
 									</svg>
 
 								</button>
-								{isOpenDropdown && <Dropdown sesion={false} tools={{ closeModal, changeModal, statusModal: modalIsOpen }} />}
+								{isOpenDropdown && <Dropdown sesion={false} tools={{ closeModal, changeModal, statusModal: modalIsOpen }} />} 
 							</div>
 						</div>
 					</div>

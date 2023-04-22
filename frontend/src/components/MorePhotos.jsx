@@ -23,7 +23,7 @@ const MorePhotos = ({ visible, close, images }) => {
             </div>
             <div className='flex gap-5 flex-wrap'>
                 {
-                    images.map(img => (
+                    images?.map(img => (
                         <img className='w-59 h-44 rounded-xl' src={img} alt="" />
                     ))
                 }
