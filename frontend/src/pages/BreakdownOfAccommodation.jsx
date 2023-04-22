@@ -175,6 +175,7 @@ const BreakdownOfAccommodation = () => {
                     Check Out
                   </h3>
                 </div>
+
                 <div className="flex w-full justify-between px-7 ">
                   <h3 className="italic text-xl mb-2 text-[#5333ED] text-opacity-30">
                     <DatePicker
@@ -227,6 +228,43 @@ const BreakdownOfAccommodation = () => {
                               <button onClick={() => setAdults(adults + 1)}>
                                 <i className="fa-solid fa-plus"> </i>
                               </button>
+
+                <section className='p-10  '   >
+                    <section className=' flex gap-5 h-20'>
+                        <div className=' flex justify-center items-center w-20 h-full rounded-full bg-[#202F59]'>
+                            <img src="pexels-sandro-tavares-15728332" alt="" />
+                        </div>
+                        <div className='flex flex-col justify-center'>
+                            <h2 className='text-[#202F59] text-3xl font-semibold'>{`Anfitrión: ${placeId.usuario?.nombre[0].toUpperCase() + placeId.usuario?.nombre?.substring(1)} `}</h2>
+                            <h3 className='text-opacity-30 italic font-normal text-xl text-[#5333ED4D]'>Anfitrión desde {placeId.fechaCreacion?.slice(0, 10)}</h3>
+                        </div>
+
+
+                    </section>
+                    <section className='flex  w-full '>
+                        <section className='w-1/2 ' >
+                            <div className='flex flex-col pt-5 p-5 gap-5'>
+                                <div className='flex items-center gap-5'>
+                                    <i className="text-4xl text-[#202F59] fa-solid fa-language"></i>
+                                    <h2 className='text-[#5333ED] text-2xl'>Idiomas: texto, texto</h2>
+
+                                </div>
+                                <div onClick={() => setVisibleRating(true)} className='flex items-center gap-5'>
+                                    <i className="text-3xl text-[#EAD201] fa-regular fa-star"></i>
+                                    <h3 className='text-xl text-[#202F59] font-semibold border-b-2 border-solid border-[#202f59]'>4.7 Evaluaciones</h3>
+                                </div>
+                                <div className='pt-2 flex flex-col gap-5'>
+                                    <h2 className='text-[#202F59] font-medium text-3xl'>Conoce al anfitrión:</h2>
+                                    <p className='text-[#202F59] leading-8'>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum vel mollitia aliquid ex dolorem cupiditate, assumenda ipsam amet expedita nam culpa reiciendis iste nesciunt perferendis repellendus autem deleniti illo in?
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor voluptatem qui natus at nobis rerum atque tempore doloribus, id ea modi cupiditate praesentium ad iste! Nostrum fugiat dolor corporis iste?
+                                    </p>
+                                    <button className='bg-[#5333ED] w-2/5 font-semibold rounded-lg text-[#ffff] p-2 tracking-wide'>Contactar anfitrión</button>
+
+
+                                </div>
+
+
                             </div>
                           </div>
                           <div className="flex items-center ">

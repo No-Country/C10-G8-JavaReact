@@ -1,0 +1,53 @@
+{
+  "hash": "4e6ebd59",
+  "browserHash": "119b5cee",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "f9e994c4",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "85e19cd7",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "955eec27",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "06289d71",
+      "needsInterop": false
+    },
+    "react-datepicker": {
+      "src": "../../node_modules/react-datepicker/dist/es/index.js",
+      "file": "react-datepicker.js",
+      "fileHash": "1a4643a8",
+      "needsInterop": false
+    },
+    "@syncfusion/ej2-react-calendars": {
+      "src": "../../node_modules/@syncfusion/ej2-react-calendars/index.js",
+      "file": "@syncfusion_ej2-react-calendars.js",
+      "fileHash": "b9fc10d7",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-RVSLBP3T": {
+      "file": "chunk-RVSLBP3T.js"
+    },
+    "chunk-ST3U5LCA": {
+      "file": "chunk-ST3U5LCA.js"
+    },
+    "chunk-DFKQJ226": {
+      "file": "chunk-DFKQJ226.js"
+    }
+  }
+}
