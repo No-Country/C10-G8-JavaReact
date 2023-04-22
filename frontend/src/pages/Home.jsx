@@ -6,13 +6,15 @@ import Footer from '../components/Footer';
 import Anfitrion from '../components/Anfitrion';
 import ExploraHospedajes from '../components/ExploraHospedajes';
 import LugarDestacado from '../components/LugarDestacado';
- 
+import LoadingPage from '../components/LoadingPage';
 
 const Home = () => {
  
     return (
+        
         <div className='w-screen h-screen bg-white overflow-x-hidden'>
-            <NavBar  />
+            
+            <NavBar />
             <Hero />
             <div className='flex flex-col min-[540px]:px-20  py-4' >
                 <Populares />
@@ -23,6 +25,7 @@ const Home = () => {
             </div>
             <Anfitrion />
             <Footer />
+            <LoadingPage/>
         </div>
     )
 }

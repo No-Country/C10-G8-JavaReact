@@ -8,6 +8,7 @@ import perfil from "../assets/logoperfil.svg"
 
 const EditForm = ({lang}) =>
 //
+//
 {
   
  const [showModal, setShowModal] = useState(false);

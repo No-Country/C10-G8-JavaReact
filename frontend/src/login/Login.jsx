@@ -127,7 +127,7 @@ return(
                      </div>    
                      
                      <div class="flex flex-col items-center justify-center">
-                        <button type="button" onClick={onSubmit}  className={`text-sm leading-normal body-font font-poppins w-22 h-8 text-white rounded-lg py-2 px-6 bg-${btnColor}`}> 
+                        <button type="button" onClick={onSubmit} className={`text-sm leading-normal body-font font-poppins w-22 h-8 text-white rounded-lg py-2 px-6 bg-${btnColor}`}> 
                             Ingresar
                         </button>
                         <br></br>

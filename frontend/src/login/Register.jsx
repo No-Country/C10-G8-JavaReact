@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Register = ({closeModal} ) =>
 {       
-          const [btnColor, setBtnColor] = useState('[#C4B5FD]');
+      const [btnColor, setBtnColor] = useState('[#C4B5FD]');
             const [showModal, setShowModal] = useState(false);
             const handleOnClose = () => setShowModal(false);
             const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -29,9 +29,7 @@ const Register = ({closeModal} ) =>
                   Ischecked: false
             })
 
-            function refreshPage(){ 
-                  window.location.reload(); 
-              }
+            
             useEffect(() => {
                   if(isAuthenticated)
                   {
@@ -166,7 +164,7 @@ const Register = ({closeModal} ) =>
                      </div>
                 <br></br>  
                          <div class="flex flex-col items-center justify-center">
-                           <button onClick={onSubmit} disabled={loading ? true : false}  type="button"  className={`text-sm leading-normal body-font font-poppins w-22 h-8 text-white rounded-lg py-2 px-6 bg-${btnColor}`}>
+                           <button onClick={onSubmit} disabled={loading ? true : false}  type="button" className={`text-sm leading-normal body-font font-poppins w-22 h-8 text-white rounded-lg py-2 px-6 bg-${btnColor}`}>
                                 Aceptar y Continuar
                              </button>
                                 <br></br>

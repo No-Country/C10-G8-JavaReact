@@ -1,14 +1,21 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
-const MoreServices = ({ visible, close }) => {
+const MoreServices = ({ visible, close, id }) => {
     if (!visible) return null
+    const [services, setServices] = useState({})
 
-    const closeMoldal = (e) => {
+    useEffect(() => {
+        axios.get(`https://goandstay-production.up.railway.app/traer/residencia/${id}`)
+            .then(res => setServices(res.data))
+    }, [])
+
+    const closeModal = (e) => {
         if (e.target.id === 'container')
-        close()
+            close()
     }
     return (
-        <div onClick={closeMoldal} id='container' className=' bg-black fixed inset-0 bg-opacity-20 backdrop-blur-sm'>
+        <div onClick={closeModal} id='container' className=' bg-black fixed inset-0 bg-opacity-20 backdrop-blur-sm'>
             <div className=' fixed inset-0 w-2/5 rounded-2xl h-4/5 m-auto bg-[#ffff]   overflow-y-scroll'>
                 <section className='bg-[#202F59] sticky top-0 text-lg text-[#ffff] p-5'>
                     <i onClick={close} className="fa-solid fa-x"></i>
@@ -16,23 +23,15 @@ const MoreServices = ({ visible, close }) => {
                 <section className='text-[#202F59] flex flex-col p-10 gap-5 text-lg'>
                     <h2 className='text-2xl'>Nuestro Servicios</h2>
                     <h3 className='text-[#5333ED]'>Referencia</h3>
-                    <i className="flex fa-solid fa-paw text-xs"><h3 className='pl-5'>Se permiten Mascotas</h3></i>
-                    <i className=" flex  fa-regular fa-circle text-xs"><h3 className='pl-5'>Acomodacion 3</h3></i>
-                    <i className=" flex  fa-regular fa-circle text-xs"><h3 className='pl-5'>Acomodacion 4</h3></i>
-                    <i className=" flex  fa-regular fa-circle text-xs"><h3 className='pl-5'>Acomodacion 3</h3></i>
-                    <i className=" flex  fa-regular fa-circle text-xs"><h3 className='pl-5'>Acomodacion 4</h3></i>
-                    <h3 className='text-[#5333ED]'>Referencia</h3>
-                    <i className="flex fa-solid fa-paw text-xs"><h3 className='pl-5'>Se permiten Mascotas</h3></i>
-                    <i className=" flex  fa-regular fa-circle text-xs"><h3 className='pl-5'>Acomodacion 3</h3></i>
-                    <i className=" flex  fa-regular fa-circle text-xs"><h3 className='pl-5'>Acomodacion 4</h3></i>
-                    <i className=" flex  fa-regular fa-circle text-xs"><h3 className='pl-5'>Acomodacion 3</h3></i>
-                    <i className=" flex  fa-regular fa-circle text-xs"><h3 className='pl-5'>Acomodacion 4</h3></i>
-                    <h3 className='text-[#5333ED]'>Referencia</h3>
-                    <i className="flex fa-solid fa-paw text-xs"><h3 className='pl-5'>Se permiten Mascotas</h3></i>
-                    <i className=" flex  fa-regular fa-circle text-xs"><h3 className='pl-5'>Acomodacion 3</h3></i>
-                    <i className=" flex  fa-regular fa-circle text-xs"><h3 className='pl-5'>Acomodacion 4</h3></i>
-                    <i className=" flex  fa-regular fa-circle text-xs"><h3 className='pl-5'>Acomodacion 3</h3></i>
-                    <i className=" flex  fa-regular fa-circle text-xs"><h3 className='pl-5'>Acomodacion 4</h3></i>
+                    {
+                        services.servicio?.map(service => (
+                            <div className='flex gap-5 items-center'>
+                                <i className="w-5 text-xl flex  fa-regular fa-circle"></i>
+                                <h3 className='text-lg'>{service[0].toUpperCase() + service.substring(1)}</h3>
+                            </div>
+
+                        ))
+                    }
                 </section>
 
             </div>
