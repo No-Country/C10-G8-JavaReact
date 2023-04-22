@@ -1,9 +1,9 @@
-
 package com.backend.Go.Stay.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,33 +21,42 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     private String nombre;
     private String nombreUsuario;
     private String email;
     private String password;
     private Date fechaNacimiento;
-    
+
     @JsonIgnoreProperties("usuario")
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<Residencia> residencias = new HashSet<>();
-    
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name= "calificacion",
-            joinColumns = @JoinColumn(name="usuario_id",
+    @JoinTable(name = "calificacion",
+            joinColumns = @JoinColumn(name = "usuario_id",
                     referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "comentario_id",referencedColumnName = "id"))
+            inverseJoinColumns = @JoinColumn(name = "comentario_id", referencedColumnName = "id"))
     private Set<Comentario> comentarios = new HashSet<>();
-    
-    @ManyToMany(fetch= FetchType.EAGER)
-    @JoinTable (name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "favoritos",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "residencia_id")
+    )
+    @JsonIgnoreProperties("usuarios")
+    private List<Residencia> favoritos;
 
     public Usuario() {
     }
@@ -55,7 +64,6 @@ public class Usuario {
     public Usuario(String nombre) {
         this.nombre = nombre;
     }
-    
 
     public Usuario(String nombre, String nombreUsuario, String email, String password) {
         this.nombre = nombre;
@@ -63,15 +71,15 @@ public class Usuario {
         this.email = email;
         this.password = password;
     }
-    
 
-    public Usuario(int id, String nombre, String nombreUsuario, String email, String password, Date fechaNacimiento) {
+    public Usuario(int id, String nombre, String nombreUsuario, String email, String password, Date fechaNacimiento, List<Residencia> favoritos) {
         this.id = id;
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
         this.fechaNacimiento = fechaNacimiento;
+        this.favoritos = favoritos;
     }
 
     public int getId() {
@@ -146,5 +154,16 @@ public class Usuario {
         this.roles = roles;
     }
 
-    
+    public List<Residencia> getFavoritos() {
+        return favoritos;
+    }
+
+    public void setFavoritos(List<Residencia> favoritos) {
+        this.favoritos = favoritos;
+    }
+
+    public void addFavorito(Residencia residencia) {
+        this.favoritos.add(residencia);
+        residencia.getUsuarios().add(this);
+    }
 }

@@ -1,10 +1,11 @@
-
 package com.backend.Go.Stay.service;
 
 import com.backend.Go.Stay.entity.Comentario;
+import com.backend.Go.Stay.entity.Favorito;
 import com.backend.Go.Stay.entity.Residencia;
 import com.backend.Go.Stay.entity.Usuario;
 import com.backend.Go.Stay.repository.ComentarioRepository;
+import com.backend.Go.Stay.repository.FavoritoRepository;
 import com.backend.Go.Stay.repository.ResidenciaRepository;
 import com.backend.Go.Stay.repository.UsuarioRepository;
 import java.util.ArrayList;
@@ -14,21 +15,25 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MainService {
-    
+
     @Autowired
     UsuarioRepository usuarioRepository;
-    
+
     @Autowired
     ResidenciaRepository residenciaRepository;
-    
+
     @Autowired
     ComentarioRepository comentarioRepository;
-    
+
+    @Autowired
+    FavoritoRepository favoritoRepository;
+
     public List<Usuario> usuarios() {
         return usuarioRepository.findAll();
     }
+
     // traer 1 residencia
-    public Residencia traerResidencia(int id){
+    public Residencia traerResidencia(int id) {
         Residencia residencia = residenciaRepository.findById(id).orElse(null);
         return residencia;
     }
@@ -38,32 +43,46 @@ public class MainService {
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
         return usuario;
     }
-    
+
     public List<Residencia> residencias() {
         return residenciaRepository.findAll();
     }
-    
+
     public void deleteUsuario(int id) {
         usuarioRepository.deleteById(id);
     }
-    
+
     public Usuario guardarUsuario(Usuario usuario) {
         usuarioRepository.save(usuario);
         return usuario;
     }
-    
-    public Residencia guardarResidencia(Residencia residencia){
+
+    public Residencia guardarResidencia(Residencia residencia) {
         residenciaRepository.save(residencia);
         return residencia;
     }
-    
+
     public void guardarComentario(Comentario comentario) {
         comentarioRepository.save(comentario);
     }
-    
-    public List<Residencia> getResidenciaByPais(String ubicacion){
+
+    public List<Residencia> getResidenciaByPais(String ubicacion) {
         List<Residencia> residencias = residenciaRepository.findResidenciaByPais(ubicacion);
         return residencias;
     }
-    
+
+    //guardar favoritos en la lista de Residencias
+    public Residencia addFavorito(int residenciaId, int userId) {
+    Residencia residencia = residenciaRepository.findById(residenciaId).orElse(null);
+    Usuario user = usuarioRepository.findById(userId).orElse(null);
+    if (residencia == null || user == null) {
+        return null;
+    }
+    List<Residencia> favoritos = user.getFavoritos();
+    favoritos.add(residencia);
+    user.setFavoritos(favoritos);
+    usuarioRepository.save(user);
+    return residencia;
+}
+
 }

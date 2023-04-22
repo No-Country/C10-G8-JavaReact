@@ -4,6 +4,7 @@ import com.backend.Go.Stay.entity.Comentario;
 import com.backend.Go.Stay.entity.Residencia;
 import com.backend.Go.Stay.entity.Rol;
 import com.backend.Go.Stay.entity.Usuario;
+import com.backend.Go.Stay.repository.UsuarioRepository;
 import com.backend.Go.Stay.security.Dto.JwtDto;
 import com.backend.Go.Stay.security.Dto.LoginUsuario;
 import com.backend.Go.Stay.security.Dto.Mensaje;
@@ -15,6 +16,7 @@ import com.backend.Go.Stay.service.RolService;
 import com.backend.Go.Stay.service.UsuarioService;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,7 @@ public class MainController {
 
     @Autowired
     MainService mainService;
-    
+
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -56,18 +58,23 @@ public class MainController {
     @Autowired
     JwtProvider jwtProvider;
 
+    @Autowired
+    UsuarioRepository usuarioRepository;
+
     //List de todos los usuarios
     @GetMapping("usuario/traer")
     public ResponseEntity<List<Usuario>> usuarios() {
         List<Usuario> usuarios = mainService.usuarios();
         return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
+
     // List de todas las residencias
     @GetMapping("residencia/traer")
     public ResponseEntity<List<Residencia>> residencias() {
         List<Residencia> residencias = mainService.residencias();
         return new ResponseEntity(residencias, HttpStatus.OK);
     }
+
     // Post de Usuario para crear usuario
     @PostMapping("usuario/crear")
     public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
@@ -80,52 +87,59 @@ public class MainController {
         Usuario savedUsuario = mainService.guardarUsuario(usuario);
         return new ResponseEntity<>(savedUsuario, HttpStatus.CREATED);
     }
+
     //Post de Comentario para crear comentario
     @PostMapping("comentario/crear")
     public void crearComentario(@RequestBody Comentario comentario) {
         mainService.guardarComentario(comentario);
     }
+
     //Get para traer 1 Usuario por ID
     @GetMapping(path = {"usuario/traer/{id}"})
     public Usuario traerUsuario(@PathVariable("id") int id) {
 
         return mainService.traerUsuario(id);
     }
+
     //Get para traer 1 Residencia por ID
     @GetMapping(path = {"residencia/traer/{id}"})
     public Residencia traerResidencia(@PathVariable("id") int id) {
 
         return mainService.traerResidencia(id);
     }
+
     //Post de Residencia para crear Residencia
     @PostMapping("residencia/crear")
     public ResponseEntity<Object> crearResidencia(@RequestBody Residencia residencia) {
         Residencia savedResidencia = mainService.guardarResidencia(residencia);
         return ResponseEntity.status(HttpStatus.CREATED).body("Residencia creada con el ID: " + savedResidencia.getId());
     }
-    
+
     @GetMapping("/residencia/{ubicacion}")
-    public ResponseEntity<List<Residencia>> getResidenciaByPais(@PathVariable("ubicacion") String ubicacion){
+    public ResponseEntity<List<Residencia>> getResidenciaByPais(@PathVariable("ubicacion") String ubicacion) {
         return new ResponseEntity<>(mainService.getResidenciaByPais(ubicacion), HttpStatus.FOUND);
     }
-    
+
     //Security
-    
     @PostMapping("/auth/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) 
-            return new ResponseEntity(new Mensaje("campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);        
-        if (usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario())) 
-            return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);        
-        if (usuarioService.existsByEmail(nuevoUsuario.getEmail())) 
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity(new Mensaje("campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
+        }
+        if (usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario())) {
+            return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
+        }
+        if (usuarioService.existsByEmail(nuevoUsuario.getEmail())) {
             return new ResponseEntity(new Mensaje("ese email ya existe"), HttpStatus.BAD_REQUEST);
-        Usuario usuario =
-                new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(),
+        }
+        Usuario usuario
+                = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(),
                         passwordEncoder.encode(nuevoUsuario.getPassword()));
         Set<Rol> roles = new HashSet<>();
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
-        if (nuevoUsuario.getRoles().contains("admin")) 
+        if (nuevoUsuario.getRoles().contains("admin")) {
             roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
+        }
         usuario.setRoles(roles);
         usuarioService.save(usuario);
         return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
@@ -133,15 +147,31 @@ public class MainController {
 
     @PostMapping("/auth/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
             return new ResponseEntity(new Mensaje("campos mal puestos"), HttpStatus.BAD_REQUEST);
-        Authentication authentication =
-                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
+        }
+        Authentication authentication
+                = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtProvider.generateToken(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
-    
+
+    //Con un Usuario agrego Residencia a Favorito
+        @PostMapping("/usuarios/{id}")
+    public ResponseEntity<?> addFavoritos(@PathVariable(value = "id") int usuarioId, @RequestBody Residencia residencia) {
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(usuarioId);
+        if (!optionalUsuario.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Usuario usuario = optionalUsuario.get();
+        usuario.addFavorito(residencia);
+        usuarioRepository.save(usuario);
+
+        return ResponseEntity.ok().build();
+    }
+
 }

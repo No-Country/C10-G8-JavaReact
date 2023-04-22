@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -61,6 +62,10 @@ public class Residencia {
     @JoinColumn (name = "usuario_id")
     @JsonIgnoreProperties("residencias")
     private Usuario usuario;
+    
+    @ManyToMany(mappedBy = "favoritos")
+    @JsonIgnoreProperties("favoritos")
+    private List<Usuario> usuarios;
 
     public Residencia() {
     }
@@ -69,8 +74,7 @@ public class Residencia {
         this.categoria = categoria;
     }
 
-    public Residencia(int id, String categoria, List<String> servicio, int cantidadHabitacion, int cantidadBaño,
-            int cantidadCama, boolean estadoResidencia, String ubicacion, double precio, List<String> imagen, Timestamp fechaCreacion, Usuario usuario) {
+    public Residencia(int id, String categoria, List<String> servicio, int cantidadHabitacion, int cantidadBaño, int cantidadCama, boolean estadoResidencia, String ubicacion, double precio, List<String> imagen, Timestamp fechaCreacion, Usuario usuario, List<Usuario> usuarios) {
         this.id = id;
         this.categoria = categoria;
         this.servicio = servicio;
@@ -83,6 +87,7 @@ public class Residencia {
         this.imagen = imagen;
         this.fechaCreacion = fechaCreacion;
         this.usuario = usuario;
+        this.usuarios = usuarios;
     }
 
     public int getId() {
@@ -93,11 +98,11 @@ public class Residencia {
         this.id = id;
     }
 
-    public String getName() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setName(String categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
@@ -181,6 +186,13 @@ public class Residencia {
         this.usuario = usuario;
     }
 
-    
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
     
 }

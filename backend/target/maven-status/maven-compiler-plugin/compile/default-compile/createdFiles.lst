@@ -5,12 +5,14 @@ com\backend\Go\Stay\entity\Rol.class
 com\backend\Go\Stay\service\UserDetailsServiceImp.class
 com\backend\Go\Stay\entity\Comentario.class
 com\backend\Go\Stay\repository\RolRepository.class
+com\backend\Go\Stay\repository\FavoritoRepository.class
 com\backend\Go\Stay\security\Dto\JwtDto.class
 com\backend\Go\Stay\controller\MainController.class
 com\backend\Go\Stay\security\Dto\NuevoUsuario.class
 com\backend\Go\Stay\security\Jwt\JwtEntryPoint.class
 com\backend\Go\Stay\security\MainSecurity.class
 com\backend\Go\Stay\Application.class
+com\backend\Go\Stay\entity\Favorito.class
 com\backend\Go\Stay\service\RolService.class
 com\backend\Go\Stay\entity\UsuarioPrincipal.class
 com\backend\Go\Stay\repository\UsuarioRepository.class
