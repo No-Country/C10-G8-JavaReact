@@ -4,10 +4,12 @@ import NavBarOnlyLogo from "../components/NavBarOnlyLogo";
 import ModalLanguages from '../components/ModalLanguages'
 import perfil from "../assets/logoperfil.svg"
 
-const EditForm = ({lang}) =>
 
+
+const EditForm = ({lang}) =>
+//
 {
- 
+  
  const [showModal, setShowModal] = useState(false);
 
  const handleOnClose = () => setShowModal(false);
@@ -25,7 +27,7 @@ const [images, setimages] = useState([perfil]);
  function readmultifiles(e) {
     const files = e.currentTarget.files;
 
-
+   
     Object.keys(files).forEach((i) => {
       const file = files[i];
 
@@ -102,14 +104,18 @@ const [images, setimages] = useState([perfil]);
                                  </div>
                                  <div className="flex py-2 p-14"> 
                                     <h4 className="p-1 py-0 text-[#202F59] body-font font-poppins not-italic text-xl">Idiomas</h4>&nbsp;
-                                 <button onClick={() => setShowModal(true)}>
+                                 <button  onClick={() => setShowModal(true)}>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus text-[#5333ED]" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/> </svg><br></br><br></br>   
                                   </button>
                                  </div>
                                 <div>
-                                  <button type="button" class=" py-2 w-20 text-lg font-medium text-[#202F59] bg-[#5333ED4D] rounded-full space-x-4">
-                                   {lang}
-                                  </button>
+                                   
+                                   {lang?.map(language =>(
+                                    <button type="button" class=" py-2 w-20 text-lg font-medium text-[#202F59] bg-[#5333ED4D] rounded-full space-x-4">
+                                        {language}
+                                    </button>
+                                   ))}
+                                   
                                 </div>
                                 <div class=" flex items-center justify-center" role="group">
                                     <button type="button" class=" py-2 w-20 text-lg font-medium text-[#585858] rounded-lg underline">

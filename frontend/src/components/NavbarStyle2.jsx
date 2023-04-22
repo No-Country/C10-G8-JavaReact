@@ -7,7 +7,7 @@ const NavbarStyle2 = () => {
     const [open, setOPen] = useState(false)
     return (
         <nav className='flex p-10 w-full h-24 items-center justify-between'>
-            <img className='w-44 h-44' src={logoPerfil} alt="" />
+            <Link to="/"> <img className='w-44 h-44' src={logoPerfil} alt="" /></Link> 
             <div className='relative'>
                 <input type="text" placeholder='Buscar' className='p-2 w-72 rounded-full' />
                 <i className="fa-solid fa-magnifying-glass absolute right-1  top-0 md:top-3 md:right-4 text-black "></i>

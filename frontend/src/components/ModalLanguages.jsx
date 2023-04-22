@@ -12,7 +12,7 @@ const ModalLanguages = ({visible, onClose}) =>
       
    const [selectLang, setSelectLang] = useState([]);
 
-   const [idioma, setIdioma] = useState([]);
+   const [idioma, setIdioma] = useState("");
 
   const handleChange = e => {
     setIdioma(e.target.value);
@@ -20,7 +20,9 @@ const ModalLanguages = ({visible, onClose}) =>
 
   const chooseLang = () => {
     setSelectLang(prevState => [...prevState, idioma]);
+    
   };
+ 
  
     return(
       <div className="h-screen w-full fixed left-0 top-0 pt-8 z-[999] flex justify-center items-center bg-black bg-opacity-50">    
@@ -35,7 +37,7 @@ const ModalLanguages = ({visible, onClose}) =>
                 Idiomas que hablo
                                 
             </div>
-            --
+             
   <div className="bg-[white] rounded-b-lg">
                 <form className="rounded-lg body-font font-poppins space-y-4">  
                   

@@ -1,23 +1,101 @@
- import React  from "react";
- import { useState} from "react";
- import ModalProfile from './ModalProfile.jsx'
+ import { useState, useEffect, Fragment} from "react";
+ import ValidationRegister from "./ValidationRegister";
+ import axios from 'axios'; 
+ import ModalProfile from "./ModalProfile";
+ import { useDispatch, useSelector } from 'react-redux'
+ import { register , clearErrors } from './actions/userActions'
+import { useNavigate } from "react-router-dom";
 
-const Register = ({closeModal}) =>
-{
-   
-      const [showModal, setShowModal] = useState(false);
+const Register = ({closeModal} ) =>
+{       
+          const [btnColor, setBtnColor] = useState('[#C4B5FD]');
+            const [showModal, setShowModal] = useState(false);
+            const handleOnClose = () => setShowModal(false);
+            const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+            const [errors, setErrors]= useState({})
+            const  [dataIsCorrect , setDataIsCorrect] = useState(false);
+             const navigate = useNavigate();
 
-      const handleOnClose = () => setShowModal(false);
+             const dispatch = useDispatch();
+             const { isAuthenticated, error, loading} = useSelector(state => state.auth)
+
+
+            const [body,setBody] = useState({
+                  nombre:"",
+                  nombreUsuario:"",
+                  email:"",
+                  password:"",
+                  fechaNacimiento:"",
+                  Ischecked: false
+            })
+
+            function refreshPage(){ 
+                  window.location.reload(); 
+              }
+            useEffect(() => {
+                  if(isAuthenticated)
+                  {
+                        setShowModal(true)
+                        setTimeout(() =>   
+                         navigate("/Profile")
+                        , 5000);
+                        console.log(body)
+                  }
+
+                  if(error)
+                  {
+                        console.log(error)
+                        dispatch(clearErrors());
+                  }
+            },[dispatch, isAuthenticated, error, loading])
+
+            const onSubmit = (e) =>{
+                  e.preventDefault();
+                 setErrors(ValidationRegister(body))
+                  dispatch(register(body))
+            }
+ 
+          
+            
+             const Password = () =>
+            {
+            setIsPasswordVisible((prevState) => !prevState);
+            } 
+
+            const inputChange= (e) =>{
       
-      const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-      
-      const Password = () =>
-      {
-          setIsPasswordVisible((prevState) => !prevState);
-      } 
-      
-      
+                  if(body.nombre !== '' && body.nombreUsuario !== ''  && body.email !== ''  && body.password !== ''
+                  && body.fechaNacimiento !== '')
+                  
+                  {
+                  setBtnColor('[#5333ED]')
+                  
+                  }
+               
+               else
+                  {
+                  setBtnColor('[#C4B5FD]')
+                  
+                  }
+
+                  const { type, checked, name, value } = e.target;
+
+                  setBody({
+                  ...body,
+                  [e.target.name]: e.target.value, 
+                 
+                 [name]: type === 'checkbox' ? checked : value, 
+                  });
+                     
+            };
+
+       
+  
+          
        return(
+      <Fragment> 
+
+
          <div className="h-screen w-full fixed left-0 top-0 pt-8 z-[999] flex justify-center items-center bg-black bg-opacity-50">    
                <div className=" flex justify-center items-center    rounded-2xl"> 
                  <div class="fixed justify-center bg-[#202F59] py-0 text-sm text-white   rounded-2xl">
@@ -31,40 +109,48 @@ const Register = ({closeModal}) =>
                            </div>
                       </div>
                 <div className="bg-[white] rounded-b-lg">
-                   <form className="rounded-lg body-font font-poppins space-y-4">  
+                   <form className="rounded-lg body-font font-poppins space-y-4" encType='multipart/form-data'>  
                            <div class="flex flex-col items-center justify-center ">
                                  <div class="p-6 space-y-6 "> 
                                        <div class=" relative group ">
-                                             <input type="text" id="nombre" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-96 px-4 text-base peer bg-white outline-none" name='nombre' required/>
-                                             <label for="nombre" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Nombre y apellido</label>  
+                                             <input type="text" id="nombre" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-96 px-4 text-base peer bg-white outline-none" value={body.nombre} onChange={inputChange} name='nombre' required/>
+                                             <label for="nombre" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Nombre y apellido</label>
+                                             {errors.nombre && <p className="text-[#E80000]">{errors.nombre}</p>}  
+
                                        </div>
                                        <div class=" relative group ">
-                                             <input type="usuario" id="usuario" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-96 px-4 text-base peer bg-white outline-none" name='usuario' required/>
-                                             <label for="usuario" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Usuario</label>                         
+                                             <input type="text" id="nombreUsuario" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-96 px-4 text-base peer bg-white outline-none" value={body.nombreUsuario} onChange={inputChange}  name='nombreUsuario' required/>
+                                             <label for="nombreUsuario" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Usuario</label>          
+                                             {errors.nombreUsuario && <p className="text-[#E80000]">{errors.nombreUsuario}</p>}               
                                        </div>
                                        <div class=" relative group ">
-                                             <input type="email" id="correo" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-96 px-4 text-base peer bg-white outline-none" name='email' required/>
-                                             <label for="correo" class="text-gray-400 transform transition-all absolute bottom-4 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Correo electrónico</label>          
-                                       <div className="flex items-start mr-16">  
-                                       <p class="text-s px-1 pt-1 pb-2 sm:p-1 sm:pb-0 text-[#B5B5B5] text-xs body-font font-poppins cursor-pointer italic">Te enviaremos las confirmaciones de reserva y los recibos <br></br>
-                                       por correo electrónico.</p> 
-                                 </div>               
-                            </div>
+                                             <input type="email" id="email" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-96 px-4 text-base peer bg-white outline-none" value={body.email} onChange={inputChange}  name='email' required/>
+                                             <label for="email" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Correo electrónico</label>      
+                                             {errors.email && <p className="text-[#E80000]">{errors.email}</p>}              
+                                     </div>
+                                     <div className="flex items-start mr-16">  
+                                           <p class="text-s px-1 pt-1 pb-2 sm:p-1 sm:pb-0 text-[#B5B5B5] text-xs body-font font-poppins cursor-pointer italic">Te enviaremos las confirmaciones de reserva y los recibos <br></br>
+                                             por correo electrónico.</p> 
+                                           </div> 
                            <div class=" relative group ">
-                                       <input type={isPasswordVisible ? "text" : "password"}  id="password" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-96 px-4 text-base peer bg-white outline-none" name='password' required/>
-                                       <label for="password" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Contraseña</label>           
-                                 <div class="absolute inset-y-0 right-8 top-1 flex items-center px-2">
-                                       <label class="rounded py-1 text-sm text-blue-700 underline cursor-pointer js-password-label" for="toggle" onClick={Password}>Mostrar</label> 
+                                       <input type={isPasswordVisible ? "text" : "password"}  id="password" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-96 px-4 text-base peer bg-white outline-none" value={body.password} onChange={inputChange} name='password' required/>
+                                       <label for="password" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Contraseña</label>  
+                                       {errors.password && <p className="text-[#E80000]">{errors.password}</p>}          
+                                 <div class="absolute inset-y-0 right-8 top-0 flex items-center px-3">
+                                       <label class="rounded py-1 text-sm text-blue-700 underline cursor-pointer js-password-label" for="toggle" onClick={Password}>Mostrar</label>
+                                         
                                  </div>              
                            </div>
                             <div class=" relative group ">
-                                       <input type="text" id="fecha" class="text-black rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-96 px-4 text-base peer bg-white outline-none" name='fecha' required/>
-                                       <label for="fecha" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Fecha de nacimiento</label>                         
+                                       <input type="date" id="fechaNacimiento" class="text-gray-300 2rounded-lg p-2 focus:border-blue border-2 border-solid h-10 w-96 px-4 text-base peer bg-white outline-none" value={body.fechaNacimiento} onChange={inputChange} name='fechaNacimiento' required/>
+                                       <label for="fechaNacimiento" class="text-gray-400 transform transition-all absolute top-0 left-0 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Fecha de nacimiento</label>     
+                                       {errors.fechaNacimiento && <p className="text-[#E80000]">{errors.fechaNacimiento}</p>}                     
                             </div>
                            <div class="flex items-center justify-between">
                                  <div class="flex items-start">
                                        <div class="flex items-center h-5">
-                                        <input id="remember" type="checkbox" class="flex items-center ml-2 w-4 h-4" required/>
+                                        <input value={body.Ischecked} name="Ischecked" checked={body.Ischecked} onChange={inputChange}  type="checkbox" class="flex items-center ml-2 w-4 h-4" required/>
+                                         
                                   </div>
                                   <div class="ml-2 text-xs">
                                        <label for="remember" class="text-[#505050] text-xs not-italic">
@@ -72,12 +158,15 @@ const Register = ({closeModal}) =>
                                        Servicio y <label className="underline">la Política de comportamiento</label> de Go && Stay- <br></br>
                                        También reconozco la <label className="underline"> Política de privacidad.</label>
                                        </label>
-                                  </div>            
+                                       {errors.Ischecked && <p className="text-[#E80000]">{errors.Ischecked}</p>} 
+                                  </div>        
+                                   
+                                
                             </div> 
                      </div>
                 <br></br>  
                          <div class="flex flex-col items-center justify-center">
-                           <button onClick={() => setShowModal(true)} type="button" className="text-sm leading-normal body-font font-poppins w-22 h-8 text-white rounded-lg py-2 px-6 bg-[#C4B5FD]">
+                           <button onClick={onSubmit} disabled={loading ? true : false}  type="button"  className={`text-sm leading-normal body-font font-poppins w-22 h-8 text-white rounded-lg py-2 px-6 bg-${btnColor}`}>
                                 Aceptar y Continuar
                              </button>
                                 <br></br>
@@ -88,11 +177,10 @@ const Register = ({closeModal}) =>
             </div>
           </div>
         </div>
-        <ModalProfile onClose={handleOnClose} visible={showModal} />
+        <ModalProfile onClose={handleOnClose} visible={showModal} handle={closeModal}/>
       </div>
-  );
-   
-   
+      </Fragment>
+       );
 } 
 
 export default Register;

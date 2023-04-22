@@ -2,15 +2,15 @@
 const ValidationLogin = (body) =>
 {
     let errors = {}
-
     
-        if(!body.usuario)
+    
+        if(!body.nombreUsuario)
         {
-            errors.usuario = "User is Required! ";
+            errors.nombreUsuario = "User is Required! ";
         }
-        else if(body.usuario.length < 5)
+        else if(body.nombreUsuario.length < 5)
         {
-            errors.usuario = "Must be more than 4 characters"
+            errors.nombreUsuario = "Must be more than 4 characters"
         }
      
         if(!body.password)
@@ -18,10 +18,10 @@ const ValidationLogin = (body) =>
             errors.password = "Password is Required";
 
         } 
-        else if(body.password.length < 5)
+        else if(body.password.length < 4)
 
         {
-            errors.password = "Must be more than 4 characters"; 
+            errors.password = "Must be more than 3 characters"; 
         }
 
         return errors;
