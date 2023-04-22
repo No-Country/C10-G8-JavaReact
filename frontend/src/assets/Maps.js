@@ -1,13 +1,9 @@
 import React from "react";
-import { GoogleMap, withScriptjs, withGoogleMap } from "@react-google-maps";
+import brasil from './Maps/MapBrasil.png';
+import alemania from './Maps/MapAlemania.png';
 
-const Maps = (props) => {
-  return (
-    <GoogleMap
-      defaultZoom={10}
-      defaultCenter={{ lat: -34.397, lng: 150.644 }}
-    />
-  );
-};
+export default {
+  Brasil: brasil,
+  Alemania: alemania,
 
-export default withScriptjs(withGoogleMap(Maps));
+}

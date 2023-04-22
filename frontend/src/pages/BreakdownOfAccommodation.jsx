@@ -19,14 +19,12 @@ import textHost from "../assets/TextHost";
 import TextHost from "../assets/TextHost";
 import Maps from "../assets/Maps";
 
-
 const BreakdownOfAccommodation = () => {
   const [visiblePhotos, setVisiblePhotos] = useState(false);
   const [visibleDescription, setVisibleDescription] = useState(false);
   const [visibleServices, setVisibleServices] = useState(false);
   const [visibleRating, setVisibleRating] = useState(false);
   const [visibleQualify, setVisibleQualify] = useState(false);
-  const [visibleCheck, setVisibleCheck] = useState(false);
   const [placeId, setPlaceId] = useState({});
   const [inicio, setInicio] = useState(new Date());
   const [final, setFinal] = useState(new Date());
@@ -35,6 +33,7 @@ const BreakdownOfAccommodation = () => {
   const [children, setChildren] = useState(0);
   const [pets, setPets] = useState(0);
   const navigate = useNavigate();
+  const [favorite, setFavorite]=useState(false)
 
   const changeFechaInicio = (inicio) => {
     setInicio(inicio);
@@ -44,12 +43,18 @@ const BreakdownOfAccommodation = () => {
   };
   let number = textHost.length - 200;
   const text = TextHost[0].slice(0, number);
-  let number2 = textHost.length - 500
-  const breadown = TextHost[1].slice(0, number2)
+  let number2 = textHost.length - 500;
+  const breadown = TextHost[1].slice(0, number2);
 
-  const openGuests = () => {   setGuests(true);  };
-  const closeGuests = () => {    setGuests(false);  };
-  const closePhotos = () => {   setVisiblePhotos(false);  };
+  const openGuests = () => {
+    setGuests(true);
+  };
+  const closeGuests = () => {
+    setGuests(false);
+  };
+  const closePhotos = () => {
+    setVisiblePhotos(false);
+  };
   const closeDescription = () => {
     setVisibleDescription(false);
   };
@@ -62,10 +67,8 @@ const BreakdownOfAccommodation = () => {
   const closeQualify = () => {
     setVisibleQualify(false);
   };
-  const closeCheck = () => {
-    setVisibleCheck(false);
-  };
-  let randomId = Math.round(Math.random() * 1) + 1;
+ 
+  let randomId = Math.round(Math.random() * 3) + 1;
 
   useEffect(() => {
     axios
@@ -74,18 +77,8 @@ const BreakdownOfAccommodation = () => {
       )
       .then((res) => setPlaceId(res.data));
   }, []);
-  
-  const mapDiv = document.getElementById('map')
-  let map;
 
-  function initMap(){
-    map= new google.maps.Map(mapDiv,{
-      center: { lat:3.5472372890799146, lng:-76.28798850237898},
-      zoom: 5,
-
-    })
-  }
-
+  const map = Maps[placeId.ubicacion];
 
   return (
     <main className="Container   bg-[#ffff] flex-col gap-10 font-poppins ">
@@ -113,8 +106,9 @@ const BreakdownOfAccommodation = () => {
               <h3 className="text-[#202F59] px-1">Ubicación</h3>
             </div>
             <div className="flex items-center pt-2 gap-2 md:text-xl">
-              <i className="text-[#E2006D]  text-2xl fa-regular fa-heart"></i>
-              <h3 className="text-[#202F59] px-1 border-b-solid border-b-2 border-[#202F59]">
+              <i className= {`text-[#E2006D]  text-2xl fa-regular fa-heart ${favorite ? 'animate-ping fa-solid' : 'animate-none'  }`}></i>
+              <h3 onClick={()=>setFavorite(!favorite
+                )} className="text-[#202F59] hover:cursor-pointer px-1 border-b-solid border-b-2 border-[#202F59]">
                 Agregar a favoritos
               </h3>
             </div>
@@ -155,9 +149,7 @@ const BreakdownOfAccommodation = () => {
               <h2 className="text-[#202F59] text-2xl font-semibold">
                 Descripción del alojamiento
               </h2>
-              <p className="text-[#202F59]">
-                {breadown}...
-              </p>
+              <p className="text-[#202F59]">{breadown}...</p>
               <button
                 onClick={() => setVisibleDescription(true)}
                 className="w-2/5 font-bold p-2 bg-[#5333ED] text-[white] rounded-lg"
@@ -418,20 +410,26 @@ const BreakdownOfAccommodation = () => {
               </div>
             </section>
             <section className="w-1/2">
-              <div  className=" h-full">
-                
-                <div id="map" className="bg-white w-1/2 m-auto">
-                  <Maps
-                  googleMapURL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDPl3hLhB9lNZDeJDj4696pPgBpWtxiVVM&callback=initMap"
-                  />
-                  {/* <h2>X Ubicacion</h2>
+              <div className=" relative flex items-center  h-full">
+                <img className="cover w-full" src={map} alt="" />
+                <div className="absolute w-2/4 h-1/4 left-0 right-0 m-auto inset-0 flex justify-center items-center  bg-opacity-20 backdrop-blur-sm bg-#000">
+                  <a
+                    href={`https://www.google.com/maps/place/${placeId.ubicacion}/`}
+                    target="_blank"
+                  >
+                    <h2 className="text-xl text-[#202F59]">
+                      Ubicación: {placeId.ubicacion}
+                    </h2>
+                  </a>
+                </div>
+
+                {/* <h2>X Ubicacion</h2>
                   <div>
                     <h3>Punto Importante 1</h3>
                     <h3>Punto Importante 2</h3>
                     <h3>Punto Importante 3</h3>
                     <a href="">Ver más</a>
                   </div> */}
-                </div>
               </div>
             </section>
           </section>
@@ -506,7 +504,7 @@ const BreakdownOfAccommodation = () => {
       />
       <Rating visible={visibleRating} close={closeRating} />
       <CreateRating visible={visibleQualify} close={closeQualify} />
-      <SuccessfullQualification visible={visibleCheck} close={closeCheck} />
+      
       <Footer />
     </main>
   );
